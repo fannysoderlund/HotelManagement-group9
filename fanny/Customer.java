@@ -1,4 +1,4 @@
-package pack;
+package fanny;
 
 
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ public class Customer {
         this.name = name;
     }
 
-    public long getSSN() {
+    public String getSSN() {
         return this.SSN =SSN;
     }
 
-    public void setSSN(long SSN) {
+    public void setSSN(String SSN) {
         this.SSN = SSN;
     }
 

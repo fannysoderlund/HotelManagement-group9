@@ -1,4 +1,4 @@
-package pack;
+package fanny;
 
 public class HotelLogic {
 }

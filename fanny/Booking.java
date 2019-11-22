@@ -1,4 +1,4 @@
-package pack;
+package fanny;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class Booking {
     }
 
     public ArrayList<Customer> getCustomer() {
-        return (ArrayList<pack.Customer>) Customer;
+        return (ArrayList<fanny.Customer>) Customer;
     }
 
     public ArrayList<Rooms> getRooms() {
