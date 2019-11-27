@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HotelLogic {
-    public static void main(String[] args) {
-        HotelLogic myApp = new HotelLogic();
-        myApp.addCustomer();
 
-    }
     public ArrayList<Customer> customerList = new ArrayList<>();
 
     private void addCustomer() {

@@ -23,7 +23,7 @@ public class Main {
                 if (user.contains(".hotel")) {
                     user = "Employee";
                     break;
-                } else if (user.toCharArray().length == 10 && (user.matches("[0-9]+"))) {
+                } else if ((user.matches("[0-9]{10}"))) {
                     user = "Customer";
                     break;
                 } else {
