@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
         Main myApp = new Main();
         String user = myApp.signIn();
+
         //use the string user to call correct menu
+
     }
 
     public String signIn() {
