@@ -7,7 +7,7 @@ public class HotelLogic {
 
     public ArrayList<Customer> customerList = new ArrayList<>();
 
-    private void addCustomer() {
+    public void addCustomer() {
         Scanner input = new Scanner(System.in);
         String name;
         String SSN;
