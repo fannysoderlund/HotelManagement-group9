@@ -4,13 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     Scanner input = new Scanner(System.in);
-   private  HotelLogic call = new HotelLogic();
+    private HotelLogic call = new HotelLogic();
+
     public static void main(String[] args) {
         Main myApp = new Main();
 
         String user = myApp.signIn();
-
-        //use the string user to call correct menu
+        if (user.equals("Employee")) {
+            myApp.EmployeeMenu();
+        }else {
+            myApp.MenuCustomer(user);
+        }
 
     }
 
@@ -23,11 +27,9 @@ public class Main {
                 user = input.nextLine();
                 if (user.contains(".hotel")) {
                     user = "Employee";
-                    EmployeeMenu();
                     break;
                 } else if ((user.matches("[0-9]{10}"))) {
-                    user = "Customer";
-                    MenuCustomer();
+                    user = user;
                     break;
                 } else {
                     System.out.println("Please enter a correct log in\n");
@@ -35,98 +37,124 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Please enter a correct log in\n");
             }
-    }
+        }
         return user;
-}
-public void EmployeeMenu() {
-    System.out.println("Welcome to Employees Menu of HKR Hotel,please Enter your LoginID");
-int id = input.nextInt();
+    }
 
-int choice ;
-boolean cont = true;
-while (cont) {
-   printfirst();
-    System.out.println("Please Make your choice :- ");
-    choice = input.nextInt();
-  switch (choice) {
-      case 1 :
-          call.listOfCustomer();
-          break;
-      case 2 :
-          call.RoomInfo();
-          break;
-      case 3 :
-          call.AddRoom();
-          break;
-      case 4 :
-          call.addCustomer();
-          break;
-      case 5 :
-          call.RemoveCustomer();
-          break;
-      case 6 :
-          call.EditRoom();
-          break;
-      case 7:
-          call.listOfRooms();
-          break;
-      case 8 :
-          cont = false;
-  break;
-  }
-}
-}
-private void MenuCustomer (){
-    System.out.println("Welcome to HKR Hotel, Please Enter your Bookking Number");
-    int booking = input.nextInt();
-    int choice;
-    boolean cont = true;
-    while (cont) {
-       printMenu2();
-        System.out.println("Please Make your choice");
-        choice = input.nextInt();
-        switch (choice) {
-            case 1 :
-call.MakeBooking();
-break;
-            case 2 :
-                call.viewInfo();
-                break;
-            case 3:
-                call.EditBooking();
-                break;
-            case 4:
-                call.EditInfo();
-                break;
-            case 5 :
-                call.searchBooking();
-                break;
-            case 6 :
-                call.checkout();
-                break;
-            case 7:
-                cont = false;
-                break;
+    public void EmployeeMenu() {
+        System.out.println("Welcome to Employees Menu of HKR Hotel");
+        int choice;
+        boolean cont = true;
+        while (cont) {
+            printEmployee();
+            System.out.println("- Please make your choice");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                   // call.listOfCustomer();
+                    break;
+                case 2:
+                   // call.listOfRooms();
+                    break;
+                case 3:
+                   // call.listOfBookings();
+                    break;
+                case 4:
+                    call.addCustomer();
+                    break;
+                case 5:
+                  //  call.removeCustomer();
+                    break;
+                case 6:
+                    //    call.editCustomer();
+                    break;
+                case 7:
+                   // call.addRooms();
+                    break;
+                case 8:
+                 //   call.removeRooms();
+                    break;
+                case 9:
+                   // call.editRooms();
+                    break;
+                case 10:
+                   // call.addBooking();
+                    break;
+                case 11:
+                   // call.removeBooking();
+                    break;
+                case 12:
+                   // call.editBooking();
+                    break;
+                case 13:
+                   // call.checkOut();
+                    break;
+                case 14:
+                    cont = false;
+                    break;
+            }
         }
     }
+
+    private void MenuCustomer(String user) {
+        System.out.println("Welcome to the HKR Hotel");
+        int booking;
+        int choice;
+        boolean cont = true;
+        while (cont) {
+            printCustomer();
+            System.out.println("- Please Make your choice");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                //    call.makeBooking();
+                    break;
+                case 2:
+                  //  call.viewInfo();
+                    break;
+                case 3:
+                 //   call.editBooking();
+                    break;
+                case 4:
+                   // call.editInfo();
+                    break;
+                case 5:
+                  //  call.searchBookings();
+                    break;
+                case 6:
+                  //  call.checkOut();
+                    break;
+                case 7:
+                    cont = false;
+                    break;
+            }
+        }
     }
-private void printfirst() {
-    System.out.println("1- List Of Customers");
-    System.out.println("2- Room Information");
-    System.out.println("3- Add Room");
-    System.out.println("4- Add Customer");
-    System.out.println("5- Remove Customer");
-    System.out.println("6- Edit Room");
-    System.out.println("7- List Of All Avillable Rooms");
-    System.out.println("Exit");
-}
-private void printMenu2() {
-    System.out.println("1- Make a Booking");
-    System.out.println("2- View Customer Info");
-    System.out.println("3- Edit Booking");
-    System.out.println("4- Edit Customer Information");
-    System.out.println("5- Search Booking");
-    System.out.println("6- Check out");
-    System.out.println("Exit");
-}
+
+    private void printEmployee() {
+        System.out.println("1. View list of customers");
+        System.out.println("2. View list of rooms");
+        System.out.println("3. View list of bookings");
+        System.out.println("4. Add customer");
+        System.out.println("5. Remove customer");
+        System.out.println("6. Edit customer");
+        System.out.println("7. Add room");
+        System.out.println("8. Remove room");
+        System.out.println("9. Edit room");
+        System.out.println("10. Add booking");
+        System.out.println("11. Remove booking");
+        System.out.println("12. Edit booking");
+        System.out.println("13. Check out a customer");
+        System.out.println("14. Exit");
+    }
+
+    private void printCustomer() {
+        System.out.println("1. Make a booking");
+        System.out.println("2. View your information");
+        System.out.println("3. Edit one of your bookings");
+        System.out.println("4. Edit your information");
+        System.out.println("5. Search available bookings");
+        System.out.println("6. Check out");
+        System.out.println("7. Exit");
+    }
 }
