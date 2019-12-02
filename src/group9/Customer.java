@@ -1,5 +1,7 @@
 package group9;
+import java.util.Scanner;
 
+import java.util.ArrayList;
 
 public class Customer {
     String name;
@@ -15,6 +17,9 @@ public class Customer {
         this.phone = phone;
         this.checkedIn = checkedIn;
     }
+
+
+
 
     public String getName() {
         return this.name=name;

@@ -1,6 +1,8 @@
 package group9;
 
 
+import java.util.ArrayList;
+
 public class Rooms {
     int roomNo;
     int noOfBeds;
@@ -15,6 +17,7 @@ public class Rooms {
         this.price = price;
 
     }
+
 
     public double getPrice() {
         return price;

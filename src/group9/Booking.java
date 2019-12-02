@@ -17,6 +17,7 @@ public class Booking {
         this.price = price;
     }
 
+
     public int getRoomNo() {
         return roomNo;
     }
