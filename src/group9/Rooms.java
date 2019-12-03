@@ -1,8 +1,5 @@
 package group9;
 
-
-import java.util.ArrayList;
-
 public class Rooms {
     int roomNo;
     int noOfBeds;

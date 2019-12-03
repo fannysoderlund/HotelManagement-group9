@@ -1,7 +1,4 @@
 package group9;
-import java.util.Scanner;
-
-import java.util.ArrayList;
 
 public class Customer {
     String name;

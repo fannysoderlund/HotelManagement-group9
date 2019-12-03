@@ -51,16 +51,16 @@ public class Main {
             choice = input.nextInt();
             switch (choice) {
                 case 1:
-                   // call.listOfCustomer();
+                   call.listOfCustomer();
                     break;
                 case 2:
-                   // call.listOfRooms();
+                    call.listOfRooms();
                     break;
                 case 3:
-                   // call.listOfBookings();
+                   call.listOfBookings();
                     break;
                 case 4:
-              //      call.addCustomer();
+               call.addCustomer();
                     break;
                 case 5:
                   //  call.removeCustomer();
@@ -69,7 +69,7 @@ public class Main {
                     //    call.editCustomer();
                     break;
                 case 7:
-                   // call.addRooms();
+                   call.addRoom();
                     break;
                 case 8:
                  //   call.removeRooms();
@@ -78,7 +78,7 @@ public class Main {
                    // call.editRooms();
                     break;
                 case 10:
-                   // call.addBooking();
+                   call.addBooking();
                     break;
                 case 11:
                    // call.removeBooking();
