@@ -57,4 +57,19 @@ public class Customer {
     public void setCheckedIn(boolean checkedIn) {
         this.checkedIn = checkedIn;
     }
+
+    @Override
+    public String toString() {
+        String checkedIn;
+        if (isCheckedIn()) {
+            checkedIn= "Customer is checked in";
+        } else {
+            checkedIn= "Customer is not checked in";
+        }
+        return "Name: " + name +
+                ", SSN: " + SSN +
+                ", address: " + address +
+                ", phone number: " + phone +
+                ", " + checkedIn;
+    }
 }

@@ -47,6 +47,13 @@ public class Booking {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Room booked: " + roomNo +
+                ", Check in on: " + checkInDate +
+                ", Check out on: " + checkOutDate +
+                ", Price: " + price + "SEK";
+    }
 }
 
 

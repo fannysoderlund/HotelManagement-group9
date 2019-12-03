@@ -12,6 +12,7 @@ public class Rooms {
         this.noOfBeds = noOfBeds;
         this.balcony = balcony;
         this.price = price;
+        this.availability=availability;
 
     }
 
@@ -58,4 +59,24 @@ public class Rooms {
         this.availability = availability;
     }
 
+    @Override
+    public String toString() {
+        String balcony;
+        String available;
+        if (isBalcony()) {
+            balcony="It does have a balcony";
+        } else {
+            balcony="It does not have a balcony";
+        }
+        if (isAvailability()) {
+            available="It is available";
+        }else {
+            available="It is not available";
+        }
+        return "Room number: " + roomNo +
+                ", Number of beds: "  + noOfBeds +
+                ", " + balcony +
+                ", Price: " + price +
+                "SEK , " + available;
+    }
 }
