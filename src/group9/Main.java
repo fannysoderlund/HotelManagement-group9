@@ -60,7 +60,7 @@ public class Main {
                    // call.listOfBookings();
                     break;
                 case 4:
-                    call.addCustomer();
+              //      call.addCustomer();
                     break;
                 case 5:
                   //  call.removeCustomer();
