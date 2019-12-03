@@ -28,7 +28,13 @@ public class HotelLogic {
         for (Rooms R : roomsList) {
 
         }
+    }
 
+        public void displayCustomerList(ArrayList<Customer> publications) {
+
+            for (Customer R : CustomerList) {
+
+            }
 
             }
         }
