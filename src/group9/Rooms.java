@@ -58,4 +58,14 @@ public class Rooms {
         this.availability = availability;
     }
 
+    @Override
+    public String toString() {
+        return "Rooms{" +
+                "roomNo=" + roomNo +
+                ", noOfBeds=" + noOfBeds +
+                ", balcony=" + balcony +
+                ", price=" + price +
+                ", availability=" + availability +
+                '}';
+    }
 }

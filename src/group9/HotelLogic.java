@@ -3,16 +3,8 @@ package group9;
 import java.util.*;
 
 public class HotelLogic {
-
-
-
-    public static void main(String[] args) {
         HotelLogic myApp = new HotelLogic();
-        myApp.addCustomer();
-        myApp.addrooms();
-        myApp.addbooking();
 
-    }
 
     public ArrayList<Customer> customerList = new ArrayList<>();
     public ArrayList<Rooms> roomsList = new ArrayList<>();
@@ -44,35 +36,8 @@ public class HotelLogic {
     }
 
 
-  /*  private void addrooms() {
-        int roomNo = 0;
-        int noOfBeds = 2;
-        boolean balcony = true;
-         double price = 300.00;
-        boolean availability = true;
 
-
-
-
-            for (int i=0;i<10;i++)
-            {
-
-                int j=i+1;
-                Rooms room=new Rooms(j);
-                room.setRoomNo(0);
-                room.setNoOfBeds(2);
-                room.isBalcony();
-                room.setPrice(300.00);
-                room.isAvailability();
-
-                Rooms rooms = new Rooms(roomNo, noOfBeds, true, price, true);
-                roomsList.add(rooms);
-
-            }
-
-  */
-
-    public void addrooms() {
+    public void addRoom() {
         Scanner input = new Scanner(System.in);
         int roomNo;
         int noOfBeds;
@@ -84,12 +49,11 @@ public class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
-        System.out.print("Do you want with a balcony :  ");
+        System.out.print("Does the room have a balcony (type in true or false):  ");
         balcony = input.hasNext();
         System.out.print("Enter the price: ");
         price = input.nextDouble();
-        System.out.print("Is the room available:  ");
-        availability = input.hasNext();
+        availability = true;
 
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
@@ -101,25 +65,30 @@ public class HotelLogic {
 
 
 
-    public void addbooking() {
+    public void addBooking() {
 
         Scanner input = new Scanner(System.in);
+        int room;
         int roomNo;
         long checkInDate;
         long checkOutDate;
-        float price = 500;
+        double price;
 
-        System.out.println("Make a booking:  ");
+        System.out.println("Choose a room to book:  ");
 
-        System.out.print("Enter a room number: ");
-        roomNo = input.nextInt();
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("[" +i + "]"+ roomsList.get(i).toString());
+        }
+        room = input.nextInt();
+        roomNo=roomsList.get(room).getRoomNo();
         System.out.print("Enter the check in date: ");
         checkInDate = input.nextLong();
         System.out.print("Enter the check out date:  ");
         checkOutDate = input.nextLong();
-        System.out.println("The price for a night is 500 kr. ");
+        price = roomsList.get(room).getPrice();
+        System.out.printf("The price for a night is %f kr. ", price);
 
-        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price );
+        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price);
         bookingList.add(booking);
 
 

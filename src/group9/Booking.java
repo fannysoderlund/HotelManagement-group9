@@ -7,10 +7,10 @@ public class Booking {
     int roomNo;
     long checkInDate;
     long checkOutDate;
-    float price;
+    double price;
 
 
-    public Booking(int roomNo, long checkInDate, long checkOutDate, float price) {
+    public Booking(int roomNo, long checkInDate, long checkOutDate, double price) {
         this.roomNo = roomNo;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -42,10 +42,14 @@ public class Booking {
     }
 
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
+
+    public double getPrice() {
+        return price;
+    }
 }
 
 
