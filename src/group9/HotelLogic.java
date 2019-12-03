@@ -24,6 +24,10 @@ public class HotelLogic {
         roomsList.add(fourthRoom);
         roomsList.add(fifthRoom);
 
+       for(Rooms r: roomsList) {
+           System.out.println(r.toString());
+       }
+
     }
 
     public void listOfCustomer() {
@@ -37,6 +41,10 @@ public class HotelLogic {
         customerList.add(thirdCustomer);
         customerList.add(fourthCustomer);
 
+        for(Customer c: customerList) {
+            System.out.println(c.toString());
+        }
+
     }
 
     public void listOfBookings() {
@@ -45,6 +53,10 @@ public class HotelLogic {
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
+
+        for(Booking b : bookingList) {
+            System.out.println(b.toString());
+        }
 
     }
 
