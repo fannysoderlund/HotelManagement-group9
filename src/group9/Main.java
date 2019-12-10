@@ -100,7 +100,9 @@ public class Main {
                    // call.editBooking();
                     break;
                 case 13:
-                   // call.checkOut();
+                    System.out.println("Chose a customer to checkout");
+                    call.listOfCustomer();
+                    call.checkOut();
                     break;
                 case 14:
                     cont = false;
@@ -135,7 +137,7 @@ public class Main {
                   //  call.searchBookings();
                     break;
                 case 6:
-                  //  call.checkOut();
+                    // call.checkout();
                     break;
                 case 7:
                     cont = false;
