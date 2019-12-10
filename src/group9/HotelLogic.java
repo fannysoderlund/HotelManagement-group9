@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class HotelLogic {
 
-
     ArrayList<Rooms> roomsList = new ArrayList<>();
     ArrayList<Booking> bookingList = new ArrayList<>();
     ArrayList<Customer> customerList = new ArrayList<>();
 
-    public void listOfRooms() {
+
+
+    public void  listOfRooms() {
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
@@ -24,9 +25,6 @@ public class HotelLogic {
         roomsList.add(fourthRoom);
         roomsList.add(fifthRoom);
 
-       for(Rooms r: roomsList) {
-           System.out.println(r.toString());
-       }
 
     }
 
@@ -41,9 +39,6 @@ public class HotelLogic {
         customerList.add(thirdCustomer);
         customerList.add(fourthCustomer);
 
-        for(Customer c: customerList) {
-            System.out.println(c.toString());
-        }
 
     }
 
@@ -54,9 +49,6 @@ public class HotelLogic {
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
 
-        for(Booking b : bookingList) {
-            System.out.println(b.toString());
-        }
 
     }
 
@@ -65,7 +57,8 @@ public class HotelLogic {
         Scanner input = new Scanner(System.in);
         int roomNo;
         int noOfBeds;
-        boolean balcony;
+        String answer;
+        boolean balcony = false;
         double price;
         boolean availability;
 
@@ -73,8 +66,14 @@ public class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
-        System.out.print("Does the room have a balcony (type true or false) :  ");
-        balcony = input.hasNext();
+        System.out.print("Does the room have a balcony (yes/no) :  ");
+        answer = input.next();
+        if (answer.equals("yes")) {
+           balcony = true;
+        }else if (answer.equals("no")) {
+            balcony = false;
+        }else
+            System.out.println("Incorrect reply");
         System.out.print("Enter the price : ");
         price = input.nextDouble();
         availability = true;
@@ -116,11 +115,10 @@ public class HotelLogic {
         long checkOutDate;
         double price;
 
-        System.out.println("Choose a room to book:  ");
-
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i).toString());
         }
+        System.out.println("Choose a room to book:  ");
         room = input.nextInt();
         roomNo = roomsList.get(room).getRoomNo();
         System.out.print("Enter the check in date: ");

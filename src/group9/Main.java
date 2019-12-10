@@ -52,14 +52,26 @@ public class Main {
             switch (choice) {
                 case 1:
                    call.listOfCustomer();
+
+                    for(Customer c: call.customerList) {
+                        System.out.println(c.toString());
+                    }
                     break;
                 case 2:
                     call.listOfRooms();
+
+                    for(Rooms r: call.roomsList) {
+                        System.out.println(r.toString());
+                    }
                     break;
                 case 3:
                    call.listOfBookings();
+                    for(Booking b : call.bookingList) {
+                        System.out.println(b.toString());
+                    }
                     break;
                 case 4:
+                    call.listOfCustomer();
                call.addCustomer();
                     break;
                 case 5:
@@ -78,6 +90,7 @@ public class Main {
                    // call.editRooms();
                     break;
                 case 10:
+                    call.listOfRooms();
                    call.addBooking();
                     break;
                 case 11:

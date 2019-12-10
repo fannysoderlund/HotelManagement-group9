@@ -1,6 +1,7 @@
 package group9;
 
 public class Rooms {
+
     int roomNo;
     int noOfBeds;
     boolean balcony;
@@ -15,6 +16,8 @@ public class Rooms {
         this.availability=availability;
 
     }
+
+
 
 
     public double getPrice() {
