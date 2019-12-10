@@ -11,8 +11,7 @@ public class HotelLogic {
     ArrayList<Customer> customerList = new ArrayList<>();
 
 
-
-    public void  listOfRooms() {
+    public void listOfRooms() {
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
@@ -69,10 +68,10 @@ public class HotelLogic {
         System.out.print("Does the room have a balcony (yes/no) :  ");
         answer = input.next();
         if (answer.equals("yes")) {
-           balcony = true;
-        }else if (answer.equals("no")) {
+            balcony = true;
+        } else if (answer.equals("no")) {
             balcony = false;
-        }else
+        } else
             System.out.println("Incorrect reply");
         System.out.print("Enter the price : ");
         price = input.nextDouble();
@@ -134,4 +133,21 @@ public class HotelLogic {
 
     }
 
+    public void checkOut() {
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i < customerList.size(); i++) {
+            System.out.println("[" + i + "] " + customerList.get(i).toString());
+        }
+        while (true) {
+            try {
+                int customerToCheckOut = input.nextInt();
+                customerList.get(customerToCheckOut).setCheckedIn(false);
+                break;
+
+            } catch (Exception e) {
+                System.out.println("That customer doesn't exist, try again");
+            }
+        }
+    }
 }
