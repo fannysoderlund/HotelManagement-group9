@@ -8,13 +8,16 @@ public class Booking {
     long checkInDate;
     long checkOutDate;
     double price;
+    Customer customer;
 
 
-    public Booking(int roomNo, long checkInDate, long checkOutDate, double price) {
+    public Booking(int roomNo, long checkInDate, long checkOutDate, double price, Customer customer) {
         this.roomNo = roomNo;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.price = price;
+        this.customer = customer;
+
     }
 
 
@@ -45,6 +48,18 @@ public class Booking {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
