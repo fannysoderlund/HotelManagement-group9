@@ -75,7 +75,8 @@ public class Main {
                call.addCustomer();
                     break;
                 case 5:
-                  //  call.removeCustomer();
+                    call.listOfCustomer();
+                    call.removeCustomer();
                     break;
                 case 6:
                     //    call.editCustomer();
@@ -84,7 +85,8 @@ public class Main {
                    call.addRoom();
                     break;
                 case 8:
-                 //   call.removeRooms();
+                    call.listOfRooms();
+                    call.removeRooms();
                     break;
                 case 9:
                    // call.editRooms();
@@ -94,7 +96,8 @@ public class Main {
                    call.addBooking();
                     break;
                 case 11:
-                   // call.removeBooking();
+                     call.listOfBookings();
+                    call.removeBooking();
                     break;
                 case 12:
                    // call.editBooking();

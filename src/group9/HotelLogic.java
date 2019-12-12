@@ -138,6 +138,54 @@ public class HotelLogic {
 
 
     }
+    public void removeCustomer() {
+
+        listOfCustomer();
+        Scanner input = new Scanner (System.in);
+        System.out.println("Enter SSN: ");
+        String SSN = input.nextLine();
+
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getSSN().equalsIgnoreCase(SSN)){
+                customerList.remove(i);
+                System.out.printf("Guest with SSN: %s is removed%n", SSN);
+            }
+        }
+
+    }
+    public void removeRooms() {
+        listOfRooms();
+        Scanner input = new Scanner (System.in);
+        System.out.println("Enter the room number; ");
+        int roomNo = input.nextInt();
+
+        for (int i = 0; i <roomsList.size() ; i++) {
+            if (roomsList.get(i).getRoomNo()==(roomNo)){
+                roomsList.remove(i);
+            }
+            System.out.printf(" The added room %d is now removed ", roomNo);
+
+        }
+
+    }
+
+    public void removeBooking() {
+        listOfBookings();
+        Scanner input = new Scanner (System.in);
+        System.out.println("Enter the room number: ");
+        int roomNo = input.nextInt();
+
+
+        for (int i = 0; i < bookingList.size(); i++) {
+            if (bookingList.get(i).getRoomNo()==(roomNo)) {
+                bookingList.remove(i);
+                System.out.printf(" The booked room %d is now removed ", roomNo);
+            }
+
+        }
+
+    }
+
 
     public void checkOut() {
         Scanner input = new Scanner(System.in);
