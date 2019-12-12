@@ -42,8 +42,8 @@ public class HotelLogic {
     }
 
     public void listOfBookings() {
-        Booking firstBooking = new Booking(100, 190214, 190216, 30.50);
-        Booking secondBooking = new Booking(200, 190403, 190406, 35.50);
+        Booking firstBooking = new Booking(100, 190214, 190216, 30.50, customerList.get(0));
+        Booking secondBooking = new Booking(200, 190403, 190406, 35.50, customerList.get(2));
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
@@ -113,10 +113,16 @@ public class HotelLogic {
         long checkInDate;
         long checkOutDate;
         double price;
+        Customer customer;
 
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i).toString());
         }
+        System.out.println("What customer wants to make a booking?");
+        for (int i = 0; i < customerList.size(); i++) {
+            System.out.println("[" + i + "]" + customerList.get(i).toString());
+        }
+        customer = customerList.get(input.nextInt());
         System.out.println("Choose a room to book:  ");
         room = input.nextInt();
         roomNo = roomsList.get(room).getRoomNo();
@@ -127,7 +133,7 @@ public class HotelLogic {
         price = roomsList.get(room).getPrice();
         System.out.printf("The price for a night is %f kr. ", price);
 
-        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price);
+        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
 
 
@@ -135,19 +141,27 @@ public class HotelLogic {
 
     public void checkOut() {
         Scanner input = new Scanner(System.in);
+        int customerToCheckOut;
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "] " + customerList.get(i).toString());
         }
         while (true) {
             try {
-                int customerToCheckOut = input.nextInt();
+                customerToCheckOut = input.nextInt();
                 customerList.get(customerToCheckOut).setCheckedIn(false);
                 break;
 
             } catch (Exception e) {
                 System.out.println("That customer doesn't exist, try again");
             }
+        }
+        for (int i = 0; i < bookingList.size(); i++) {
+
+            if (customerList.get(customerToCheckOut) == bookingList.get(i).getCustomer()) {
+                roomsList.get(i).setAvailability(false);
+            }
+
         }
     }
 }
