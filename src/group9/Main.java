@@ -93,6 +93,7 @@ public class Main {
                     break;
                 case 10:
                     call.listOfRooms();
+                    call.listOfCustomer();
                    call.addBooking();
                     break;
                 case 11:

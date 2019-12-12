@@ -115,14 +115,16 @@ public class HotelLogic {
         double price;
         Customer customer;
 
-        for (int i = 0; i < roomsList.size(); i++) {
-            System.out.println("[" + i + "]" + roomsList.get(i).toString());
-        }
-        System.out.println("What customer wants to make a booking?");
+
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
         }
+        System.out.println("What customer wants to make a booking?");
+
         customer = customerList.get(input.nextInt());
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("[" + i + "]" + roomsList.get(i).toString());
+        }
         System.out.println("Choose a room to book:  ");
         room = input.nextInt();
         roomNo = roomsList.get(room).getRoomNo();
