@@ -9,15 +9,17 @@ public class Main {
     public static void main(String[] args) {
         Main myApp = new Main();
 
-        String user = myApp.signIn();
-        if (user.equals("Employee")) {
-            myApp.EmployeeMenu();
-        }else {
-            myApp.MenuCustomer(user);
-        }
+        do {
+            String user = myApp.signIn();
+            if (user.equals("Employee")) {
+                myApp.EmployeeMenu();
+            } else {
+                myApp.MenuCustomer(user);
+            }
 
+
+        } while (true);
     }
-
     public String signIn() {
         String user;
         while (true) {
