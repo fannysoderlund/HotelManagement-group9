@@ -4,7 +4,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class HotelLogic {
 
     ArrayList<Rooms> roomsList = new ArrayList<>();
@@ -13,7 +12,6 @@ public class HotelLogic {
 
 
     public void listOfRooms() {
-
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
         Rooms thirdRoom = new Rooms(300, 2, true, 900, false);
@@ -24,8 +22,6 @@ public class HotelLogic {
         roomsList.add(thirdRoom);
         roomsList.add(fourthRoom);
         roomsList.add(fifthRoom);
-
-
     }
 
     public void listOfCustomer() {
@@ -39,10 +35,13 @@ public class HotelLogic {
         customerList.add(thirdCustomer);
         customerList.add(fourthCustomer);
 
-
     }
 
     public void listOfBookings() {
+
+        System.out.println("Following Bookings :-");
+        Booking firstBooking = new Booking(100, 190214, 190216, 30.50, customerList.get(0));
+        Booking secondBooking = new Booking(200, 190403, 190406, 35.50, customerList.get(2));
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
 
@@ -54,6 +53,7 @@ public class HotelLogic {
 
 
     public void addRoom() {
+
         Scanner input = new Scanner(System.in);
         int roomNo;
         int noOfBeds;
@@ -80,7 +80,6 @@ public class HotelLogic {
 
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
-
 
     }
 
@@ -119,6 +118,8 @@ public class HotelLogic {
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
+
+
         }
         System.out.println("What customer wants to make a booking?");
 
@@ -139,8 +140,8 @@ public class HotelLogic {
         Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
 
-
     }
+
     public void removeCustomer() {
 
         listOfCustomer();
@@ -156,6 +157,7 @@ public class HotelLogic {
         }
 
     }
+
     public void removeRooms() {
         listOfRooms();
         Scanner input = new Scanner (System.in);
@@ -179,6 +181,9 @@ public class HotelLogic {
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("["+i+"]"+roomsList.get(i));
         }
+
+
+    }
         System.out.println("What room do you want to remove?");
         int choice = input.nextInt();
                 bookingList.remove(choice);
@@ -207,7 +212,6 @@ public class HotelLogic {
             if (customerList.get(customerToCheckOut) == bookingList.get(i).getCustomer()) {
                 roomsList.get(i).setAvailability(false);
             }
-
         }
     }
 }
