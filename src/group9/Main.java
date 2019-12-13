@@ -132,7 +132,7 @@ public class Main {
                     call.checkOut();
                     break;
                 case 14:
-                    cont = false;
+                    signIn();
                     break;
             }
         }}
@@ -165,7 +165,7 @@ public class Main {
                     // call.checkout();
                     break;
                 case 7:
-                    cont = false;
+                    signIn();
                     break;
             }
         }
