@@ -4,15 +4,15 @@ package group9;
 
 public class Booking {
 
-    int roomNo;
     long checkInDate;
     long checkOutDate;
     double price;
     Customer customer;
+    Rooms room;
 
 
-    public Booking(int roomNo, long checkInDate, long checkOutDate, double price, Customer customer) {
-        this.roomNo = roomNo;
+    public Booking(Rooms room, long checkInDate, long checkOutDate, double price, Customer customer) {
+        this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.price = price;
@@ -20,14 +20,6 @@ public class Booking {
 
     }
 
-
-    public int getRoomNo() {
-        return roomNo;
-    }
-
-    public void setRoomNo(int roomNo) {
-        this.roomNo = roomNo;
-    }
 
     public long getCheckInDate() {
         return checkInDate;
@@ -62,12 +54,21 @@ public class Booking {
         this.customer = customer;
     }
 
+    public Rooms getRoom() {
+        return room;
+    }
+
+    public void setRoom(Rooms room) {
+        this.room = room;
+    }
+
     @Override
     public String toString() {
-        return "Room booked: " + roomNo +
-                ", Check in on: " + checkInDate +
+        return "Room booked: " + room +
+                "\nCheck in on: " + checkInDate +
                 ", Check out on: " + checkOutDate +
-                ", Price: " + price + "SEK";
+                ", Price: " + price + "SEK" +
+                " \n   - Customer who booked: " + customer;
     }
 }
 

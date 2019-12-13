@@ -1,5 +1,6 @@
 package group9;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,9 +38,12 @@ public class HotelLogic {
     }
 
     public void listOfBookings() {
+
         System.out.println("Following Bookings :-");
         Booking firstBooking = new Booking(100, 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(200, 190403, 190406, 35.50, customerList.get(2));
+        Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
+        Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
@@ -104,34 +108,36 @@ public class HotelLogic {
     public void addBooking() {
         Scanner input = new Scanner(System.in);
 
-        int room;
-        int roomNo;
+        Rooms room;
+        int choiceOfRoom;
         long checkInDate;
         long checkOutDate;
         double price;
         Customer customer;
 
-        for (int i = 0; i < roomsList.size(); i++) {
-            System.out.println("[" + i + "]" + roomsList.get(i).toString());
-        }
-        System.out.println("What customer wants to make a booking?");
+
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
 
 
         }
+        System.out.println("What customer wants to make a booking?");
+
         customer = customerList.get(input.nextInt());
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("[" + i + "]" + roomsList.get(i).toString());
+        }
         System.out.println("Choose a room to book:  ");
-        room = input.nextInt();
-        roomNo = roomsList.get(room).getRoomNo();
+        choiceOfRoom = input.nextInt();
+        room = roomsList.get(choiceOfRoom);
         System.out.print("Enter the check in date: ");
         checkInDate = input.nextLong();
         System.out.print("Enter the check out date:  ");
         checkOutDate = input.nextLong();
-        price = roomsList.get(room).getPrice();
+        price = roomsList.get(choiceOfRoom).getPrice();
         System.out.printf("The price for a night is %f kr. ", price);
 
-        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price, customer);
+        Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
 
     }
@@ -171,19 +177,19 @@ public class HotelLogic {
     public void removeBooking() {
         listOfBookings();
         Scanner input = new Scanner (System.in);
-        System.out.println("Enter the room number: ");
-        int roomNo = input.nextInt();
 
-
-        for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getRoomNo()==(roomNo)) {
-                bookingList.remove(i);
-                System.out.printf(" The booked room %d is now removed ", roomNo);
-            }
-
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("["+i+"]"+roomsList.get(i));
         }
 
+
     }
+        System.out.println("What room do you want to remove?");
+        int choice = input.nextInt();
+                bookingList.remove(choice);
+                System.out.println(" The room is now removed ");
+            }
+
     public void checkOut() {
         Scanner input = new Scanner(System.in);
         int customerToCheckOut;
