@@ -18,8 +18,10 @@ public class Main {
             String user = myApp.signIn();
             if (user.equals("Employee")) {
                 myApp.EmployeeMenu();
-            } else {
+                break;
+            } else  {
                 myApp.MenuCustomer(user);
+                break;
             }
 
 
