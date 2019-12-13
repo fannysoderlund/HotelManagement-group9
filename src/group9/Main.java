@@ -185,7 +185,7 @@ public class Main {
         System.out.println("11. Remove booking");
         System.out.println("12. Edit booking");
         System.out.println("13. Check out a customer");
-        System.out.println("14. Exit");
+        System.out.println("14. Exit Employee Menu");
     }
 
     private void printCustomer() {
@@ -195,6 +195,6 @@ public class Main {
         System.out.println("4. Edit your information");
         System.out.println("5. Search available bookings");
         System.out.println("6. Check out");
-        System.out.println("7. Exit");
+        System.out.println("7. Exit Customer Menu");
     }
 }
