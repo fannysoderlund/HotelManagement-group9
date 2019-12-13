@@ -20,7 +20,6 @@ public class Booking {
 
     }
 
-
     public long getCheckInDate() {
         return checkInDate;
     }
