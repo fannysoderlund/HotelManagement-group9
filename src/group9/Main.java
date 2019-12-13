@@ -1,11 +1,16 @@
 package group9;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.Date;
+
+
 
 public class Main {
     Scanner input = new Scanner(System.in);
     private HotelLogic call = new HotelLogic();
-
+    Date date = new Date();
     public static void main(String[] args) {
         Main myApp = new Main();
 
@@ -51,53 +56,71 @@ public class Main {
             choice = input.nextInt();
             switch (choice) {
                 case 1:
-                   call.listOfCustomer();
+                    call.listOfCustomer();
 
-                    for(Customer c: call.customerList) {
+                    for (Customer c : call.customerList) {
                         System.out.println(c.toString());
                     }
                     break;
                 case 2:
                     call.listOfRooms();
 
-                    for(Rooms r: call.roomsList) {
+                    for (Rooms r : call.roomsList) {
                         System.out.println(r.toString());
                     }
+
                     break;
                 case 3:
-                   call.listOfBookings();
-                    for(Booking b : call.bookingList) {
+                    call.listOfCustomer();
+                    call.listOfRooms();
+                    call.listOfBookings();
+                    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
+                    Date date = new Date();
+                    long dateNow = Long.parseLong(dateFormat.format(date));
+
+                    for (int i = 0; i < call.bookingList.size(); i++) {
+
+                    if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                        call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                        call.bookingList.get(i).getRoom().setAvailability(false);
+                    }}
+
+                    for (Booking b : call.bookingList) {
                         System.out.println(b.toString());
                     }
                     break;
                 case 4:
                     call.listOfCustomer();
-               call.addCustomer();
+                    call.addCustomer();
                     break;
                 case 5:
-                  //  call.removeCustomer();
+                    call.listOfCustomer();
+                    call.removeCustomer();
                     break;
                 case 6:
                     //    call.editCustomer();
                     break;
                 case 7:
-                   call.addRoom();
+                    call.addRoom();
                     break;
                 case 8:
-                 //   call.removeRooms();
+                    call.listOfRooms();
+                    call.removeRooms();
                     break;
                 case 9:
-                   // call.editRooms();
+                    // call.editRooms();
                     break;
                 case 10:
                     call.listOfRooms();
-                   call.addBooking();
+                    call.listOfCustomer();
+                    call.addBooking();
                     break;
                 case 11:
-                   // call.removeBooking();
+                    call.listOfBookings();
+                    call.removeBooking();
                     break;
                 case 12:
-                   // call.editBooking();
+                    // call.editBooking();
                     break;
                 case 13:
                     System.out.println("Chose a customer to checkout");
@@ -108,9 +131,7 @@ public class Main {
                     cont = false;
                     break;
             }
-        }
-    }
-
+        }}
     private void MenuCustomer(String user) {
         System.out.println("Welcome to the HKR Hotel");
         int booking;

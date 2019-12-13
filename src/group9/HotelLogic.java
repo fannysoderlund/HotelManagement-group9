@@ -42,8 +42,8 @@ public class HotelLogic {
     }
 
     public void listOfBookings() {
-        Booking firstBooking = new Booking(100, 190214, 190216, 30.50, customerList.get(0));
-        Booking secondBooking = new Booking(200, 190403, 190406, 35.50, customerList.get(2));
+        Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
+        Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
@@ -108,8 +108,7 @@ public class HotelLogic {
     public void addBooking() {
         Scanner input = new Scanner(System.in);
 
-        int room;
-        int roomNo;
+        Rooms room;
         long checkInDate;
         long checkOutDate;
         double price;
@@ -124,20 +123,65 @@ public class HotelLogic {
         }
         customer = customerList.get(input.nextInt());
         System.out.println("Choose a room to book:  ");
-        room = input.nextInt();
-        roomNo = roomsList.get(room).getRoomNo();
+        int roomOfChoice = input.nextInt();
+        room = roomsList.get(roomOfChoice);
         System.out.print("Enter the check in date: ");
         checkInDate = input.nextLong();
         System.out.print("Enter the check out date:  ");
         checkOutDate = input.nextLong();
-        price = roomsList.get(room).getPrice();
+        price = roomsList.get(roomOfChoice).getPrice();
         System.out.printf("The price for a night is %f kr. ", price);
 
-        Booking booking = new Booking(roomNo, checkInDate, checkOutDate, price, customer);
+        Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
+    }
 
+    public void removeCustomer() {
+
+        listOfCustomer();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter SSN: ");
+        String SSN = input.nextLine();
+
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getSSN().equalsIgnoreCase(SSN)) {
+                customerList.remove(i);
+                System.out.printf("Guest with SSN: %s is removed%n", SSN);
+            }
+        }
 
     }
+
+    public void removeRooms() {
+        listOfRooms();
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("["+i+"]"+roomsList.get(i));
+        }
+        System.out.println("What room do you want to remove?");
+        int roomToRemove = input.nextInt();
+        roomsList.remove(roomToRemove);
+            System.out.printf(" The room is now removed");
+
+        }
+
+
+    public void removeBooking() {
+        listOfBookings();
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i < bookingList.size() ; i++) {
+            System.out.println("["+i+"]"+ bookingList.get(i));
+        }
+        System.out.println("Which booking do you want to remove?");
+        int removeBooking = input.nextInt();
+
+                bookingList.remove(removeBooking);
+                System.out.printf(" The booking is now removed ");
+            }
+
+
 
     public void checkOut() {
         Scanner input = new Scanner(System.in);
@@ -164,4 +208,5 @@ public class HotelLogic {
 
         }
     }
+
 }
