@@ -175,11 +175,11 @@ class HotelLogic {
             if (customer.getSSN().equals(Find)) {
 
             }
-            System.out.printf("Name: " + customer.getName() +
-                    ", SSN: " + customer.getSSN() +
-                    ", address: " + customer.getAddress() +
-                    ", phone number: " + customer.getPhone() +
-                    ", CheckedIn : " + customer.isCheckedIn());
+            System.out.printf("\nName: " + customer.getName() +
+                    "\n SSN: " + customer.getSSN() +
+                    "\n address: " + customer.getAddress() +
+                    "\n phone number: " + customer.getPhone() +
+                    "\n CheckedIn : " + customer.isCheckedIn()+ "\n \"\n ");
 
             System.out.println("Enter the new name  for costumer :");
             String newName = input.next();
@@ -227,7 +227,7 @@ class HotelLogic {
                     ", " + rooms.isBalcony() +
                     "\n Price: " + rooms.getPrice() +
                     "  SEK " +
-                    "\n Availability : " + rooms.isAvailability());
+                    "\n Availability : " + rooms.isAvailability()+ "\n \"\n ");
 
 
 
@@ -273,11 +273,11 @@ class HotelLogic {
         for (Booking booking : bookingList) {
             if  (booking.getCheckInDate() == FindBooking);
 
-            System.out.print("Room number : " + booking.getRoom() +
+            System.out.print(" \nRoom number : " + booking.getRoom() +
                     "\nCheck in on: " + booking.getCheckInDate() +
-                    ", Check out on: " + booking.getCheckOutDate() +
-                    ", Price: " + booking.getPrice() + "SEK" +
-                    " \n   - Customer who booked: " + booking.getCustomer());
+                    " \n Check out on: " + booking.getCheckOutDate() +
+                    " \n Price: " + booking.getPrice() + "SEK" +
+                    " \n   - Customer who booked: " + booking.getCustomer()+ "\n \"\n ");
 
             System.out.println("Enter the new price : ");
             double newBookingPrice = Double.parseDouble(input.next());
