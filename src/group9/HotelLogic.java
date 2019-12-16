@@ -91,16 +91,15 @@ class HotelLogic {
         long phone;
         boolean checkedIn;
         System.out.print("Enter name: ");
-        SSN = input.nextLine();
-        System.out.print("Enter SSN: ");
         name = input.nextLine();
+        System.out.print("Enter SSN: ");
+        SSN = input.nextLine();
         System.out.print("Enter address: ");
         address = input.nextLine();
         System.out.print("Enter phone number: ");
         phone = input.nextLong();
-        System.out.print("Checked in:  ");
-        checkedIn = input.hasNext();
-        Customer customer = new Customer(name, SSN, address, phone, checkedIn);
+
+        Customer customer = new Customer(name, SSN, address, phone, false);
         customerList.add(customer);
     }
 
@@ -162,29 +161,35 @@ class HotelLogic {
 
     void editCustomer() {
         Scanner input = new Scanner(System.in);
+
         System.out.println("What customer do you want to edit the information of?");
-       Customer customer = customerList.get(input.nextInt());
-            System.out.printf("\nName: " + customer.getName() +
-                    "\n SSN: " + customer.getSSN() +
-                    "\n address: " + customer.getAddress() +
-                    "\n phone number: " + customer.getPhone() +
-                    "\n CheckedIn : " + customer.isCheckedIn() + "\n \"\n ");
+        Customer customer = customerList.get(input.nextInt());
+        System.out.printf("\nName: " + customer.getName() +
+                "\n SSN: " + customer.getSSN() +
+                "\n address: " + customer.getAddress() +
+                "\n phone number: " + customer.getPhone() +
+                "\n CheckedIn : " + customer.isCheckedIn() + "\n \"\n ");
+        boolean checkedIn = false;
+        System.out.println("Enter the new name  for customer :");
+        String newName = input.nextLine();
+        customer.setName(newName);
+        System.out.println("Enter the new phone number for customer :");
+        long newPhone = input.nextLong();
+        customer.setPhone(newPhone);
+        System.out.println("Enter the new address  for costumer :");
+        String newAddress = input.nextLine();
+        customer.setAddress(newAddress);
+        System.out.println("Is the customer checked in?");
+        String answer = input.nextLine();
+        if (answer.equals("yes")) {
+            checkedIn = true;
+        } else if (answer.equals("no")) {
+            checkedIn = false;
+        } else
+            System.out.println("Incorrect reply");
 
-            System.out.println("Enter the new name  for costumer :");
-            String newName = input.next();
-            customer.setName(newName);
-            System.out.println("Enter the new phone number for costumer :");
-            long newPhone = Long.parseLong(input.next());
-            customer.setPhone(newPhone);
-            System.out.println("Enter the new address  for costumer :");
-            String newAddress = input.next();
-            customer.setAddress(newAddress);
-            System.out.println("Enter the new check In  for costumer :");
-            boolean CheckedIns = Boolean.parseBoolean(input.next());
-            customer.setCheckedIn(CheckedIns);
-        }
-
-
+        customer.setCheckedIn(checkedIn);
+    }
 
     void removeRooms() {
         listOfRooms();
@@ -212,20 +217,28 @@ class HotelLogic {
                     "  SEK " +
                     "\n Availability : " + rooms.isAvailability() + "\n \"\n ");
 
+            boolean checkedIn=false;
 
             System.out.println("Enter the new room number for the room : ");
             int newRoomNo = Integer.parseInt(input.next());
             rooms.setRoomNo(newRoomNo);
             System.out.println("Enter the new  number of beds for the room :");
             int newNoOfBeds = Integer.parseInt(input.next());
-        
+
             rooms.setNoOfBeds(newNoOfBeds);
             System.out.println("Enter the new price for the room :");
             double newPrice = Double.parseDouble(input.next());
             rooms.setPrice(newPrice);
             System.out.println("Is it Available ? ");
-            boolean newAvailability = Boolean.parseBoolean(input.nextLine());
-            rooms.setAvailability(newAvailability);
+        String answer = input.nextLine();
+        if (answer.equals("yes")) {
+            checkedIn = true;
+        } else if (answer.equals("no")) {
+            checkedIn = false;
+        } else
+            System.out.println("Incorrect reply");
+
+        rooms.setAvailability(checkedIn);
         }
 
 
@@ -258,7 +271,7 @@ class HotelLogic {
             double newBookingPrice = Double.parseDouble(input.next());
             booking.setPrice(newBookingPrice);
             System.out.println("Enter the new new check in date : ");
-            long newCheckInDate = Long.parseLong(input.next());
+            long newCheckInDate = Long.parseLong(input.nextLine());
             booking.setCheckInDate(newCheckInDate);
             System.out.println("Enter the new new check out date :");
             long newCheckOutDate = Long.parseLong(input.nextLine());
