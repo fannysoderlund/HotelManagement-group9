@@ -245,7 +245,7 @@ class HotelLogic {
             rooms.setPrice(newPrice);
             System.out.println("Is it Available ? ");
             boolean newAvailability = Boolean.parseBoolean(input.nextLine());
-            rooms.isAvailability();
+            rooms.setAvailability(newAvailability);
             break;
         }
     }
