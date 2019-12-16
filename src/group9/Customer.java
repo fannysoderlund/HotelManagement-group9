@@ -1,13 +1,13 @@
 package group9;
 
 public class Customer {
-    String name;
-    String SSN;
-    String address;
-    long phone;
-    boolean checkedIn;
+    private String name;
+    private String SSN;
+    private String address;
+    private long phone;
+    private boolean checkedIn;
 
-    public Customer(String name, String SSN, String address, long phone, boolean checkedIn) {
+    Customer(String name, String SSN, String address, long phone, boolean checkedIn) {
         this.name = name;
         this.SSN = SSN;
         this.address = address;
@@ -16,55 +16,53 @@ public class Customer {
     }
 
 
-
-
-    public String getName() {
-        return this.name=name;
+    String getName() {
+        return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getSSN() {
-        return this.SSN =SSN;
+    String getSSN() {
+        return SSN;
     }
 
     public void setSSN(String SSN) {
         this.SSN = SSN;
     }
 
-    public String getAddress() {
-        return this.address= address;
+    String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public long getPhone() {
-        return this.phone= phone;
+    long getPhone() {
+        return phone;
     }
 
-    public void setPhone(long phone) {
+    void setPhone(long phone) {
         this.phone = phone;
     }
 
-    public boolean isCheckedIn() {
-        return this.checkedIn= checkedIn;
+    boolean isCheckedIn() {
+        return checkedIn;
     }
 
-    public void setCheckedIn(boolean checkedIn) {
-        this.checkedIn = checkedIn;
+    void setCheckedIn(boolean checkedIns) {
+        this.checkedIn = false;
     }
 
     @Override
     public String toString() {
         String checkedIn;
         if (isCheckedIn()) {
-            checkedIn= "Customer is checked in";
+            checkedIn = "Customer is checked in";
         } else {
-            checkedIn= "Customer is not checked in";
+            checkedIn = "Customer is not checked in";
         }
         return "Name: " + name  + "   " +  "SSN: " + SSN + "   " +  "address: " + address +"   " + ", phone number: " + phone + ",    " + checkedIn;
     }

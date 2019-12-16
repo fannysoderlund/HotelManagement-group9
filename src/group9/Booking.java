@@ -1,17 +1,16 @@
 package group9;
 
 
-
 public class Booking {
 
-    long checkInDate;
-    long checkOutDate;
-    double price;
-    Customer customer;
-    Rooms room;
+    private long checkInDate;
+    private long checkOutDate;
+    private double price;
+    private Customer customer;
+    private Rooms room;
 
 
-    public Booking(Rooms room, long checkInDate, long checkOutDate, double price, Customer customer) {
+    Booking(Rooms room, long checkInDate, long checkOutDate, double price, Customer customer) {
         this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -20,41 +19,36 @@ public class Booking {
 
     }
 
-
-    public long getCheckInDate() {
+    long getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(long checkInDate) {
+    void setCheckInDate(long checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public long getCheckOutDate() {
+    long getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(long checkOutDate) {
+    void setCheckOutDate(long checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
 
-    public void setPrice(double price) {
+    void setPrice(double price) {
         this.price = price;
     }
 
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
-    public Customer getCustomer() {
+    Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Rooms getRoom() {
+    Rooms getRoom() {
         return room;
     }
 

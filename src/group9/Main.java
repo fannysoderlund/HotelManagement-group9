@@ -6,13 +6,14 @@ import java.util.Scanner;
 import java.util.Date;
 
 
-
 public class Main {
     Scanner input = new Scanner(System.in);
     private HotelLogic call = new HotelLogic();
     Date date = new Date();
+
     public static void main(String[] args) {
         Main myApp = new Main();
+
 
         do {
             String user = myApp.signIn();
@@ -23,6 +24,14 @@ public class Main {
                 myApp.MenuCustomer(user);
                 break;
             }
+
+        String user = myApp.signIn();
+        if (user.equals("Employee")) {
+            myApp.EmployeeMenu();
+        } else {
+            myApp.MenuCustomer(user);
+        }
+
 
 
         } while (true);
@@ -84,10 +93,11 @@ public class Main {
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
-                    if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                        call.bookingList.get(i).getCustomer().setCheckedIn(false);
-                        call.bookingList.get(i).getRoom().setAvailability(false);
-                    }}
+                        if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                            call.bookingList.get(i).getRoom().setAvailability(false);
+                        }
+                    }
 
                     for (Booking b : call.bookingList) {
                         System.out.println(b.toString());
@@ -102,7 +112,12 @@ public class Main {
                     call.removeCustomer();
                     break;
                 case 6:
-                    //    call.editCustomer();
+                    call.listOfCustomer();
+
+                    for (Customer c : call.customerList) {
+                        System.out.println(c.toString());
+                    }
+                    call.editCustomer();
                     break;
                 case 7:
                     call.addRoom();
@@ -112,7 +127,11 @@ public class Main {
                     call.removeRooms();
                     break;
                 case 9:
-                    // call.editRooms();
+                    call.listOfRooms();
+                    for (Rooms r : call.roomsList) {
+                        System.out.println(r.toString());
+                    }
+                    call.editRooms();
                     break;
                 case 10:
                     call.listOfRooms();
@@ -124,18 +143,29 @@ public class Main {
                     call.removeBooking();
                     break;
                 case 12:
-                    // call.editBooking();
+                    call.listOfBookings();
+                    for (Booking b : call.bookingList) {
+                        System.out.println(b.toString());
+                    }
+                    call.editBooking();
                     break;
                 case 13:
                     System.out.println("Chose a customer to checkout");
                     call.listOfCustomer();
-                    call.checkOut();
+                     call.checkOut();
                     break;
                 case 14:
                     signIn();
+
+
+                    break;
+                case 15:
+                    cont=false;
                     break;
             }
-        }}
+        }
+    }
+
     private void MenuCustomer(String user) {
         System.out.println("Welcome to the HKR Hotel");
         int booking;
@@ -147,25 +177,31 @@ public class Main {
             choice = input.nextInt();
             switch (choice) {
                 case 1:
-                //    call.makeBooking();
+                    //    call.makeBooking();
                     break;
                 case 2:
-                  //  call.viewInfo();
+                    //  call.viewInfo();
                     break;
                 case 3:
-                 //   call.editBooking();
+                    //   call.editBooking();
                     break;
                 case 4:
-                   // call.editInfo();
+                    // call.editInfo();
                     break;
                 case 5:
-                  //  call.searchBookings();
+                    //  call.searchBookings();
                     break;
                 case 6:
-                    // call.checkout();
+                     // call.checkOut();
                     break;
                 case 7:
                     signIn();
+
+
+                    break;
+                case 8:
+                    cont = false;
+
                     break;
             }
         }
@@ -185,7 +221,12 @@ public class Main {
         System.out.println("11. Remove booking");
         System.out.println("12. Edit booking");
         System.out.println("13. Check out a customer");
+
         System.out.println("14. Exit Employee Menu");
+
+        System.out.println("14. Go back to signing in");
+        System.out.println("15. Exit");
+
     }
 
     private void printCustomer() {
@@ -195,6 +236,10 @@ public class Main {
         System.out.println("4. Edit your information");
         System.out.println("5. Search available bookings");
         System.out.println("6. Check out");
-        System.out.println("7. Exit Customer Menu");
+
+        System.out.println("7. Exit Customer Menu")
+        System.out.println("7. Go back to signing in");
+        System.out.println("8. Exit");
+
     }
 }
