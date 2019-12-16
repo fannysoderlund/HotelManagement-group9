@@ -40,7 +40,7 @@ public class Rooms {
     }
 
     boolean isBalcony() {
-        return this.balcony = balcony;
+        return  balcony;
     }
 
 

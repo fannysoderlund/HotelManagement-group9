@@ -191,14 +191,14 @@ public class HotelLogic {
         System.out.println("What customer do you want to edit the information of?");
         Customer customer = customerList.get(input.nextInt());
 
-        System.out.printf("\nName: " + customer.getName() +
+        System.out.print("\nName: " + customer.getName() +
                 "\n SSN: " + customer.getSSN() +
                 "\n address: " + customer.getAddress() +
                 "\n phone number: " + customer.getPhone() +
                 "\n CheckedIn : " + customer.isCheckedIn() + "\n \"\n ");
         boolean checkedIn = false;
         System.out.println("Enter the new name  for customer :");
-        String newName = input.nextLine();
+        String newName = input.next();
         customer.setName(newName);
         System.out.println("Enter the new phone number for customer :");
         String newPhone = input.nextLine();
@@ -281,7 +281,7 @@ public class HotelLogic {
         int removeBooking = input.nextInt();
 
         bookingList.remove(removeBooking);
-        System.out.printf(" The booking is now removed ");
+       System.out.print(" The booking is now removed ");
     }
 
   public void editBooking() {
