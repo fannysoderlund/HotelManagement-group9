@@ -64,10 +64,6 @@ public class Customer {
         } else {
             checkedIn = "Customer is not checked in";
         }
-        return "Name: " + name +
-                ", SSN: " + SSN +
-                ", address: " + address +
-                ", phone number: " + phone +
-                ", " + checkedIn;
+        return "Name: " + name  + "   " +  "SSN: " + SSN + "   " +  "address: " + address +"   " + ", phone number: " + phone + ",    " + checkedIn;
     }
 }
