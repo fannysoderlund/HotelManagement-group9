@@ -118,9 +118,6 @@ public class Main {
                     break;
                 case 9:
                     call.listOfRooms();
-                    for (Rooms r : call.roomsList) {
-                        System.out.println(r.toString());
-                    }
                     call.editRooms();
                     break;
                 case 10:

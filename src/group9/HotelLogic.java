@@ -55,9 +55,6 @@ public class HotelLogic {
 
 
 
-    
-
-
   public  void addRoom() {
         Scanner input = new Scanner(System.in);
         int roomNo;
@@ -257,6 +254,8 @@ public class HotelLogic {
 
    public void editRooms() {
         Scanner input = new Scanner(System.in);
+
+
         System.out.println("What room do you want to edit?");
         Rooms rooms = roomsList.get(input.nextInt());
 
@@ -308,25 +307,47 @@ public class HotelLogic {
 
   public void editBooking() {
         Scanner input = new Scanner(System.in);
+        long checkInDate;
+        long checkOutDate;
+        double price;
+
+      for (int i = 0; i < bookingList.size(); i++) {
+          System.out.println("["+i+"]"+bookingList.get(i));
+      }
         System.out.println("Choose a booking to edit");
      Booking booking = bookingList.get(input.nextInt());
 
-            System.out.print(" \nRoom number : " + booking.getRoom() +
-                    "\nCheck in on: " + booking.getCheckInDate() +
-                    " \n Check out on: " + booking.getCheckOutDate() +
-                    " \n Price: " + booking.getPrice() + "  SEK" +
-                    " \n   - Customer who booked: " + booking.getCustomer() + "\n \"\n ");
+      System.out.print("Enter new check in date: ");
+      checkInDate = input.nextLong();
+      while (!input.hasNext("[0-9]+")) {
+          System.out.println(" Error! Please type a date YYMMDD:  ");
+          input.nextLine();
+      }
+      System.out.print("Enter new check out date: ");
+      checkOutDate = input.nextLong();
+      while (!input.hasNext("[0-9]+")) {
+          System.out.println(" Error! Please type a date YYMMDD:  ");
+          input.nextLine();
+      }
+      System.out.print("Enter new price: ");
+      price = input.nextDouble();
+      while (!input.hasNext("[0-9]+")) {
+          System.out.println(" Error! Please type in correct phone number:  ");
+          input.nextLine();
 
-            System.out.println("Enter the new price : ");
-            double newBookingPrice = Double.parseDouble(input.next());
-            booking.setPrice(newBookingPrice);
-            System.out.println("Enter the new new check in date : ");
-            long newCheckInDate = Long.parseLong(input.nextLine());
-            booking.setCheckInDate(newCheckInDate);
-            System.out.println("Enter the new new check out date :");
-            long newCheckOutDate = Long.parseLong(input.nextLine());
-            booking.setCheckOutDate(newCheckOutDate);
-        }
+      }
+      for (int i = 0; i < roomsList.size(); i++) {
+          System.out.println("[" + i + "]" + roomsList.get(i));
+      }
+      System.out.println("Chose a new room");
+      Rooms room = roomsList.get(input.nextInt());
+
+      booking.setCheckInDate(checkInDate);
+      booking.setCheckOutDate(checkOutDate);
+      booking.setPrice(price);
+      booking.setRoom(room);
+
+    }
 
 
   public  void checkOut() {
