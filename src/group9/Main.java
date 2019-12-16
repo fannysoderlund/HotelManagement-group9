@@ -106,10 +106,6 @@ public class Main {
                     break;
                 case 6:
                     call.listOfCustomer();
-
-                    for (Customer c : call.customerList) {
-                        System.out.println(c.toString());
-                    }
                     call.editCustomer();
                     break;
                 case 7:

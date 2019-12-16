@@ -187,26 +187,45 @@ public class HotelLogic {
 
    public void editCustomer() {
         Scanner input = new Scanner(System.in);
+       boolean checkedIn = false;
+       String name;
+       String SSN;
+       String address;
+       String phone;
+       String answer = null;
 
+       for (int i = 0; i < customerList.size(); i++) {
+           System.out.println("[" + i + "]" + customerList.get(i).toString());
+       }
         System.out.println("What customer do you want to edit the information of?");
         Customer customer = customerList.get(input.nextInt());
-        System.out.printf("\nName: " + customer.getName() +
-                "\n SSN: " + customer.getSSN() +
-                "\n address: " + customer.getAddress() +
-                "\n phone number: " + customer.getPhone() +
-                "\n CheckedIn : " + customer.isCheckedIn() + "\n \"\n ");
-        boolean checkedIn = false;
-        System.out.println("Enter the new name  for customer :");
-        String newName = input.nextLine();
-        customer.setName(newName);
-        System.out.println("Enter the new phone number for customer :");
-        String newPhone = input.nextLine();
-        customer.setPhone(newPhone);
-        System.out.println("Enter the new address  for costumer :");
-        String newAddress = input.nextLine();
-        customer.setAddress(newAddress);
-        System.out.println("Is the customer checked in?");
-        String answer = input.nextLine();
+
+       System.out.print("Enter new name: ");
+       name = input.nextLine();
+       while (!input.hasNext("[A-Za-z]+")) {
+           System.out.println(" Error! Please type in correct name:  ");
+           input.nextLine();
+       }
+       System.out.print("Enter new SSN: ");
+       SSN = input.nextLine();
+       while (!input.hasNext("[0-9]+")) {
+           System.out.println(" Error! Please type in correct SSN:  ");
+           input.nextLine();
+       }
+       System.out.print("Enter new address: ");
+       address = input.nextLine();
+       while (!input.hasNext("[A-Za-z]+")) {
+           System.out.println(" Error! Please type in correct Adress:  ");
+           input.nextLine();
+       }
+       System.out.print("Enter new phone number: ");
+       phone = input.nextLine();
+       while (!input.hasNext("[0-9]+")) {
+           System.out.println(" Error! Please type in correct phone number:  ");
+           input.nextLine();
+       }
+
+       System.out.println("Is customer checked in?");
         if (answer.equals("yes")) {
             checkedIn = true;
         } else if (answer.equals("no")) {
@@ -214,6 +233,11 @@ public class HotelLogic {
         } else
             System.out.println("Incorrect reply");
 
+
+        customer.setName(name);
+        customer.setAddress(address);
+        customer.setPhone(phone);
+        customer.setSSN(SSN);
         customer.setCheckedIn(checkedIn);
     }
 
