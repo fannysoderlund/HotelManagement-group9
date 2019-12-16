@@ -118,11 +118,6 @@ public class HotelLogic {
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
-        }
-        System.out.println("What customer wants to make a booking?");
-
-        for (int i = 0; i < customerList.size(); i++) {
-            System.out.println("[" + i + "]" + customerList.get(i).toString());
             customer = customerList.get(input.nextInt());
         }
 
