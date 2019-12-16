@@ -20,15 +20,15 @@ public class Main {
             if (user.equals("Employee")) {
                 myApp.EmployeeMenu();
                 break;
-            } else  {
+            } else {
                 myApp.MenuCustomer(user);
                 break;
             }
 
 
-
         } while (true);
     }
+
     public String signIn() {
         String user;
         while (true) {
@@ -87,7 +87,7 @@ public class Main {
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
                         if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(checkedIn);
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
                             call.bookingList.get(i).getRoom().setAvailability(false);
                         }
                     }
@@ -142,14 +142,14 @@ public class Main {
                 case 13:
                     System.out.println("Chose a customer to checkout");
                     call.listOfCustomer();
-                     call.checkOut();
+                    call.checkOut();
                     break;
                 case 14:
                     signIn();
 
                     break;
                 case 15:
-                    cont=false;
+                    cont = false;
                     break;
             }
         }
@@ -181,7 +181,7 @@ public class Main {
                     //  call.searchBookings();
                     break;
                 case 6:
-                     // call.checkOut();
+                    // call.checkOut();
                     break;
                 case 7:
                     signIn();

@@ -28,7 +28,7 @@ public class Customer {
         return SSN;
     }
 
-    public void setSSN(String SSN) {
+     void setSSN(String SSN) {
         this.SSN = SSN;
     }
 
@@ -48,7 +48,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    boolean isCheckedIn() {
+    private boolean isCheckedIn() {
         return checkedIn;
     }
 
@@ -64,6 +64,6 @@ public class Customer {
         } else {
             checkedIn = "Customer is not checked in";
         }
-        return "Name: " + name  + "   " +  "SSN: " + SSN + "   " +  "address: " + address +"   " + ", phone number: " + phone + ",    " + checkedIn;
+        return "Name: " + name + "   " + "SSN: " + SSN + "   " + "address: " + address + "   " + ", phone number: " + phone + ",    " + checkedIn;
     }
 }
