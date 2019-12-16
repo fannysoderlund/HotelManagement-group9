@@ -29,10 +29,10 @@ class HotelLogic {
 
     void listOfCustomer() {
 
-        Customer firstCustomer = new Customer("Kim", "900928-4334", "Stockholm street 39", 74543401, true);
-        Customer secondCustomer = new Customer("Fisher", "800938-6834", "Macao Millie-Rose gate 4", 745670401, false);
-        Customer thirdCustomer = new Customer("Susanna ", "700928-0934", "Berlin street 34", 740456543, true);
-        Customer fourthCustomer = new Customer("Millie-Rose", "950978-7634", "Sauna street 49", 740456454, false);
+        Customer firstCustomer = new Customer("Kim", "900928-4334", "Stockholm street 39", "74543401", true);
+        Customer secondCustomer = new Customer("Fisher", "800938-6834", "Macao Millie-Rose gate 4", "745670401", false);
+        Customer thirdCustomer = new Customer("Susanna ", "700928-0934", "Berlin street 34", "740456543", true);
+        Customer fourthCustomer = new Customer("Millie-Rose", "950978-7634", "Sauna street 49", "740456454", false);
         customerList.add(firstCustomer);
         customerList.add(secondCustomer);
         customerList.add(thirdCustomer);
@@ -88,16 +88,33 @@ class HotelLogic {
         String name;
         String SSN;
         String address;
-        long phone;
+        String phone;
         boolean checkedIn;
+
         System.out.print("Enter name: ");
         name = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct name:  ");
+            input.nextLine();
+        }
         System.out.print("Enter SSN: ");
         SSN = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct SSN:  ");
+            input.nextLine();
+        }
         System.out.print("Enter address: ");
         address = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct Adress:  ");
+            input.nextLine();
+        }
         System.out.print("Enter phone number: ");
-        phone = input.nextLong();
+        phone = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct phone number:  ");
+            input.nextLine();
+        }
 
         Customer customer = new Customer(name, SSN, address, phone, false);
         customerList.add(customer);
@@ -174,7 +191,7 @@ class HotelLogic {
         String newName = input.nextLine();
         customer.setName(newName);
         System.out.println("Enter the new phone number for customer :");
-        long newPhone = input.nextLong();
+        String newPhone = input.nextLine();
         customer.setPhone(newPhone);
         System.out.println("Enter the new address  for costumer :");
         String newAddress = input.nextLine();
