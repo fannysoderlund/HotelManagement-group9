@@ -87,7 +87,7 @@ public class Main {
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
                         if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                            call.bookingList.get(i).getCustomer().setCheckedIn(checkedIn);
                             call.bookingList.get(i).getRoom().setAvailability(false);
                         }
                     }
@@ -105,6 +105,7 @@ public class Main {
                     call.removeCustomer();
                     break;
                 case 6:
+
                     call.listOfCustomer();
                     call.editCustomer();
                     break;

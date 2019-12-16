@@ -223,9 +223,8 @@ public class HotelLogic {
        while (!input.hasNext("[0-9]+")) {
            System.out.println(" Error! Please type in correct phone number:  ");
            input.nextLine();
-       }
 
-       System.out.println("Is customer checked in?");
+        System.out.println("Is the customer checked in?");
         if (answer.equals("yes")) {
             checkedIn = true;
         } else if (answer.equals("no")) {
@@ -233,13 +232,13 @@ public class HotelLogic {
         } else
             System.out.println("Incorrect reply");
 
-
         customer.setName(name);
         customer.setAddress(address);
         customer.setPhone(phone);
         customer.setSSN(SSN);
         customer.setCheckedIn(checkedIn);
-    }
+
+    }}
 
  public void removeRooms() {
         listOfRooms();
@@ -304,7 +303,7 @@ public class HotelLogic {
         int removeBooking = input.nextInt();
 
         bookingList.remove(removeBooking);
-        System.out.printf(" The booking is now removed ");
+       System.out.print(" The booking is now removed ");
     }
 
   public void editBooking() {

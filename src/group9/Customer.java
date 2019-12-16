@@ -36,7 +36,7 @@ public class Customer {
         return address;
     }
 
-    public void setAddress(String address) {
+    void setAddress(String address) {
         this.address = address;
     }
 
@@ -52,7 +52,7 @@ public class Customer {
         return checkedIn;
     }
 
-    void setCheckedIn(boolean checkedIns) {
+    void setCheckedIn(boolean checkedIn) {
         this.checkedIn = false;
     }
 
