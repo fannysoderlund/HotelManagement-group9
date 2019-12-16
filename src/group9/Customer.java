@@ -4,10 +4,10 @@ public class Customer {
     private String name;
     private String SSN;
     private String address;
-    private long phone;
+    private String phone;
     private boolean checkedIn;
 
-    Customer(String name, String SSN, String address, long phone, boolean checkedIn) {
+    Customer(String name, String SSN, String address, String phone, boolean checkedIn) {
         this.name = name;
         this.SSN = SSN;
         this.address = address;
@@ -40,11 +40,11 @@ public class Customer {
         this.address = address;
     }
 
-    long getPhone() {
+    String getPhone() {
         return phone;
     }
 
-    void setPhone(long phone) {
+    void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -64,10 +64,6 @@ public class Customer {
         } else {
             checkedIn = "Customer is not checked in";
         }
-        return "Name: " + name +
-                ", SSN: " + SSN +
-                ", address: " + address +
-                ", phone number: " + phone +
-                ", " + checkedIn;
+        return "Name: " + name  + "   " +  "SSN: " + SSN + "   " +  "address: " + address +"   " + ", phone number: " + phone + ",    " + checkedIn;
     }
 }

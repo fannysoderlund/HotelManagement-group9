@@ -3,15 +3,18 @@ package group9;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+public class HotelLogic {
 
-class HotelLogic {
 
     ArrayList<Rooms> roomsList = new ArrayList<>();
     ArrayList<Booking> bookingList = new ArrayList<>();
     ArrayList<Customer> customerList = new ArrayList<>();
 
 
-    void listOfRooms() {
+
+    public void listOfRooms() {
+
+
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
@@ -23,25 +26,24 @@ class HotelLogic {
         roomsList.add(thirdRoom);
         roomsList.add(fourthRoom);
         roomsList.add(fifthRoom);
-
-
     }
 
     void listOfCustomer() {
 
-        Customer firstCustomer = new Customer("Kim", "900928-4334", "Stockholm street 39", 74543401, true);
-        Customer secondCustomer = new Customer("Fisher", "800938-6834", "Macao Millie-Rose gate 4", 745670401, false);
-        Customer thirdCustomer = new Customer("Susanna ", "700928-0934", "Berlin street 34", 740456543, true);
-        Customer fourthCustomer = new Customer("Millie-Rose", "950978-7634", "Sauna street 49", 740456454, false);
+        Customer firstCustomer = new Customer("Kim", "900928-4334", "Stockholm street 39", "74543401", true);
+        Customer secondCustomer = new Customer("Fisher", "800938-6834", "Macao Millie-Rose gate 4", "745670401", false);
+        Customer thirdCustomer = new Customer("Susanna ", "700928-0934", "Berlin street 34", "740456543", true);
+        Customer fourthCustomer = new Customer("Millie-Rose", "950978-7634", "Sauna street 49", "740456454", false);
         customerList.add(firstCustomer);
         customerList.add(secondCustomer);
         customerList.add(thirdCustomer);
         customerList.add(fourthCustomer);
 
-
     }
 
-    void listOfBookings() {
+
+   public void listOfBookings() {
+
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
 
@@ -52,7 +54,11 @@ class HotelLogic {
     }
 
 
-    void addRoom() {
+
+    
+
+
+  public  void addRoom() {
         Scanner input = new Scanner(System.in);
         int roomNo;
         int noOfBeds;
@@ -80,7 +86,6 @@ class HotelLogic {
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
 
-
     }
 
     void addCustomer() {
@@ -88,16 +93,33 @@ class HotelLogic {
         String name;
         String SSN;
         String address;
-        long phone;
+        String phone;
         boolean checkedIn;
+
         System.out.print("Enter name: ");
         name = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct name:  ");
+            input.nextLine();
+        }
         System.out.print("Enter SSN: ");
         SSN = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct SSN:  ");
+            input.nextLine();
+        }
         System.out.print("Enter address: ");
         address = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct Adress:  ");
+            input.nextLine();
+        }
         System.out.print("Enter phone number: ");
-        phone = input.nextLong();
+        phone = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct phone number:  ");
+            input.nextLine();
+        }
 
         Customer customer = new Customer(name, SSN, address, phone, false);
         customerList.add(customer);
@@ -117,7 +139,9 @@ class HotelLogic {
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
+
             customer = customerList.get(input.nextInt());
+
         }
 
         System.out.println("What customer wants to make a booking?");
@@ -141,9 +165,11 @@ class HotelLogic {
 
         Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
+
+
     }
 
-    void removeCustomer() {
+    public void removeCustomer() {
 
         listOfCustomer();
         Scanner input = new Scanner(System.in);
@@ -159,7 +185,7 @@ class HotelLogic {
 
     }
 
-    void editCustomer() {
+   public void editCustomer() {
         Scanner input = new Scanner(System.in);
 
         System.out.println("What customer do you want to edit the information of?");
@@ -175,7 +201,7 @@ class HotelLogic {
         String newName = input.nextLine();
         customer.setName(newName);
         System.out.println("Enter the new phone number for customer :");
-        long newPhone = input.nextLong();
+        String newPhone = input.nextLine();
         customer.setPhone(newPhone);
         System.out.println("Enter the new address  for costumer :");
         String newAddress = input.nextLine();
@@ -192,13 +218,14 @@ class HotelLogic {
         customer.setCheckedIn(checkedIn);
     }
 
-    void removeRooms() {
+ public void removeRooms() {
         listOfRooms();
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i));
         }
+
         System.out.println("What room do you want to remove?");
         int roomToRemove = input.nextInt();
         roomsList.remove(roomToRemove);
@@ -206,7 +233,7 @@ class HotelLogic {
 
     }
 
-    void editRooms() {
+   public void editRooms() {
         Scanner input = new Scanner(System.in);
         System.out.println("What room do you want to edit?");
         Rooms rooms = roomsList.get(input.nextInt());
@@ -257,7 +284,7 @@ class HotelLogic {
         System.out.printf(" The booking is now removed ");
     }
 
-    void editBooking() {
+  public void editBooking() {
         Scanner input = new Scanner(System.in);
         System.out.println("Choose a booking to edit");
      Booking booking = bookingList.get(input.nextInt());
@@ -280,7 +307,7 @@ class HotelLogic {
         }
 
 
-    void checkOut() {
+  public  void checkOut() {
         Scanner input = new Scanner(System.in);
         int customerToCheckOut;
 
@@ -302,7 +329,6 @@ class HotelLogic {
             if (customerList.get(customerToCheckOut) == bookingList.get(i).getCustomer()) {
                 roomsList.get(i).setAvailability(false);
             }
-
         }
 
 

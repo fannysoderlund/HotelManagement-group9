@@ -14,15 +14,21 @@ public class Main {
     public static void main(String[] args) {
         Main myApp = new Main();
 
-        String user = myApp.signIn();
-        if (user.equals("Employee")) {
-            myApp.EmployeeMenu();
-        } else {
-            myApp.MenuCustomer(user);
-        }
 
+        do {
+            String user = myApp.signIn();
+            if (user.equals("Employee")) {
+                myApp.EmployeeMenu();
+                break;
+            } else  {
+                myApp.MenuCustomer(user);
+                break;
+            }
+
+
+
+        } while (true);
     }
-
     public String signIn() {
         String user;
         while (true) {
@@ -143,7 +149,12 @@ public class Main {
                      call.checkOut();
                     break;
                 case 14:
-                    cont = false;
+                    signIn();
+
+
+                    break;
+                case 15:
+                    cont=false;
                     break;
             }
         }
@@ -178,7 +189,13 @@ public class Main {
                      // call.checkOut();
                     break;
                 case 7:
+                    signIn();
+
+
+                    break;
+                case 8:
                     cont = false;
+
                     break;
             }
         }
@@ -198,7 +215,12 @@ public class Main {
         System.out.println("11. Remove booking");
         System.out.println("12. Edit booking");
         System.out.println("13. Check out a customer");
-        System.out.println("14. Exit");
+
+        System.out.println("14. Exit Employee Menu");
+
+        System.out.println("14. Go back to signing in");
+        System.out.println("15. Exit");
+
     }
 
     private void printCustomer() {
@@ -208,6 +230,10 @@ public class Main {
         System.out.println("4. Edit your information");
         System.out.println("5. Search available bookings");
         System.out.println("6. Check out");
-        System.out.println("7. Exit");
+
+        System.out.println("7. Exit Customer Menu");
+        System.out.println("7. Go back to signing in");
+        System.out.println("8. Exit");
+
     }
 }
