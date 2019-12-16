@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HotelLogic {
-=======
-
-class HotelLogic {
 
 
     ArrayList<Rooms> roomsList = new ArrayList<>();
@@ -17,7 +14,7 @@ class HotelLogic {
 
     public void listOfRooms() {
 
-    void listOfRooms() {
+
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
@@ -45,12 +42,6 @@ class HotelLogic {
     }
 
 
-    public void listOfBookings() {
-
-        System.out.println("Following Bookings :-");
-        Booking firstBooking = new Booking(100, 190214, 190216, 30.50, customerList.get(0));
-        Booking secondBooking = new Booking(200, 190403, 190406, 35.50, customerList.get(2));
-    }
    public void listOfBookings() {
 
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
@@ -147,9 +138,7 @@ class HotelLogic {
 
 
         for (int i = 0; i < customerList.size(); i++) {
-            System.out.println("[" + i + "]" + customerList.get(i).toString())
-
-
+            System.out.println("[" + i + "]" + customerList.get(i).toString());
 
             customer = customerList.get(input.nextInt());
 
@@ -181,7 +170,6 @@ class HotelLogic {
     }
 
     public void removeCustomer() {
-    
 
         listOfCustomer();
         Scanner input = new Scanner(System.in);
@@ -196,15 +184,6 @@ class HotelLogic {
         }
 
     }
-
-
-    public void removeRooms() {
-        listOfRooms();
-        Scanner input = new Scanner (System.in);
-        System.out.println("Enter the room number; ");
-        int roomNo = input.nextInt();
-
-
 
    public void editCustomer() {
         Scanner input = new Scanner(System.in);
@@ -238,7 +217,7 @@ class HotelLogic {
         customer.setCheckedIn(checkedIn);
     }
 
- public   void removeRooms() {
+ public void removeRooms() {
         listOfRooms();
         Scanner input = new Scanner(System.in);
 
@@ -246,8 +225,6 @@ class HotelLogic {
             System.out.println("[" + i + "]" + roomsList.get(i));
         }
 
-
-    }
         System.out.println("What room do you want to remove?");
         int roomToRemove = input.nextInt();
         roomsList.remove(roomToRemove);

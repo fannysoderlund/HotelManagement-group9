@@ -25,13 +25,6 @@ public class Main {
                 break;
             }
 
-        String user = myApp.signIn();
-        if (user.equals("Employee")) {
-            myApp.EmployeeMenu();
-        } else {
-            myApp.MenuCustomer(user);
-        }
-
 
 
         } while (true);
@@ -237,7 +230,7 @@ public class Main {
         System.out.println("5. Search available bookings");
         System.out.println("6. Check out");
 
-        System.out.println("7. Exit Customer Menu")
+        System.out.println("7. Exit Customer Menu");
         System.out.println("7. Go back to signing in");
         System.out.println("8. Exit");
 
