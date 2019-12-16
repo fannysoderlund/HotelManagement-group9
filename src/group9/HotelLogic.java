@@ -161,15 +161,9 @@ class HotelLogic {
     }
 
     void editCustomer() {
-        listOfCustomer();
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter SSN: ");
-        String Find = input.nextLine();
-
-        for (Customer customer : customerList) {
-            if (customer.getSSN() == (Find)) {
-
-            }
+        System.out.println("What customer do you want to edit the information of?");
+       Customer customer = customerList.get(input.nextInt());
             System.out.printf("\nName: " + customer.getName() +
                     "\n SSN: " + customer.getSSN() +
                     "\n address: " + customer.getAddress() +
@@ -188,11 +182,9 @@ class HotelLogic {
             System.out.println("Enter the new check In  for costumer :");
             boolean CheckedIns = Boolean.parseBoolean(input.next());
             customer.setCheckedIn(CheckedIns);
-
-            break;
         }
 
-    }
+
 
     void removeRooms() {
         listOfRooms();
@@ -209,15 +201,10 @@ class HotelLogic {
     }
 
     void editRooms() {
-        listOfRooms();
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the room number : ");
-        int findRoom = input.nextInt();
+        System.out.println("What room do you want to edit?");
+        Rooms rooms = roomsList.get(input.nextInt());
 
-        for (Rooms rooms : roomsList) {
-            if (rooms.getRoomNo() == rooms.getRoomNo()) {
-
-            }
             System.out.print("Room number: " + rooms.getRoomNo() +
                     "\n Number of beds: " + rooms.getNoOfBeds() +
                     ", " + rooms.isBalcony() +
@@ -231,22 +218,18 @@ class HotelLogic {
             rooms.setRoomNo(newRoomNo);
             System.out.println("Enter the new  number of beds for the room :");
             int newNoOfBeds = Integer.parseInt(input.next());
+        
             rooms.setNoOfBeds(newNoOfBeds);
-//            System.out.println("Dose it have balcony ? ");
-//            boolean newBalcony = Boolean.parseBoolean(input.nextLine());
-//            rooms.isBalcony(newBalcony);
             System.out.println("Enter the new price for the room :");
             double newPrice = Double.parseDouble(input.next());
             rooms.setPrice(newPrice);
             System.out.println("Is it Available ? ");
             boolean newAvailability = Boolean.parseBoolean(input.nextLine());
             rooms.setAvailability(newAvailability);
-            break;
         }
-    }
 
 
-    void removeBooking() {
+   public void removeBooking() {
         listOfBookings();
         Scanner input = new Scanner(System.in);
 
@@ -261,13 +244,9 @@ class HotelLogic {
     }
 
     void editBooking() {
-        listOfBookings();
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter check In Date : ");
-        long FindCheckInDate = Long.parseLong(input.nextLine());
-
-        for (Booking booking : bookingList) {
-            if (booking.getCheckInDate() == FindCheckInDate) ;
+        System.out.println("Choose a booking to edit");
+     Booking booking = bookingList.get(input.nextInt());
 
             System.out.print(" \nRoom number : " + booking.getRoom() +
                     "\nCheck in on: " + booking.getCheckInDate() +
@@ -284,13 +263,10 @@ class HotelLogic {
             System.out.println("Enter the new new check out date :");
             long newCheckOutDate = Long.parseLong(input.nextLine());
             booking.setCheckOutDate(newCheckOutDate);
-
-            break;
         }
-    }
 
 
-    void checkOut(boolean CheckedIns) {
+    void checkOut() {
         Scanner input = new Scanner(System.in);
         int customerToCheckOut;
 
@@ -300,7 +276,7 @@ class HotelLogic {
         while (true) {
             try {
                 customerToCheckOut = input.nextInt();
-                customerList.get(customerToCheckOut).setCheckedIn(CheckedIns);
+                customerList.get(customerToCheckOut).setCheckedIn(false);
                 break;
 
             } catch (Exception e) {
