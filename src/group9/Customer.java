@@ -16,8 +16,6 @@ public class Customer {
     }
 
 
-
-
     String getName() {
         return name;
     }
@@ -43,7 +41,7 @@ public class Customer {
     }
 
     long getPhone() {
-        return  phone;
+        return phone;
     }
 
     void setPhone(long phone) {
@@ -51,7 +49,7 @@ public class Customer {
     }
 
     boolean isCheckedIn() {
-        return  checkedIn;
+        return checkedIn;
     }
 
     void setCheckedIn(boolean checkedIns) {
@@ -62,9 +60,9 @@ public class Customer {
     public String toString() {
         String checkedIn;
         if (isCheckedIn()) {
-            checkedIn= "Customer is checked in";
+            checkedIn = "Customer is checked in";
         } else {
-            checkedIn= "Customer is not checked in";
+            checkedIn = "Customer is not checked in";
         }
         return "Name: " + name +
                 ", SSN: " + SSN +

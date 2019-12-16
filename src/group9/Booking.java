@@ -1,7 +1,6 @@
 package group9;
 
 
-
 public class Booking {
 
     private long checkInDate;

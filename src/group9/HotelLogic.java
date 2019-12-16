@@ -113,7 +113,7 @@ class HotelLogic {
         long checkInDate;
         long checkOutDate;
         double price;
-        Customer customer ;
+        Customer customer;
 
 
         for (int i = 0; i < customerList.size(); i++) {
@@ -172,30 +172,31 @@ class HotelLogic {
         String Find = input.nextLine();
 
         for (Customer customer : customerList) {
-            if (customer.getSSN().equals(Find)) {
+            if (customer.getSSN() == (Find)) {
 
             }
             System.out.printf("\nName: " + customer.getName() +
                     "\n SSN: " + customer.getSSN() +
                     "\n address: " + customer.getAddress() +
                     "\n phone number: " + customer.getPhone() +
-                    "\n CheckedIn : " + customer.isCheckedIn()+ "\n \"\n ");
+                    "\n CheckedIn : " + customer.isCheckedIn() + "\n \"\n ");
 
             System.out.println("Enter the new name  for costumer :");
             String newName = input.next();
             customer.setName(newName);
-            System.out.println("Enter the new Phone Number for costumer :");
+            System.out.println("Enter the new phone number for costumer :");
             long newPhone = Long.parseLong(input.next());
             customer.setPhone(newPhone);
             System.out.println("Enter the new address  for costumer :");
-            String newAddress = input.nextLine();
-            customer.setName(newAddress);
-            System.out.println("Enter the new checkedIn Number for costumer :");
+            String newAddress = input.next();
+            customer.setAddress(newAddress);
+            System.out.println("Enter the new check In  for costumer :");
             boolean CheckedIns = Boolean.parseBoolean(input.next());
             customer.setCheckedIn(CheckedIns);
 
-
+            break;
         }
+
     }
 
     void removeRooms() {
@@ -219,7 +220,7 @@ class HotelLogic {
         int findRoom = input.nextInt();
 
         for (Rooms rooms : roomsList) {
-            if (rooms.getRoomNo()==(findRoom)) {
+            if (rooms.getRoomNo() == (findRoom)) {
 
             }
             System.out.print("Room number: " + rooms.getRoomNo() +
@@ -227,8 +228,7 @@ class HotelLogic {
                     ", " + rooms.isBalcony() +
                     "\n Price: " + rooms.getPrice() +
                     "  SEK " +
-                    "\n Availability : " + rooms.isAvailability()+ "\n \"\n ");
-
+                    "\n Availability : " + rooms.isAvailability() + "\n \"\n ");
 
 
             System.out.println("Enter the new room number for the room : ");
@@ -246,6 +246,7 @@ class HotelLogic {
             System.out.println("Is it Available ? ");
             boolean newAvailability = Boolean.parseBoolean(input.nextLine());
             rooms.isAvailability();
+            break;
         }
     }
 
@@ -268,16 +269,16 @@ class HotelLogic {
         listOfBookings();
         Scanner input = new Scanner(System.in);
         System.out.println("Enter check In Date : ");
-        long FindBooking = Long.parseLong(input.nextLine());
+        long FindCheckInDate = Long.parseLong(input.nextLine());
 
         for (Booking booking : bookingList) {
-            if  (booking.getCheckInDate() == FindBooking);
+            if (FindCheckInDate == booking.getCheckInDate()) ;
 
             System.out.print(" \nRoom number : " + booking.getRoom() +
                     "\nCheck in on: " + booking.getCheckInDate() +
                     " \n Check out on: " + booking.getCheckOutDate() +
-                    " \n Price: " + booking.getPrice() + "SEK" +
-                    " \n   - Customer who booked: " + booking.getCustomer()+ "\n \"\n ");
+                    " \n Price: " + booking.getPrice() + "  SEK" +
+                    " \n   - Customer who booked: " + booking.getCustomer() + "\n \"\n ");
 
             System.out.println("Enter the new price : ");
             double newBookingPrice = Double.parseDouble(input.next());
@@ -289,7 +290,7 @@ class HotelLogic {
             long newCheckOutDate = Long.parseLong(input.nextLine());
             booking.setCheckOutDate(newCheckOutDate);
 
-
+            break;
         }
     }
 
