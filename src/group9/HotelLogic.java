@@ -164,6 +164,7 @@ class HotelLogic {
 
         System.out.println("What customer do you want to edit the information of?");
         Customer customer = customerList.get(input.nextInt());
+
         System.out.printf("\nName: " + customer.getName() +
                 "\n SSN: " + customer.getSSN() +
                 "\n address: " + customer.getAddress() +

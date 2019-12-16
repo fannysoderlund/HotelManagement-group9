@@ -99,6 +99,7 @@ public class Main {
                     call.removeCustomer();
                     break;
                 case 6:
+
                     call.listOfCustomer();
 
                     for (Customer c : call.customerList) {
