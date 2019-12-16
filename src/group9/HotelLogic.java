@@ -220,7 +220,7 @@ class HotelLogic {
         int findRoom = input.nextInt();
 
         for (Rooms rooms : roomsList) {
-            if (rooms.getRoomNo() == (findRoom)) {
+            if (rooms.getRoomNo() == rooms.getRoomNo()) {
 
             }
             System.out.print("Room number: " + rooms.getRoomNo() +
@@ -272,7 +272,7 @@ class HotelLogic {
         long FindCheckInDate = Long.parseLong(input.nextLine());
 
         for (Booking booking : bookingList) {
-            if (FindCheckInDate == booking.getCheckInDate()) ;
+            if (booking.getCheckInDate() == FindCheckInDate) ;
 
             System.out.print(" \nRoom number : " + booking.getRoom() +
                     "\nCheck in on: " + booking.getCheckInDate() +
