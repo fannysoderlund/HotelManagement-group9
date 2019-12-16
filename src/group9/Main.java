@@ -100,6 +100,10 @@ public class Main {
                     break;
                 case 6:
                     call.listOfCustomer();
+
+                    for (Customer c : call.customerList) {
+                        System.out.println(c.toString());
+                    }
                     call.editCustomer();
                     break;
                 case 7:
@@ -111,6 +115,9 @@ public class Main {
                     break;
                 case 9:
                     call.listOfRooms();
+                    for (Rooms r : call.roomsList) {
+                        System.out.println(r.toString());
+                    }
                     call.editRooms();
                     break;
                 case 10:
@@ -124,12 +131,15 @@ public class Main {
                     break;
                 case 12:
                     call.listOfBookings();
+                    for (Booking b : call.bookingList) {
+                        System.out.println(b.toString());
+                    }
                     call.editBooking();
                     break;
                 case 13:
                     System.out.println("Chose a customer to checkout");
                     call.listOfCustomer();
-                    // call.checkOut();
+                     call.checkOut();
                     break;
                 case 14:
                     cont = false;
@@ -164,7 +174,7 @@ public class Main {
                     //  call.searchBookings();
                     break;
                 case 6:
-                    // call.checkout();
+                     // call.checkOut();
                     break;
                 case 7:
                     cont = false;
