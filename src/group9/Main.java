@@ -9,7 +9,10 @@ import java.util.Date;
 public class Main {
     Scanner input = new Scanner(System.in);
     private HotelLogic call = new HotelLogic();
+
+    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
     Date date = new Date();
+    long dateNow = Long.parseLong(dateFormat.format(date));
 
     public static void main(String[] args) {
         Main myApp = new Main();
@@ -72,6 +75,10 @@ public class Main {
                 case 1:
                     call.listOfCustomer();
 
+                    for (int i = 0; i < call.bookingList.size(); i++) {
+                    if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                        call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                    }}
                     for (Customer c : call.customerList) {
                         System.out.println(c.toString());
                     }
@@ -88,14 +95,10 @@ public class Main {
                     call.listOfCustomer();
                     call.listOfRooms();
                     call.listOfBookings();
-                    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
-                    Date date = new Date();
-                    long dateNow = Long.parseLong(dateFormat.format(date));
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
                         if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
                             call.bookingList.get(i).getRoom().setAvailability(false);
                         }
                     }
