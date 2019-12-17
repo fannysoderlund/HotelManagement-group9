@@ -52,20 +52,24 @@ public class Main {
     public void EmployeeMenu() {
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
-        int typed =0;
-        while (choice !=14) {
+        int typed = 0;
+        while (choice != 14) {
             printEmployee();
 
-            while(true) {
+            while (true) {
                 try {
                     System.out.print("Make your choice: ");
                     typed = input.nextInt();
                     while (typed > 15) {
                         System.out.println("This option doesn't exist");
-                        typed = input.nextInt();
+                        try {
+                            typed = input.nextInt();
+                        } catch (Exception e) {
+                            input.next();
+                        }
                     }
                 } catch (Exception e) {
-                   input.next();
+                    input.next();
                 }
                 choice = typed;
                 break;
@@ -76,9 +80,10 @@ public class Main {
                     call.listOfCustomer();
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
-                    if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                        call.bookingList.get(i).getCustomer().setCheckedIn(false);
-                    }}
+                        if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                        }
+                    }
                     for (Customer c : call.customerList) {
                         System.out.println(c.toString());
                     }
@@ -161,8 +166,8 @@ public class Main {
                     break;
 
             }
-        }}
-
+        }
+    }
         private void MenuCustomer (String user){
             System.out.println("Welcome to the HKR Hotel");
             int booking;
