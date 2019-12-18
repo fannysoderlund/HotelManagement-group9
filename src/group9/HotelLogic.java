@@ -154,6 +154,7 @@ public class HotelLogic {
 
         System.out.print("Enter the check in date: ");
         checkInDate = input.nextLong();
+
         System.out.print("Enter the check out date:  ");
         checkOutDate = input.nextLong();
         price = roomsList.get(choiceOfRoom).getPrice();

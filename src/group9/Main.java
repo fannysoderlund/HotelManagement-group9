@@ -146,10 +146,10 @@ public class Main {
                     call.removeBooking();
                     break;
                 case 12:
+                    call.listOfRooms();
+                    call.listOfCustomer();
                     call.listOfBookings();
-                    for (Booking b : call.bookingList) {
-                        System.out.println(b.toString());
-                    }
+
                     call.editBooking();
                     break;
                 case 13:
