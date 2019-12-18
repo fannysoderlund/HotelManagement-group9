@@ -9,26 +9,23 @@ import java.util.Date;
 public class Main {
     Scanner input = new Scanner(System.in);
     private HotelLogic call = new HotelLogic();
+
+    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
     Date date = new Date();
+    long dateNow = Long.parseLong(dateFormat.format(date));
 
     public static void main(String[] args) {
         Main myApp = new Main();
 
-
-        do {
             String user = myApp.signIn();
             if (user.equals("Employee")) {
                 myApp.EmployeeMenu();
-                break;
-            } else {
+              
+            } else  {
                 myApp.MenuCustomer(user);
-                break;
             }
 
-
-        } while (true);
     }
-
     public String signIn() {
         String user;
         while (true) {
@@ -54,16 +51,39 @@ public class Main {
 
     public void EmployeeMenu() {
         System.out.println("Welcome to Employees Menu of HKR Hotel");
-        int choice;
-        boolean cont = true;
-        while (cont) {
+        int choice = 0;
+        int typed = 0;
+        while (choice != 14) {
             printEmployee();
-            System.out.println("- Please make your choice");
-            choice = input.nextInt();
+
+            while (true) {
+                try {
+                    System.out.print("Make your choice: ");
+                    typed = input.nextInt();
+                    while (typed > 15) {
+                        System.out.println("This option doesn't exist");
+                        try {
+                            typed = input.nextInt();
+                        } catch (Exception e) {
+                            input.next();
+                        }
+                    }
+                } catch (Exception e) {
+                    input.next();
+                }
+                choice = typed;
+                break;
+            }
+
             switch (choice) {
                 case 1:
                     call.listOfCustomer();
 
+                    for (int i = 0; i < call.bookingList.size(); i++) {
+                        if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                        }
+                    }
                     for (Customer c : call.customerList) {
                         System.out.println(c.toString());
                     }
@@ -80,14 +100,10 @@ public class Main {
                     call.listOfCustomer();
                     call.listOfRooms();
                     call.listOfBookings();
-                    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
-                    Date date = new Date();
-                    long dateNow = Long.parseLong(dateFormat.format(date));
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
                         if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
                             call.bookingList.get(i).getRoom().setAvailability(false);
                         }
                     }
@@ -146,52 +162,52 @@ public class Main {
 
                     break;
                 case 15:
-                    cont = false;
+                    System.exit(0);
                     break;
+
             }
         }
     }
+        private void MenuCustomer (String user){
+            System.out.println("Welcome to the HKR Hotel");
+            int booking;
+            int choice;
+            boolean cont = true;
+            while (cont) {
+                printCustomer();
+                System.out.println("- Please Make your choice");
+                choice = input.nextInt();
+                switch (choice) {
+                    case 1:
+                        //    call.makeBooking();
+                        break;
+                    case 2:
+                        //  call.viewInfo();
+                        break;
+                    case 3:
+                        //   call.editBooking();
+                        break;
+                    case 4:
+                        // call.editInfo();
+                        break;
+                    case 5:
+                        //  call.searchBookings();
+                        break;
+                    case 6:
+                        // call.checkOut();
+                        break;
+                    case 7:
+                        signIn();
 
-    private void MenuCustomer(String user) {
-        System.out.println("Welcome to the HKR Hotel");
-        int booking;
-        int choice;
-        boolean cont = true;
-        while (cont) {
-            printCustomer();
-            System.out.println("- Please Make your choice");
-            choice = input.nextInt();
-            switch (choice) {
-                case 1:
-                    //    call.makeBooking();
-                    break;
-                case 2:
-                    //  call.viewInfo();
-                    break;
-                case 3:
-                    //   call.editBooking();
-                    break;
-                case 4:
-                    // call.editInfo();
-                    break;
-                case 5:
-                    //  call.searchBookings();
-                    break;
-                case 6:
-                    // call.checkOut();
-                    break;
-                case 7:
-                    signIn();
 
+                        break;
+                    case 8:
+                        cont = false;
 
-                    break;
-                case 8:
-                    cont = false;
-
-                    break;
+                        break;
+                }
             }
         }
-    }
 
     private void printEmployee() {
         System.out.println("1. View list of customers");
