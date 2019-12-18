@@ -7,53 +7,54 @@ public class Customer {
     private String phone;
     private boolean checkedIn;
 
-    public Customer(String name, String SSN, String address, String phone, boolean checkedIn) {
+    Customer(String name, String SSN, String address, String phone, boolean checkedIn) {
         this.name = name;
         this.SSN = SSN;
         this.address = address;
         this.phone = phone;
-        this.checkedIn = checkedIn;
+        if (checkedIn) this.checkedIn = true;
+        else this.checkedIn = false;
     }
 
 
-    public String getName() {
+    String getName() {
         return name;
 
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getSSN() {
+    String getSSN() {
         return SSN;
     }
 
-    public void setSSN(String SSN) {
+    void setSSN(String SSN) {
         this.SSN = SSN;
     }
 
-    public String getAddress() {
+    String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    void setAddress(String address) {
         this.address = address;
     }
 
-    public String getPhone() {
+    String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public boolean isCheckedIn() {
+    boolean isCheckedIn() {
         return checkedIn;
     }
 
-    public void setCheckedIn(boolean checkedIn) {
+    void setCheckedIn(boolean checkedIn) {
         this.checkedIn = false;
     }
 
