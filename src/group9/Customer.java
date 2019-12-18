@@ -12,8 +12,7 @@ public class Customer {
         this.SSN = SSN;
         this.address = address;
         this.phone = phone;
-        if (checkedIn) this.checkedIn = true;
-        else this.checkedIn = false;
+        this.checkedIn = checkedIn;
     }
 
 
@@ -54,7 +53,7 @@ public class Customer {
         return checkedIn;
     }
 
-    void setCheckedIn(boolean checkedIn) {
+    void setCheckedIn() {
         this.checkedIn = false;
     }
 

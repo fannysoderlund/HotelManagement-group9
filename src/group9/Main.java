@@ -81,7 +81,7 @@ public class Main {
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
                         if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
+                            call.bookingList.get(i).getCustomer().setCheckedIn();
                         }
                     }
                     for (Customer c : call.customerList) {

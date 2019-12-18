@@ -223,7 +223,7 @@ public class HotelLogic {
         } else
             System.out.println("Incorrect reply");
 
-        customer.setCheckedIn(checkedIn);
+        customer.setCheckedIn();
     }
 
 
@@ -356,7 +356,7 @@ public class HotelLogic {
         while (true) {
             try {
                 customerToCheckOut = input.nextInt();
-                customerList.get(customerToCheckOut).setCheckedIn(false);
+                customerList.get(customerToCheckOut).setCheckedIn();
                 break;
 
             } catch (Exception e) {
