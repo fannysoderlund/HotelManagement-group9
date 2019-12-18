@@ -3,7 +3,7 @@ package group9;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class HotelLogic {
+class HotelLogic {
 
 
     ArrayList<Rooms> roomsList = new ArrayList<>();
@@ -11,7 +11,7 @@ public class HotelLogic {
     ArrayList<Customer> customerList = new ArrayList<>();
 
 
-    public void listOfRooms() {
+    void listOfRooms() {
 
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
@@ -40,7 +40,7 @@ public class HotelLogic {
     }
 
 
-    public void listOfBookings() {
+    void listOfBookings() {
 
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
@@ -52,7 +52,7 @@ public class HotelLogic {
     }
 
 
-    public void addRoom() {
+    void addRoom() {
         Scanner input = new Scanner(System.in);
         int roomNo;
         int noOfBeds;
@@ -163,7 +163,7 @@ public class HotelLogic {
 
     }
 
-    public void removeCustomer() {
+    void removeCustomer() {
 
         listOfCustomer();
         Scanner input = new Scanner(System.in);
@@ -179,7 +179,7 @@ public class HotelLogic {
 
     }
 
-    public void editCustomer() {
+    void editCustomer() {
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < customerList.size(); i++) {
@@ -227,7 +227,7 @@ public class HotelLogic {
     }
 
 
-    public void removeRooms() {
+    void removeRooms() {
         listOfRooms();
         Scanner input = new Scanner(System.in);
 
@@ -242,7 +242,7 @@ public class HotelLogic {
 
     }
 
-    public void editRooms() {
+    void editRooms() {
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < roomsList.size(); i++) {
@@ -283,7 +283,7 @@ public class HotelLogic {
     }
 
 
-    public void removeBooking() {
+    void removeBooking() {
         listOfBookings();
         Scanner input = new Scanner(System.in);
 
@@ -297,7 +297,7 @@ public class HotelLogic {
         System.out.print(" The booking is now removed ");
     }
 
-    public void editBooking() {
+    void editBooking() {
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < bookingList.size(); i++) {
@@ -346,7 +346,7 @@ public class HotelLogic {
     }
 
 
-    public void checkOut() {
+    void checkOut() {
         Scanner input = new Scanner(System.in);
         int customerToCheckOut;
 
