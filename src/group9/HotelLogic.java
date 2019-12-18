@@ -75,7 +75,7 @@ class HotelLogic {
             System.out.println("Incorrect reply");
         System.out.print("Enter the price : ");
         price = input.nextDouble();
-        
+
         System.out.println("Is room available ? ");
         String answerAvailability = input.next();
 
@@ -199,6 +199,7 @@ class HotelLogic {
 
     void editCustomer() {
         Scanner input = new Scanner(System.in);
+        boolean checkedIn = false;
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i));
@@ -213,7 +214,6 @@ class HotelLogic {
                 "\n customer phone : " + customer.getPhone() +
                 "\n \"\n ");
 
-        boolean checkedIn = false;
 
         System.out.print("Enter name: ");
         String name = input.nextLine();
@@ -279,6 +279,7 @@ class HotelLogic {
 
     void editRooms() {
         Scanner input = new Scanner(System.in);
+        boolean checkedIn = false;
 
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i));
@@ -293,18 +294,32 @@ class HotelLogic {
                 "  SEK " +
                 "\n Availability : " + rooms.isAvailability() + "\n \"\n ");
 
-        boolean checkedIn = false;
+
 
         System.out.println("Enter the new room number for the room : ");
         int newRoomNo = Integer.parseInt(input.next());
         rooms.setRoomNo(newRoomNo);
-        System.out.println("Enter the new  number of beds for the room :");
-        int newNoOfBeds = Integer.parseInt(input.next());
 
-        rooms.setNoOfBeds(newNoOfBeds);
+        System.out.println("Enter the new  number of beds for the room :");
+        int NoOfBeds = Integer.parseInt(input.next());
+        rooms.setNoOfBeds(NoOfBeds);
+
         System.out.println("Enter the new price for the room :");
-        double newPrice = Double.parseDouble(input.next());
-        rooms.setPrice(newPrice);
+        double Price = Double.parseDouble(input.next());
+        rooms.setPrice(Price);
+
+        boolean balcony = false;
+        System.out.println("Does the room have a balcony (yes/no) :  ");
+       String answerB = input.next();
+        if (answerB.equals("yes")) {
+           balcony = true;
+        }  else if (answerB.equals("no")) {
+            balcony = false;
+        } else
+            System.out.println("Incorrect reply");
+
+        rooms.setBalcony(balcony);
+
         System.out.println("Is it Available ? ");
         String answer = input.next();
         if (answer.equals("yes")) {
