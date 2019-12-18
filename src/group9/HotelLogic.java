@@ -299,9 +299,6 @@ public class HotelLogic {
 
     public void editBooking() {
         Scanner input = new Scanner(System.in);
-        long checkInDate;
-        long checkOutDate;
-        double price;
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
@@ -309,20 +306,27 @@ public class HotelLogic {
         System.out.println("Choose a booking to edit");
         Booking booking = bookingList.get(input.nextInt());
 
+        System.out.print("Room booked: " + booking.getRoom() +
+                "\nCheck in on: " + booking.getCheckInDate() +
+                ", Check out on: " + booking.getCheckOutDate() +
+                ", Price: " + booking.getPrice() + "SEK" +
+                " \n   - Customer who booked: " + booking.getCustomer());
+
         System.out.print("Enter new check in date: ");
-        checkInDate = input.nextLong();
+       long newCheckInDate = input.nextLong();
+
         while (!input.hasNext("[0-9]+")) {
             System.out.println(" Error! Please type a date YYMMDD:  ");
             input.nextLine();
         }
         System.out.print("Enter new check out date: ");
-        checkOutDate = input.nextLong();
+        long newCheckOutDate = input.nextLong();
         while (!input.hasNext("[0-9]+")) {
             System.out.println(" Error! Please type a date YYMMDD:  ");
             input.nextLine();
         }
         System.out.print("Enter new price: ");
-        price = input.nextDouble();
+        double newPrice = input.nextDouble();
         while (!input.hasNext("[0-9]+")) {
             System.out.println(" Error! Please type in correct phone number:  ");
             input.nextLine();
@@ -332,12 +336,12 @@ public class HotelLogic {
             System.out.println("[" + i + "]" + roomsList.get(i));
         }
         System.out.println("Chose a new room");
-        Rooms room = roomsList.get(input.nextInt());
+        Rooms newRoom = roomsList.get(input.nextInt());
 
-        booking.setCheckInDate(checkInDate);
-        booking.setCheckOutDate(checkOutDate);
-        booking.setPrice(price);
-        booking.setRoom(room);
+        booking.setCheckInDate(newCheckInDate);
+        booking.setCheckOutDate(newCheckOutDate);
+        booking.setPrice(newPrice);
+        booking.setRoom(newRoom);
 
     }
 
