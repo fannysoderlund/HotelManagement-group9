@@ -4,6 +4,9 @@ public class Rooms {
 
     private int roomNo;
     private int noOfBeds;
+
+
+
     private boolean balcony;
     private double price;
     private boolean availability;
@@ -40,9 +43,11 @@ public class Rooms {
     }
 
     boolean isBalcony() {
-        return  balcony;
+        return balcony;
     }
-
+    public void setBalcony(boolean balcony) {
+        this.balcony = balcony;
+    }
 
     void setPrice(double price) {
         this.price = price;

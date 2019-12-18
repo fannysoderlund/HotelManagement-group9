@@ -52,7 +52,7 @@ public class Booking {
         return room;
     }
 
-    public void setRoom(Rooms room) {
+    void setRoom(Rooms room) {
         this.room = room;
     }
 

@@ -18,6 +18,7 @@ public class Customer {
 
     String getName() {
         return name;
+
     }
 
     void setName(String name) {
@@ -28,7 +29,7 @@ public class Customer {
         return SSN;
     }
 
-    public void setSSN(String SSN) {
+    void setSSN(String SSN) {
         this.SSN = SSN;
     }
 
@@ -52,7 +53,7 @@ public class Customer {
         return checkedIn;
     }
 
-    void setCheckedIn(boolean checkedIn) {
+    void setCheckedIn() {
         this.checkedIn = false;
     }
 
@@ -64,6 +65,8 @@ public class Customer {
         } else {
             checkedIn = "Customer is not checked in";
         }
-        return "Name: " + name  + "   " +  "SSN: " + SSN + "   " +  "address: " + address +"   " + ", phone number: " + phone + ",    " + checkedIn;
+        return "Name: " + name + "   " + "SSN: " + SSN + "   " + "address: " + address + "   " + ", phone number: " + phone + ",    " + checkedIn;
     }
+
+
 }
