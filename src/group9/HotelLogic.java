@@ -59,7 +59,7 @@ class HotelLogic {
         String answer;
         boolean balcony = false;
         double price;
-        boolean availability;
+        boolean availability = false;
 
         System.out.print("Enter the room number :  ");
         roomNo = input.nextInt();
@@ -75,8 +75,16 @@ class HotelLogic {
             System.out.println("Incorrect reply");
         System.out.print("Enter the price : ");
         price = input.nextDouble();
-        availability = true;
+        
+        System.out.println("Is room available ? ");
+        String answerAvailability = input.next();
 
+        if (answerAvailability==("yes")) {
+            availability = true;
+        } else if (answerAvailability==("no")) {
+            availability = false;
+        } else
+            System.out.println("Incorrect reply");
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
 
@@ -88,7 +96,7 @@ class HotelLogic {
         String SSN;
         String address;
         String phone;
-        boolean checkedIn;
+        boolean checkedIn = false;
 
         System.out.print("Enter name: ");
         name = input.nextLine();
@@ -114,8 +122,18 @@ class HotelLogic {
             System.out.println(" Error! Please type in correct phone number:  ");
             input.nextLine();
         }
+        System.out.println("Is customer in checked ? ");
+        String answer = input.next();
 
-        Customer customer = new Customer(name, SSN, address, phone, false);
+        if (answer.equals("yes")) {
+            checkedIn = true;
+        } else if (answer.equals("no")) {
+            checkedIn = false;
+        } else
+            System.out.println("Incorrect reply");
+        
+
+        Customer customer = new Customer(name, SSN, address, phone, checkedIn);
         customerList.add(customer);
     }
 
@@ -197,25 +215,42 @@ class HotelLogic {
 
         boolean checkedIn = false;
 
-        System.out.println("Enter the new customer name : ");
-        String newName = input.next();
-        customer.setName(newName);
+        System.out.print("Enter name: ");
+        String name = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct name:  ");
+            input.nextLine();
+        }
+        customer.setName(name);
 
-        System.out.println("Enter the   SSN of new customer :");
-        String newSSN = input.next();
-        customer.setSSN(newSSN);
+        System.out.print("Enter SSN: ");
+        String SSN = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct SSN:  ");
+            input.nextLine();
+        }
+        customer.setSSN(SSN);
 
-        System.out.println("Enter the   phone new customer :");
-        String newPhone = input.next();
-        customer.setPhone(newPhone);
+        System.out.print("Enter phone number: ");
+        String phone = input.nextLine();
+        while (!input.hasNext("[0-9]+")) {
+            System.out.println(" Error! Please type in correct phone number:  ");
+            input.nextLine();
+        }
+        customer.setPhone(phone);
 
 
-        System.out.println("Enter the new address for customer :");
-        String newAddress = input.next();
-        customer.setAddress(newAddress);
+        System.out.print("Enter address: ");
+        String address = input.nextLine();
+        while (!input.hasNext("[A-Za-z]+")) {
+            System.out.println(" Error! Please type in correct Adress:  ");
+            input.nextLine();
+        }
+        customer.setAddress(address);
 
         System.out.println("Is customer in checked ? ");
         String answer = input.next();
+        
         if (answer.equals("yes")) {
             checkedIn = true;
         } else if (answer.equals("no")) {
