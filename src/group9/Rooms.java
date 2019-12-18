@@ -39,7 +39,7 @@ public class Rooms {
         this.noOfBeds = noOfBeds;
     }
 
-    private boolean isBalcony() {
+    boolean isBalcony() {
         return balcony;
     }
 
@@ -48,7 +48,7 @@ public class Rooms {
         this.price = price;
     }
 
-    private boolean isAvailability() {
+    boolean isAvailability() {
         return availability;
     }
 
