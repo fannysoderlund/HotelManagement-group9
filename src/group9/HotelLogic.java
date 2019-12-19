@@ -28,10 +28,10 @@ class HotelLogic {
 
     void listOfCustomer() {
 
-        Customer firstCustomer = new Customer("Kim", "900928-4334", "Stockholm street 39", "74543401", true);
-        Customer secondCustomer = new Customer("Fisher", "800938-6834", "Macao Millie-Rose gate 4", "745670401", false);
-        Customer thirdCustomer = new Customer("Susanna ", "700928-0934", "Berlin street 34", "740456543", true);
-        Customer fourthCustomer = new Customer("Millie-Rose", "950978-7634", "Sauna street 49", "740456454", false);
+        Customer firstCustomer = new Customer("Kim", "9009284334", "Stockholm street 39", "74543401", true);
+        Customer secondCustomer = new Customer("Fisher", "8009386834", "Macao Millie-Rose gate 4", "745670401", false);
+        Customer thirdCustomer = new Customer("Susanna ", "7009280934", "Berlin street 34", "740456543", true);
+        Customer fourthCustomer = new Customer("Millie-Rose", "9509787634", "Sauna street 49", "740456454", false);
         customerList.add(firstCustomer);
         customerList.add(secondCustomer);
         customerList.add(thirdCustomer);
@@ -422,5 +422,19 @@ class HotelLogic {
         }
 
 
+    }
+    public void viewInfo(String user) {
+
+        listOfCustomer();
+
+
+        String SSN = user;
+
+        for (Customer customer : customerList)
+            if(customer.getSSN().equalsIgnoreCase(SSN)) {
+                System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Adress: %s%n",
+                        customer.getName(),customer.getSSN(),customer.getPhone(),customer.getAddress());
+
+            }
     }
 }

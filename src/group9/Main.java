@@ -182,7 +182,7 @@ public class Main {
                         //    call.makeBooking();
                         break;
                     case 2:
-                        //  call.viewInfo();
+                          call.viewInfo(user);
                         break;
                     case 3:
                         //   call.editBooking();
