@@ -191,7 +191,7 @@ public class Main {
                         // call.editInfo();
                         break;
                     case 5:
-                        //  call.searchBookings();
+                        //  call.removeBookings();
                         break;
                     case 6:
                         // call.checkOut();
@@ -233,7 +233,7 @@ public class Main {
         System.out.println("2. View your information");
         System.out.println("3. Edit one of your bookings");
         System.out.println("4. Edit your information");
-        System.out.println("5. Search available bookings");
+        System.out.println("5. Remove one of your bookings");
         System.out.println("6. Check out");
         System.out.println("7. Exit Customer Menu");
         System.out.println("8. Exit");
