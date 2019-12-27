@@ -58,12 +58,11 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Room booked: " + room +
+        return "\nRoom booked: " + room +
                 "\nCheck in on: " + checkInDate +
-                ", Check out on: " + checkOutDate +
-                ", Price: " + price + "SEK" +
-                " \n   - Customer who booked: " + customer;
+                "\nCheck out on: " + checkOutDate +
+                "\nPrice: " + price + "SEK" +
+                "\nCustomer who booked: " + customer + "\n";
     }
 }
-
 

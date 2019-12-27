@@ -6,7 +6,6 @@ public class Rooms {
     private int noOfBeds;
 
 
-
     private boolean balcony;
     private double price;
     private boolean availability;
@@ -45,6 +44,7 @@ public class Rooms {
     boolean isBalcony() {
         return balcony;
     }
+
     public void setBalcony(boolean balcony) {
         this.balcony = balcony;
     }
@@ -75,11 +75,11 @@ public class Rooms {
         } else {
             available = "It is not available";
         }
-        return "Room number: " + roomNo +
-                ", Number of beds: " + noOfBeds +
-                ", " + balcony +
-                ", Price: " + price +
-                "SEK , " + available;
+        return "\nRoom number: " + roomNo +
+                "\nNumber of beds: " + noOfBeds +
+                "\n" + balcony +
+                "\nPrice: " + price +
+                "SEK\n" + available + "\n";
     }
 
 

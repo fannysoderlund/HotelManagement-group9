@@ -1,9 +1,16 @@
 package group9;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 class HotelLogic {
+
+    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
+    Date date = new Date();
+    long dateNow = Long.parseLong(dateFormat.format(date));
 
 
     ArrayList<Rooms> roomsList = new ArrayList<>();
@@ -79,9 +86,9 @@ class HotelLogic {
         System.out.println("Is room available ? ");
         String answerAvailability = input.next();
 
-        if (answerAvailability==("yes")) {
+        if (answerAvailability == ("yes")) {
             availability = true;
-        } else if (answerAvailability==("no")) {
+        } else if (answerAvailability == ("no")) {
             availability = false;
         } else
             System.out.println("Incorrect reply");
@@ -92,46 +99,46 @@ class HotelLogic {
 
     void addCustomer() {
         Scanner input = new Scanner(System.in);
+        String typed;
         String name;
         String SSN;
         String address;
         String phone;
         boolean checkedIn = false;
 
-        System.out.print("Enter name: ");
-        name = input.nextLine();
-        while (!input.hasNext("[A-Za-z]+")) {
-            System.out.println(" Error! Please type in correct name:  ");
-            input.nextLine();
-        }
-        System.out.print("Enter SSN: ");
-        SSN = input.nextLine();
-        while (!input.hasNext("[0-9]+")) {
-            System.out.println(" Error! Please type in correct SSN:  ");
-            input.nextLine();
-        }
-        System.out.print("Enter address: ");
-        address = input.nextLine();
-        while (!input.hasNext("[A-Za-z]+")) {
-            System.out.println(" Error! Please type in correct Adress:  ");
-            input.nextLine();
-        }
-        System.out.print("Enter phone number: ");
-        phone = input.nextLine();
-        while (!input.hasNext("[0-9]+")) {
-            System.out.println(" Error! Please type in correct phone number:  ");
-            input.nextLine();
-        }
-        System.out.println("Is customer in checked ? ");
-        String answer = input.next();
 
-        if (answer.equals("yes")) {
+        do {
+            System.out.println("Enter name: ");
+            typed = input.nextLine();
+        } while (!typed.matches("[A-Za-z]+"));
+        name = typed;
+
+        do {
+            System.out.println("Enter SSN: ");
+            typed = input.nextLine();
+        } while (!typed.matches("[0-9]+"));
+        SSN = typed;
+
+
+        System.out.println("Enter address: ");
+        address = input.nextLine();
+
+        do {
+            System.out.println("Enter phone number: ");
+            typed = input.nextLine();
+        } while (!typed.matches("[0-9]+"));
+        phone = typed;
+
+        do {
+            System.out.println("Is customer checked in? ");
+            typed = input.nextLine();
+        } while (!typed.matches("[yesno]+"));
+        if (typed.equals("yes")) {
             checkedIn = true;
-        } else if (answer.equals("no")) {
+        } else if (typed.equals("no")) {
             checkedIn = false;
-        } else
-            System.out.println("Incorrect reply");
-        
+        }
+
 
         Customer customer = new Customer(name, SSN, address, phone, checkedIn);
         customerList.add(customer);
@@ -142,39 +149,60 @@ class HotelLogic {
         Scanner input = new Scanner(System.in);
 
         Rooms room;
-        int choiceOfRoom;
+        long digits = 6;
+        String typed;
         long checkInDate;
         long checkOutDate;
         double price;
-        Customer customer;
+        Customer customer = null;
 
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "]" + customerList.get(i).toString());
 
-            customer = customerList.get(input.nextInt());
-
         }
 
         System.out.println("What customer wants to make a booking?");
+        while (true) {
+        try {
+            customer = customerList.get(input.nextInt());
+            break;
+        }catch (Exception e) {
+            System.out.println("Not a real customer");
+        }}
 
-        customer = customerList.get(input.nextInt());
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i).toString());
         }
         System.out.println("Choose a room to book:  ");
-        choiceOfRoom = input.nextInt();
-        room = roomsList.get(choiceOfRoom);
+        while (true) {
+         try {
+             room = roomsList.get(input.nextInt());
+             break;
+         }catch (Exception e) {
+             System.out.println("Not a real room");
+         }}
+
+        while (true) {
+            try {
+                do {
+
+                        System.out.print("Enter the check in date: ");
+                        checkInDate = input.nextLong();
+
+                        System.out.print("Enter the check out date: ");
+                        checkOutDate = input.nextLong();
 
 
-        System.out.print("Enter the check in date: ");
-        checkInDate = input.nextLong();
+                } while (checkInDate < checkOutDate && checkInDate <= dateNow);
+                break;
+            }catch (Exception e) {
+                System.out.println("Not a date in YYMMDD");
+            }
+        }
+        price = room.getPrice();
 
-        System.out.print("Enter the check out date:  ");
-        checkOutDate = input.nextLong();
-        price = roomsList.get(choiceOfRoom).getPrice();
-
-        System.out.printf("The price for a night is %f kr. ", price);
+        System.out.printf("The price for a night is %.2f kr%n", price);
 
         Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
@@ -251,7 +279,7 @@ class HotelLogic {
 
         System.out.println("Is customer in checked ? ");
         String answer = input.next();
-        
+
         if (answer.equals("yes")) {
             checkedIn = true;
         } else if (answer.equals("no")) {
@@ -296,7 +324,6 @@ class HotelLogic {
                 "\n Availability : " + rooms.isAvailability() + "\n \"\n ");
 
 
-
         System.out.println("Enter the new room number for the room : ");
         int newRoomNo = Integer.parseInt(input.next());
         rooms.setRoomNo(newRoomNo);
@@ -311,10 +338,10 @@ class HotelLogic {
 
         boolean balcony = false;
         System.out.println("Does the room have a balcony (yes/no) :  ");
-       String answerB = input.next();
+        String answerB = input.next();
         if (answerB.equals("yes")) {
-           balcony = true;
-        }  else if (answerB.equals("no")) {
+            balcony = true;
+        } else if (answerB.equals("no")) {
             balcony = false;
         } else
             System.out.println("Incorrect reply");
@@ -364,7 +391,7 @@ class HotelLogic {
                 " \n   - Customer who booked: " + booking.getCustomer());
 
         System.out.print("Enter new check in date: ");
-       long newCheckInDate = input.nextLong();
+        long newCheckInDate = input.nextLong();
 
         while (!input.hasNext("[0-9]+")) {
             System.out.println(" Error! Please type a date YYMMDD:  ");
@@ -423,6 +450,7 @@ class HotelLogic {
 
 
     }
+
     public void viewInfo(String user) {
 
         listOfCustomer();
@@ -431,9 +459,9 @@ class HotelLogic {
         String SSN = user;
 
         for (Customer customer : customerList)
-            if(customer.getSSN().equalsIgnoreCase(SSN)) {
+            if (customer.getSSN().equalsIgnoreCase(SSN)) {
                 System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Adress: %s%n",
-                        customer.getName(),customer.getSSN(),customer.getPhone(),customer.getAddress());
+                        customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
 
             }
     }

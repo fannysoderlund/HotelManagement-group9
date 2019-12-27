@@ -10,10 +10,6 @@ public class Main {
     Scanner input = new Scanner(System.in);
     private HotelLogic call = new HotelLogic();
 
-    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
-    Date date = new Date();
-    long dateNow = Long.parseLong(dateFormat.format(date));
-
     public static void main(String[] args) {
         Main myApp = new Main();
 
@@ -50,6 +46,11 @@ public class Main {
     }
 
     public void EmployeeMenu() {
+
+       call.listOfRooms();
+        call.listOfCustomer();
+        call.listOfBookings();
+
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
         int typed = 0;
@@ -77,10 +78,9 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    call.listOfCustomer();
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
-                        if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
                             call.bookingList.get(i).getCustomer().setCheckedIn();
                         }
                     }
@@ -89,7 +89,6 @@ public class Main {
                     }
                     break;
                 case 2:
-                    call.listOfRooms();
 
                     for (Rooms r : call.roomsList) {
                         System.out.println(r.toString());
@@ -97,13 +96,10 @@ public class Main {
 
                     break;
                 case 3:
-                    call.listOfCustomer();
-                    call.listOfRooms();
-                    call.listOfBookings();
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
 
-                        if (call.bookingList.get(i).getCheckOutDate() < dateNow) {
+                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
                             call.bookingList.get(i).getRoom().setAvailability(false);
                         }
                     }
@@ -113,48 +109,43 @@ public class Main {
                     }
                     break;
                 case 4:
-                    call.listOfCustomer();
+
                     call.addCustomer();
                     break;
                 case 5:
-                    call.listOfCustomer();
+
                     call.removeCustomer();
                     break;
                 case 6:
 
-                    call.listOfCustomer();
                     call.editCustomer();
                     break;
                 case 7:
                     call.addRoom();
                     break;
                 case 8:
-                    call.listOfRooms();
+
                     call.removeRooms();
                     break;
                 case 9:
-                    call.listOfRooms();
+
                     call.editRooms();
                     break;
                 case 10:
-                    call.listOfRooms();
-                    call.listOfCustomer();
+
                     call.addBooking();
                     break;
                 case 11:
-                    call.listOfBookings();
+
                     call.removeBooking();
                     break;
                 case 12:
-                    call.listOfRooms();
-                    call.listOfCustomer();
-                    call.listOfBookings();
 
                     call.editBooking();
                     break;
                 case 13:
                     System.out.println("Chose a customer to checkout");
-                    call.listOfCustomer();
+
                     call.checkOut();
                     break;
                 case 14:
@@ -239,4 +230,6 @@ public class Main {
         System.out.println("8. Exit");
 
     }
+
+
 }
