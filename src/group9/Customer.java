@@ -53,8 +53,8 @@ public class Customer {
         return checkedIn;
     }
 
-    void setCheckedIn() {
-        this.checkedIn = false;
+    void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
     }
 
     @Override

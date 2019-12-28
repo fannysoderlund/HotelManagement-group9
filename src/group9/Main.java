@@ -1,9 +1,6 @@
 package group9;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
-import java.util.Date;
 
 
 public class Main {
@@ -81,7 +78,7 @@ public class Main {
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
                         if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn();
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
                         }
                     }
                     for (Customer c : call.customerList) {
@@ -90,23 +87,27 @@ public class Main {
                     break;
                 case 2:
 
+                    for (int i = 0; i < call.bookingList.size(); i++) {
+                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
+                            call.bookingList.get(i).getRoom().setAvailability(true);
+                        }
+                    }
                     for (Rooms r : call.roomsList) {
                         System.out.println(r.toString());
                     }
 
                     break;
                 case 3:
+                    System.out.println(call.dateNow);
 
                     for (int i = 0; i < call.bookingList.size(); i++) {
-
                         if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
-                            call.bookingList.get(i).getRoom().setAvailability(false);
+                            call.bookingList.get(i).getRoom().setAvailability(true);
+                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
                         }
                     }
-
-                    for (Booking b : call.bookingList) {
+                    for (Booking b : call.bookingList)
                         System.out.println(b.toString());
-                    }
                     break;
                 case 4:
 
