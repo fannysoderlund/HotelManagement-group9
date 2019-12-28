@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class HotelLogic {
 
-    DateFormat dateFormat = new SimpleDateFormat("yymmdd");
+    DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
     Date date = new Date();
     long dateNow = Long.parseLong(dateFormat.format(date));
 
@@ -72,26 +72,27 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
-        System.out.print("Does the room have a balcony (yes/no) :  ");
-        answer = input.next();
+        do {
+            System.out.println("Does the room have a balcony? ");
+            answer = input.nextLine();
+        } while (!answer.matches("[yesno]+"));
         if (answer.equals("yes")) {
             balcony = true;
         } else if (answer.equals("no")) {
             balcony = false;
-        } else
-            System.out.println("Incorrect reply");
+        }
         System.out.print("Enter the price : ");
         price = input.nextDouble();
 
-        System.out.println("Is room available ? ");
-        String answerAvailability = input.next();
-
-        if (answerAvailability == ("yes")) {
+        do {
+            System.out.println("Is it avaliable? ");
+            answer = input.nextLine();
+        } while (!answer.matches("[yesno]+"));
+        if (answer.equals("yes")) {
             availability = true;
-        } else if (answerAvailability == ("no")) {
+        } else if (answer.equals("no")) {
             availability = false;
-        } else
-            System.out.println("Incorrect reply");
+        }
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
 
@@ -151,8 +152,8 @@ class HotelLogic {
         Rooms room;
         long digits = 6;
         String typed;
-        long checkInDate;
-        long checkOutDate;
+        long checkInDate = 0;
+        long checkOutDate = 0;
         double price;
         Customer customer = null;
 
@@ -164,42 +165,51 @@ class HotelLogic {
 
         System.out.println("What customer wants to make a booking?");
         while (true) {
-        try {
-            customer = customerList.get(input.nextInt());
-            break;
-        }catch (Exception e) {
-            System.out.println("Not a real customer");
-        }}
+            try {
+                customer = customerList.get(input.nextInt());
+                break;
+            } catch (Exception e) {
+                System.out.println("Not a real customer");
+            }
+        }
 
         for (int i = 0; i < roomsList.size(); i++) {
             System.out.println("[" + i + "]" + roomsList.get(i).toString());
         }
         System.out.println("Choose a room to book:  ");
         while (true) {
-         try {
-             room = roomsList.get(input.nextInt());
-             break;
-         }catch (Exception e) {
-             System.out.println("Not a real room");
-         }}
+            try {
+                room = roomsList.get(input.nextInt());
+                break;
+            } catch (Exception e) {
+                System.out.println("Not a real room");
+                input.nextLine();
+            }
+        }
 
         while (true) {
             try {
-                do {
+                System.out.println("Enter the check in date");
+                checkInDate = input.nextLong();
+                System.out.println(dateNow);
+                while (checkInDate < dateNow) {
+                    System.out.println("Not a future date");
+                    checkInDate = input.nextLong();
+                }
 
-                        System.out.print("Enter the check in date: ");
-                        checkInDate = input.nextLong();
-
-                        System.out.print("Enter the check out date: ");
-                        checkOutDate = input.nextLong();
-
-
-                } while (checkInDate < checkOutDate && checkInDate <= dateNow);
+                System.out.println("Enter the check out date");
+                checkOutDate = input.nextLong();
+                while (checkOutDate > checkInDate) {
+                    System.out.println("You cannot go back in time");
+                    checkInDate = input.nextLong();
+                }
                 break;
-            }catch (Exception e) {
-                System.out.println("Not a date in YYMMDD");
+            } catch (Exception e) {
+                System.out.println("Not a date");
+                input.nextLine();
             }
         }
+
         price = room.getPrice();
 
         System.out.printf("The price for a night is %.2f kr%n", price);
@@ -338,10 +348,10 @@ class HotelLogic {
 
         boolean balcony = false;
         System.out.println("Does the room have a balcony (yes/no) :  ");
-        String answerB = input.next();
-        if (answerB.equals("yes")) {
+        String answer = input.next();
+        if (answer.equals("yes")) {
             balcony = true;
-        } else if (answerB.equals("no")) {
+        } else if (answer.equals("no")) {
             balcony = false;
         } else
             System.out.println("Incorrect reply");
@@ -349,7 +359,7 @@ class HotelLogic {
         rooms.setBalcony(balcony);
 
         System.out.println("Is it Available ? ");
-        String answer = input.next();
+        answer = input.next();
         if (answer.equals("yes")) {
             checkedIn = true;
         } else if (answer.equals("no")) {
