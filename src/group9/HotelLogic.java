@@ -120,7 +120,7 @@ class HotelLogic {
         do {
             System.out.println("Enter SSN: ");
             typed = input.nextLine();
-        } while (!typed.matches("[0-9]+"));
+        } while (!typed.matches("[0-9]{10}"));
         SSN = typed;
 
 
@@ -130,7 +130,7 @@ class HotelLogic {
         do {
             System.out.println("Enter phone number: ");
             typed = input.nextLine();
-        } while (!typed.matches("[0-9]+"));
+        } while (!typed.matches("[0-9]{10}"));
         phone = typed;
 
         do {
@@ -288,7 +288,7 @@ class HotelLogic {
         do {
             System.out.println("Enter new SSN: ");
             typed = input.nextLine();
-        } while (!typed.matches("[0-9]+"));
+        } while (!typed.matches("[0-9]{10}"));
         SSN = typed;
         customer.setSSN(SSN);
 
@@ -300,7 +300,7 @@ class HotelLogic {
         do {
             System.out.println("Enter new phone number: ");
             typed = input.nextLine();
-        } while (!typed.matches("[0-9]+"));
+        } while (!typed.matches("[0-9]{10}"));
         phone = typed;
         customer.setPhone(phone);
 
