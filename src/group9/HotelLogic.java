@@ -86,7 +86,7 @@ class HotelLogic {
             System.out.println("Enter the price: ");
             answer = input.nextLine();
         } while (!answer.matches("[0-9]+"));
-            price = Double.parseDouble(answer);
+        price = Double.parseDouble(answer);
         do {
             System.out.println("Is it available? ");
             answer = input.nextLine();
@@ -228,14 +228,14 @@ class HotelLogic {
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < customerList.size(); i++) {
-            System.out.println("["+i+"]"+ customerList.get(i).toString());
+            System.out.println("[" + i + "]" + customerList.get(i).toString());
         }
 
         System.out.println("What customer do you want to remove?");
         while (true) {
             try {
-                choice =input.nextInt();
-               customerList.get(choice);
+                choice = input.nextInt();
+                customerList.get(choice);
                 break;
             } catch (Exception e) {
                 System.out.println("Not a real customer");
@@ -268,12 +268,12 @@ class HotelLogic {
             System.out.println("[" + i + "]" + customerList.get(i));
         }
         System.out.println("What customer do you want to edit?");
-        choice =input.nextInt();
+        choice = input.nextInt();
         while (choice > customerList.size()) {
             System.out.println("Not an option");
             choice = input.nextInt();
         }
-                Customer customer = customerList.get(choice);
+        Customer customer = customerList.get(choice);
 
 
         System.out.println(customer.toString());
@@ -366,7 +366,7 @@ class HotelLogic {
         if (typed.equals("yes")) {
             rooms.setBalcony(true);
         } else if (typed.equals("no")) {
-           rooms.setBalcony(false);
+            rooms.setBalcony(false);
         }
 
         do {
@@ -417,7 +417,7 @@ class HotelLogic {
         System.out.println("Choose a booking to edit");
         while (true) {
             try {
-               booking = bookingList.get(input.nextInt());
+                booking = bookingList.get(input.nextInt());
                 break;
             } catch (Exception e) {
                 System.out.println("Not a booking");
@@ -518,4 +518,45 @@ class HotelLogic {
 
             }
     }
-}
+
+    public void searchByCustomerSSN() {                   //Not tested 
+        Scanner input = new Scanner(System.in);
+        while (true) {
+
+            System.out.println("Please Enter Customer SSN \n.............\nin YYMMDDXXXX form : \n");
+            String search = input.nextLine();
+
+            if ((search.matches("[0-9]{10}"))) {
+                for (Customer customer : customerList)
+                    if (customer.getSSN().equals(search)) {
+                        System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
+                                customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
+                        break;
+                    } else {
+                        System.out.println("No Customer with this SSN \n");
+                    }
+
+            } else {
+                System.out.println("Enter correct SSN \n");
+
+            }
+        }
+    }
+    public void searchByCustomerName() {            //Not tested
+        Scanner input = new Scanner(System.in);
+        while (true) {
+
+            System.out.println("Please Enter Customer Name : \n............. \n");
+            String search = input.nextLine();
+
+                for (Customer customer : customerList)
+                    if (customer.getName().equals(search)) {
+                        System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
+                                customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
+                        break;
+                    } else {
+                        System.out.println("No Customer with this Name \n");
+                    }
+            }
+        }
+    }
