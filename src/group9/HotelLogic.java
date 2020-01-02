@@ -243,7 +243,7 @@ class HotelLogic {
         }
 
         for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getCustomer().getSSN().equals(customerList.get(choice).getSSN())) {
+            if (bookingList.get(i).getCustomer().equals(customerList.get(choice))) {
                 bookingList.remove(i);
             }
         }
@@ -331,11 +331,16 @@ class HotelLogic {
             System.out.println("That's not an option");
             roomToRemove = input.nextInt();
         }
-        roomsList.remove(roomToRemove);
-        System.out.println(" The room is now removed");
+        for (int i = 0; i < bookingList.size(); i++) {
+            if (bookingList.get(i).getRoom().equals(roomsList.get(roomToRemove))) {
+                bookingList.remove(i);
+            }
 
+            roomsList.remove(roomToRemove);
+            System.out.println(" The room is now removed");
+
+        }
     }
-
     void editRooms() {
         String typed;
         Scanner input = new Scanner(System.in);
@@ -397,8 +402,12 @@ class HotelLogic {
         System.out.println("Which booking do you want to remove?");
         int removeBooking = input.nextInt();
 
+
+
         bookingList.remove(removeBooking);
         System.out.print(" The booking is now removed ");
+
+
 
         bookingList.get(removeBooking).getRoom().setAvailability(true);
     }
