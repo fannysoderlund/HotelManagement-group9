@@ -242,16 +242,16 @@ class HotelLogic {
             }
         }
 
-        customerList.remove(choice);
-
         for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getCustomer().equals(customerList.get(choice))) {
+            if (bookingList.get(i).getCustomer().getSSN().equals(customerList.get(choice).getSSN())) {
                 bookingList.remove(i);
             }
+        }
+        customerList.remove(choice);
+
 
         }
 
-    }
 
     void editCustomer() {
         String typed;
