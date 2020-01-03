@@ -1,5 +1,6 @@
 package group9;
-
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.awt.print.Book;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,10 +50,21 @@ class HotelLogic {
 
 
     void listOfBookings() {
-
-        Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
-        Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
-
+        Booking firstBooking = null;
+        Booking secondBooking = null;
+        try {
+            firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
+            secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
+            System.out.println(firstBooking);
+            System.out.println(secondBooking);
+            FileOutputStream fos = new FileOutputStream("C:/Users/bishe/IdeaProjects/Hotel/HotelManagement-group9/booking.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(firstBooking);
+            oos.writeObject(secondBooking);
+            oos.close();
+        } catch (Exception E) {
+            System.out.println("you got error");
+        }
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
 
@@ -73,6 +85,7 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
+        input.nextLine();
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
