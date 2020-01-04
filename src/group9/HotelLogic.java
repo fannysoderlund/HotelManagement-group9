@@ -465,12 +465,12 @@ class HotelLogic {
 
         System.out.println("Chose a new room");
         int newRoom = input.nextInt();
-        while (newRoom > roomsList.size()) {
+        while (newRoom >= roomsList.size()) {
             System.out.println("That's not an option");
             newRoom = input.nextInt();
+            input.nextLine();
             roomsList.get(newRoom);
         }
-        input.nextLine();
         do {
             System.out.println("Enter the price: ");
             typed = input.nextLine();
@@ -482,7 +482,6 @@ class HotelLogic {
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
-
     }
 
 
