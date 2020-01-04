@@ -1,6 +1,7 @@
 package group9;
 
 import java.awt.print.Book;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -609,4 +610,275 @@ class HotelLogic {
         }
         System.out.println(roomsToPrint);
         }
+    void makeBooking(String user) {
+
+        Rooms room;
+        String name;
+        String phone;
+        String address;
+        String SSN = user;
+        String typed;
+        long checkInDate;
+        long checkOutDate;
+        double price;
+        boolean checkedIn = true;
+        int roomNo;
+        int noOfBeds;
+        String answer;
+        boolean balcony = false;
+
+        boolean availability = false;
+        Scanner input = new Scanner(System.in);
+        Customer customer = null;
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getSSN().equals(user)) {
+                customer = customerList.get(i);
+            } else {
+                do {
+                    System.out.println("Enter name: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[A-Za-z]+"));
+                name = typed;
+
+                do {
+                    System.out.println("Enter SSN: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[0-9]{10}"));
+                SSN = typed;
+
+
+                System.out.println("Enter address: ");
+                address = input.nextLine();
+
+                do {
+                    System.out.println("Enter phone number: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[0-9]{10}"));
+                phone = typed;
+
+                do {
+                    System.out.println("Is customer checked in? ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[yesno]+"));
+                if (typed.equals("yes")) {
+                    checkedIn = true;
+                } else if (typed.equals("no")) {
+                    checkedIn = false;
+                }
+
+
+                customer = new Customer(name, SSN, address, phone, checkedIn);
+                customerList.add(customer);
+            }
+        }
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("[" + i + "]" + roomsList.get(i));
+        }
+
+        System.out.println("Chose a new room");
+        int newRoom = input.nextInt();
+        while (newRoom > roomsList.size()) {
+            System.out.println("That's not an option");
+            newRoom = input.nextInt();
+            room = roomsList.get(newRoom);
+            while (true) {
+                try {
+                    System.out.println("Enter the check in date");
+                    checkInDate = input.nextLong();
+                    System.out.println(dateNow);
+                    while (checkInDate < dateNow) {
+                        System.out.println("Not a future date");
+                        checkInDate = input.nextLong();
+                    }
+
+                    System.out.println("Enter the check out date");
+                    checkOutDate = input.nextLong();
+                    while (checkOutDate < checkInDate) {
+                        System.out.println("You cannot go back in time");
+                        checkOutDate = input.nextLong();
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Not a date");
+                    input.nextLine();
+                }
+            }
+
+
+            price = room.getPrice();
+
+            System.out.printf("The price for a night is %.2f kr%n", price);
+
+            Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
+            bookingList.add(booking);
+
+        }
     }
+
+    void editBooking(String user) {
+        Scanner input = new Scanner(System.in);
+        Booking booking = null;
+        long checkInDate;
+        long checkOutDate;
+        String typed;
+        double price = 0;
+
+        for (int i = 0; i < bookingList.size(); i++) {
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
+            {
+                bookingList.get(i).getCustomer().getSSN();
+            }
+        }
+        while (true) {
+            try {
+                System.out.println("Enter the new check in date");
+                checkInDate = input.nextLong();
+
+                while (checkInDate < dateNow) {
+                    System.out.println("Not a future date");
+                    checkInDate = input.nextLong();
+                }
+
+                System.out.println("Enter the new check out date");
+                checkOutDate = input.nextLong();
+                while (checkOutDate < checkInDate) {
+                    System.out.println("You cannot go back in time");
+                    checkOutDate = input.nextLong();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Not a date");
+                input.nextLine();
+            }
+        }
+        for (int i = 0; i < roomsList.size(); i++) {
+            System.out.println("[" + i + "]" + roomsList.get(i));
+        }
+
+        System.out.println("Chose a new room");
+        int newRoom = input.nextInt();
+        while (newRoom > roomsList.size()) {
+            System.out.println("That's not an option");
+            newRoom = input.nextInt();
+            roomsList.get(newRoom);
+        }
+        input.nextLine();
+        do {
+            System.out.println("Enter the price: ");
+            typed = input.nextLine();
+        } while (!typed.matches("[0-9]+"));
+        roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
+
+
+        booking.setCheckInDate(checkInDate);
+        booking.setCheckOutDate(checkOutDate);
+        booking.setPrice(price);
+        booking.setRoom(roomsList.get(newRoom));
+    }
+
+    void editInfo(String user) {
+        Customer customer;
+        String typed;
+        String name;
+        String SSN;
+        String address;
+        String phone;
+        int choice;
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getSSN().equals(user)) {
+                customer = customerList.get(i);
+                do {
+                    System.out.println("Enter new name: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[A-Za-z]+"));
+                name = typed;
+                customer.setName(name);
+
+                do {
+                    System.out.println("Enter new SSN: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[0-9]{10}"));
+                SSN = typed;
+                customer.setSSN(SSN);
+
+
+                System.out.println("Enter new address: ");
+                address = input.nextLine();
+                customer.setAddress(address);
+
+                do {
+                    System.out.println("Enter new phone number: ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[0-9]{10}"));
+                phone = typed;
+                customer.setPhone(phone);
+
+
+                do {
+                    System.out.println("Is customer checked in? ");
+                    typed = input.nextLine();
+                } while (!typed.matches("[yesno]+"));
+                if (typed.equals("yes")) {
+                    customer.setCheckedIn(true);
+                } else if (typed.equals("no")) {
+                    customer.setCheckedIn(false);
+
+
+                }
+            }
+        }
+    }
+
+    void removeBooking(String user) {
+        Rooms rooms;
+
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < bookingList.size(); i++) {
+
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
+            {
+                bookingList.get(i).getCustomer().getSSN();
+            }
+
+
+            bookingList.remove(bookingList.get(i).getCustomer().getSSN());
+            System.out.print(" The booking is now removed ");
+
+
+            File delFile = new File("Booking.txt");
+            delFile.delete();
+            //saveBookingToFile(bookingList);
+
+        }
+    }
+
+    void checkOut(String user) {
+        Scanner input = new Scanner(System.in);
+        Customer customer;
+        String customerToCheckOut;
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getSSN().equals(user)) {
+                customer = customerList.get(i);
+            }
+            while (true) {
+                try {
+                    customerToCheckOut = customerList.get(i).getSSN();
+                    customerList.get(Integer.parseInt(customerToCheckOut)).setCheckedIn(false);
+                    break;
+
+                } catch (Exception e) {
+                    System.out.println("That customer doesn't exist, try again");
+                }
+            }
+            for (i = 0; i < bookingList.size(); i++) {
+
+                if (customerList.get(Integer.parseInt(customerToCheckOut)) == bookingList.get(i).getCustomer()) {
+                    roomsList.get(i).setAvailability(false);
+                }
+            }
+        }
+
+    }
+}
+
