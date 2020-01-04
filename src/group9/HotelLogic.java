@@ -24,7 +24,7 @@ class HotelLogic {
 
         Rooms firstRoom = new Rooms(100, 2, true, 700, false);
         Rooms secondRoom = new Rooms(200, 1, false, 800, true);
-        Rooms thirdRoom = new Rooms(300, 2, true, 900, false);
+        Rooms thirdRoom = new Rooms(300, 2, true, 900, true);
         Rooms fourthRoom = new Rooms(400, 3, false, 500, true);
         Rooms fifthRoom = new Rooms(500, 2, true, 600, false);
         roomsList.add(firstRoom);
@@ -52,9 +52,11 @@ class HotelLogic {
 
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
+        Booking thirdBooking = new Booking(roomsList.get(2), 200403, 200406, 35.50, customerList.get(2));
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
+        bookingList.add(thirdBooking);
 
 
     }
@@ -250,7 +252,7 @@ class HotelLogic {
         customerList.remove(choice);
 
 
-        }
+    }
 
 
     void editCustomer() {
@@ -341,6 +343,7 @@ class HotelLogic {
 
         }
     }
+
     void editRooms() {
         String typed;
         Scanner input = new Scanner(System.in);
@@ -403,10 +406,8 @@ class HotelLogic {
         int removeBooking = input.nextInt();
 
 
-
         bookingList.remove(removeBooking);
         System.out.print(" The booking is now removed ");
-
 
 
         bookingList.get(removeBooking).getRoom().setAvailability(true);
@@ -547,6 +548,7 @@ class HotelLogic {
             }
         }
     }
+
     public void searchByCustomerName() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -554,14 +556,57 @@ class HotelLogic {
             System.out.println("Please Enter Customer Name : \n............. \n");
             String search = input.nextLine();
 
-                for (Customer customer : customerList)
-                    if (customer.getName().equals(search)) {
-                        System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
-                                customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
-                        break;
-                    } else {
-                        System.out.println("No Customer with this Name \n");
-                    }
+            for (Customer customer : customerList)
+                if (customer.getName().equals(search)) {
+                    System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
+                            customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
+                    break;
+                } else {
+                    System.out.println("No Customer with this Name \n");
+                }
+        }
+    }
+
+    void searchAvailableRooms() {
+        long first;
+        long second;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Between what dates do you want to see?");
+        while (true) {
+            try {
+                System.out.println("Enter the first date");
+                first = input.nextLong();
+
+                while (first < dateNow) {
+                    System.out.println("Not a future date");
+                    first = input.nextLong();
+                }
+
+                System.out.println("Enter the second date");
+                second = input.nextLong();
+                while (second < first) {
+                    System.out.println("You cannot go back in time");
+                    second = input.nextLong();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Not a date");
+                input.nextLine();
             }
+
+        }
+
+        ArrayList<Rooms> roomsToPrint = (ArrayList<Rooms>) roomsList.clone();
+
+        for (int i = 0; i < bookingList.size(); i++) {
+
+            if (first <= bookingList.get(i).getCheckInDate() && bookingList.get(i).getCheckInDate() <= second) {
+                if (first <= bookingList.get(i).getCheckOutDate() && bookingList.get(i).getCheckOutDate() <= second) {
+                    roomsToPrint.remove(bookingList.get(i).getRoom());
+                }
+            }
+
+        }
+        System.out.println(roomsToPrint);
         }
     }
