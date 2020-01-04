@@ -524,7 +524,7 @@ class HotelLogic {
             }
     }
 
-    public void searchByCustomerSSN() {                   //Not tested 
+    public void searchByCustomerSSN() {
         Scanner input = new Scanner(System.in);
         while (true) {
 
@@ -547,7 +547,7 @@ class HotelLogic {
             }
         }
     }
-    public void searchByCustomerName() {            //Not tested
+    public void searchByCustomerName() {
         Scanner input = new Scanner(System.in);
         while (true) {
 
