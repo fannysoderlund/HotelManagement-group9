@@ -51,7 +51,7 @@ public class Main {
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
         int typed = 0;
-        while (choice != 14) {
+        while (choice != 16) {
             printEmployee();
 
             while (true) {
@@ -150,10 +150,15 @@ public class Main {
                     call.checkOut();
                     break;
                 case 14:
+                    call.searchByCustomerName();
+                    break;
+                case 15:
+                    call.searchByCustomerSSN();
+                case 16:
                     signIn();
 
                     break;
-                case 15:
+                case 17:
                     System.exit(0);
                     break;
 
@@ -162,6 +167,9 @@ public class Main {
     }
         private void MenuCustomer (String user){
             System.out.println("Welcome to the HKR Hotel");
+            call.listOfRooms();
+            call.listOfCustomer();
+            call.listOfBookings();
             int booking;
             int choice;
             boolean cont = true;
@@ -189,11 +197,13 @@ public class Main {
                         // call.checkOut();
                         break;
                     case 7:
-                        signIn();
-
-
+                        call.searchAvailableRooms();
                         break;
                     case 8:
+                        signIn();
+
+                        break;
+                    case 9:
                         cont = false;
 
                         break;
@@ -215,6 +225,8 @@ public class Main {
         System.out.println("11. Remove booking");
         System.out.println("12. Edit booking");
         System.out.println("13. Check out a customer");
+        System.out.println("14. Search by customer name");
+        System.out.println("15. Search by customer SSN");
         System.out.println("14. Exit Employee Menu");
         System.out.println("15. Exit");
 
@@ -227,8 +239,9 @@ public class Main {
         System.out.println("4. Edit your information");
         System.out.println("5. Remove one of your bookings");
         System.out.println("6. Check out");
-        System.out.println("7. Exit Customer Menu");
-        System.out.println("8. Exit");
+        System.out.println("7. Search for available rooms");
+        System.out.println("8. Exit Customer Menu");
+        System.out.println("9. Exit");
 
     }
 

@@ -19,7 +19,7 @@ public class Booking implements Serializable {
         this.price = price;
         this.customer = customer;
 
-    }
+        }
 
     long getCheckInDate() {
         return checkInDate;
@@ -67,4 +67,7 @@ public class Booking implements Serializable {
                 "\nCustomer who booked: " + customer + "\n";
     }
 }
+
+
+
 
