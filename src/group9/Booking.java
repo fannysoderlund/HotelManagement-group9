@@ -17,7 +17,7 @@ public class Booking {
         this.price = price;
         this.customer = customer;
 
-    }
+        }
 
     long getCheckInDate() {
         return checkInDate;
@@ -65,4 +65,7 @@ public class Booking {
                 "\nCustomer who booked: " + customer + "\n";
     }
 }
+
+
+
 

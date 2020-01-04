@@ -51,7 +51,7 @@ public class Main {
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
         int typed = 0;
-        while (choice != 14) {
+        while (choice != 16) {
             printEmployee();
 
             while (true) {
@@ -150,10 +150,15 @@ public class Main {
                     call.checkOut();
                     break;
                 case 14:
+                    call.searchByCustomerName();
+                    break;
+                case 15:
+                    call.searchByCustomerSSN();
+                case 16:
                     signIn();
 
                     break;
-                case 15:
+                case 17:
                     System.exit(0);
                     break;
 
@@ -190,7 +195,6 @@ public class Main {
                         break;
                     case 7:
                         signIn();
-
 
                         break;
                     case 8:

@@ -517,12 +517,9 @@ class HotelLogic {
 
         listOfCustomer();
 
-
-        String SSN = user;
-
         for (Customer customer : customerList)
-            if (customer.getSSN().equalsIgnoreCase(SSN)) {
-                System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Adress: %s%n",
+            if (customer.getSSN().equalsIgnoreCase(user)) {
+                System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
                         customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
 
             }
