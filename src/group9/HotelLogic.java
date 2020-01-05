@@ -4,6 +4,7 @@ import java.awt.print.Book;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -516,7 +517,6 @@ class HotelLogic {
 
     public void viewInfo(String user) {
 
-        listOfCustomer();
 
         for (Customer customer : customerList)
             if (customer.getSSN().equalsIgnoreCase(user)) {
@@ -610,6 +610,7 @@ class HotelLogic {
         }
         System.out.println(roomsToPrint);
         }
+
     void makeBooking(String user) {
 
         Rooms room;
@@ -626,8 +627,8 @@ class HotelLogic {
         int noOfBeds;
         String answer;
         boolean balcony = false;
-
         boolean availability = false;
+
         Scanner input = new Scanner(System.in);
         Customer customer = null;
         for (int i = 0; i < customerList.size(); i++) {
@@ -776,6 +777,8 @@ class HotelLogic {
         booking.setRoom(roomsList.get(newRoom));
     }
 
+
+
     void editInfo(String user) {
         Customer customer;
         String typed;
@@ -830,7 +833,7 @@ class HotelLogic {
         }
     }
 
-    void removeBooking(String user) {
+    void removeBookings(String user) {
         Rooms rooms;
 
         Scanner input = new Scanner(System.in);
@@ -852,6 +855,7 @@ class HotelLogic {
 
         }
     }
+
 
     void checkOut(String user) {
         Scanner input = new Scanner(System.in);
