@@ -179,22 +179,22 @@ public class Main {
                 choice = input.nextInt();
                 switch (choice) {
                     case 1:
-                        //    call.makeBooking();
+                            call.makeBooking(user);
                         break;
                     case 2:
                           call.viewInfo(user);
                         break;
                     case 3:
-                        //   call.editBooking();
+                           call.editBooking(user);
                         break;
                     case 4:
-                        // call.editInfo();
+                         call.editInfo(user);
                         break;
                     case 5:
-                        //  call.removeBookings();
+                          call.removeBookings(user);
                         break;
                     case 6:
-                        // call.checkOut();
+                         call.checkOut(user);
                         break;
                     case 7:
                         call.searchAvailableRooms();
