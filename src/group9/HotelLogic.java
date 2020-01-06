@@ -1,7 +1,7 @@
 package group9;
 
 import java.awt.print.Book;
-import java.io.File;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -50,17 +50,41 @@ class HotelLogic {
     }
 
 
-    void listOfBookings() {
 
+    void addInitialBookings() {
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
-        Booking thirdBooking = new Booking(roomsList.get(2), 200403, 200406, 35.50, customerList.get(2));
 
         bookingList.add(firstBooking);
         bookingList.add(secondBooking);
-        bookingList.add(thirdBooking);
+        saveBookingToFile(bookingList);
+    }
+
+    void saveBookingToFile(ArrayList<Booking> bookingsList) {
+        try {
+            FileOutputStream fos = new FileOutputStream("C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(bookingsList);
+            oos.close();
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
 
 
+    }
+
+    void readFromFile() {
+        bookingList.clear();
+        try {
+            FileInputStream fis = new FileInputStream("\"C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            while (ois.readObject() != null) {
+                bookingList.add((Booking) ois.readObject());
+            }
+            ois.close();
+        } catch (Exception e) {
+            System.out.println("error");
+        }
     }
 
 
@@ -398,7 +422,7 @@ class HotelLogic {
 
 
     void removeBooking() {
-        listOfBookings();
+        addInitialBookings();
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < bookingList.size(); i++) {
