@@ -10,12 +10,13 @@ public class Main {
     public static void main(String[] args) {
         Main myApp = new Main();
 
-        String user = myApp.signIn();
-        if (user.equals("Employee")) {
-            myApp.EmployeeMenu();
-
-        } else {
-            myApp.MenuCustomer(user);
+        while (true) {
+            String user = myApp.signIn();
+            if (user.equals("Employee")) {
+                myApp.EmployeeMenu();
+            } else {
+                myApp.MenuCustomer(user);
+            }
         }
 
     }
@@ -59,7 +60,7 @@ public class Main {
                 try {
                     System.out.print("Make your choice: ");
                     typed = input.nextInt();
-                    while (typed > 15) {
+                    while (typed > 17) {
                         System.out.println("This option doesn't exist");
                         try {
                             typed = input.nextInt();
@@ -156,13 +157,10 @@ public class Main {
                 case 15:
                     call.searchByCustomerSSN();
                 case 16:
-                    signIn();
-
-                    break;
+                    return;
                 case 17:
                     System.exit(0);
                     break;
-
             }
         }
     }
