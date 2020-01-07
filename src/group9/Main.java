@@ -46,7 +46,7 @@ public class Main {
 
        call.listOfRooms();
         call.listOfCustomer();
-        call.listOfBookings();
+        call.addInitialBookings();
 
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
@@ -169,7 +169,7 @@ public class Main {
             System.out.println("Welcome to the HKR Hotel");
             call.listOfRooms();
             call.listOfCustomer();
-            call.listOfBookings();
+            call.addInitialBookings();
             int booking;
             int choice;
             boolean cont = true;
