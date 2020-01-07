@@ -10,15 +10,16 @@ public class Main {
     public static void main(String[] args) {
         Main myApp = new Main();
 
-            String user = myApp.signIn();
-            if (user.equals("Employee")) {
-                myApp.EmployeeMenu();
-              
-            } else  {
-                myApp.MenuCustomer(user);
-            }
+        String user = myApp.signIn();
+        if (user.equals("Employee")) {
+            myApp.EmployeeMenu();
+
+        } else {
+            myApp.MenuCustomer(user);
+        }
 
     }
+
     public String signIn() {
         String user;
         while (true) {
@@ -44,7 +45,7 @@ public class Main {
 
     public void EmployeeMenu() {
 
-       call.listOfRooms();
+        call.listOfRooms();
         call.listOfCustomer();
         call.addInitialBookings();
 
@@ -165,51 +166,52 @@ public class Main {
             }
         }
     }
-        private void MenuCustomer (String user){
-            System.out.println("Welcome to the HKR Hotel");
-            call.listOfRooms();
-            call.listOfCustomer();
-            call.addInitialBookings();
-            int choice;
-            boolean cont = true;
-            while (cont) {
-                printCustomer();
-                System.out.println("- Please Make your choice");
-                choice = input.nextInt();
-                switch (choice) {
-                    case 1:
-                            call.makeBooking(user);
-                        break;
-                    case 2:
-                          call.viewInfo(user);
-                        break;
-                    case 3:
-                           call.editBooking(user);
-                        break;
-                    case 4:
-                         call.editInfo(user);
-                        break;
-                    case 5:
-                          call.removeBookings(user);
-                        break;
-                    case 6:
-                         call.checkOut(user);
-                        break;
-                    case 7:
-                        call.searchAvailableRooms();
-                        break;
-                    case 8:
-call.printOldBookings(user);
-                        break;
-                    case 9:
-                        signIn();
 
-                        break;
-                    case 10:
-                        cont = false;
-                }
+    private void MenuCustomer(String user) {
+        System.out.println("Welcome to the HKR Hotel");
+        call.listOfRooms();
+        call.listOfCustomer();
+        call.addInitialBookings();
+        int choice;
+        boolean cont = true;
+        while (cont) {
+            printCustomer();
+            System.out.println("- Please Make your choice");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    call.makeBooking(user);
+                    break;
+                case 2:
+                    call.viewInfo(user);
+                    break;
+                case 3:
+                    call.editBooking(user);
+                    break;
+                case 4:
+                    call.editInfo(user);
+                    break;
+                case 5:
+                    call.removeBookings(user);
+                    break;
+                case 6:
+                    call.checkOut(user);
+                    break;
+                case 7:
+                    call.searchAvailableRooms();
+                    break;
+                case 8:
+                    call.printOldBookings(user);
+                    break;
+                case 9:
+                    signIn();
+
+                    break;
+                case 10:
+                    cont = false;
             }
         }
+    }
 
     private void printEmployee() {
         System.out.println("1. View list of customers");

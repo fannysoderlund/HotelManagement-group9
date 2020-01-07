@@ -1,5 +1,7 @@
 package group9;
 
+import com.sun.tools.javac.Main;
+
 import java.awt.print.Book;
 import java.io.*;
 import java.text.DateFormat;
@@ -48,7 +50,6 @@ class HotelLogic {
         customerList.add(fourthCustomer);
 
     }
-
 
 
     void addInitialBookings() {
@@ -429,23 +430,23 @@ class HotelLogic {
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
         }
-            while (true) {
-                try {
-                    System.out.println("Which booking do you want to remove?");
+        while (true) {
+            try {
+                System.out.println("Which booking do you want to remove?");
 
-                    removeBooking = input.nextInt();
+                removeBooking = input.nextInt();
 
-                    bookingList.get(removeBooking).getRoom().setAvailability(true);
+                bookingList.get(removeBooking).getRoom().setAvailability(true);
 
-                    bookingList.remove(removeBooking);
-                    System.out.println(" The booking is now removed ");
+                bookingList.remove(removeBooking);
+                System.out.println(" The booking is now removed ");
 
-                    break;
-                } catch (Exception e) {
-                    input.nextLine();
-                }
+                break;
+            } catch (Exception e) {
+                input.nextLine();
             }
         }
+    }
 
     void editBooking() {
         Scanner input = new Scanner(System.in);
@@ -562,7 +563,7 @@ class HotelLogic {
         Scanner input = new Scanner(System.in);
         while (true) {
 
-            System.out.println("Please Enter Customer SSN \n.............\nin YYMMDDXXXX form : \n");
+            System.out.println("Please Enter Customer SSN :\n.............\nin YYMMDDXXXX form : \n");
             String search = input.nextLine();
 
             if ((search.matches("[0-9]{10}"))) {
@@ -570,14 +571,20 @@ class HotelLogic {
                     if (customer.getSSN().equals(search)) {
                         System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
                                 customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
-                        break;
-                    } else {
-                        System.out.println("No Customer with this SSN \n");
+                        return;
                     }
+            }
+            System.out.println("No Customer with this SSN \n");
+            System.out.println("do you want to search again ? ");
+            String again = input.nextLine();
 
-            } else {
-                System.out.println("Enter correct SSN \n");
+            do {
 
+            } while (!again.matches("[yesno]+"));
+            if (again.equals("yes")) {
+                searchByCustomerSSN();
+            } else if (again.equals("no")) {
+                break;
             }
         }
     }
@@ -585,18 +592,28 @@ class HotelLogic {
     public void searchByCustomerName() {
         Scanner input = new Scanner(System.in);
         while (true) {
-
-            System.out.println("Please Enter Customer Name : \n............. \n");
+            System.out.println("Please Enter Customer Name : ");
             String search = input.nextLine();
 
-            for (Customer customer : customerList)
+            for (Customer customer : customerList) {
                 if (customer.getName().equals(search)) {
                     System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
                             customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
-                    break;
-                } else {
-                    System.out.println("No Customer with this Name \n");
+                    return;
                 }
+            }
+            System.out.println("No Customer with this Name \n");
+            System.out.println("do you want to search again ? ");
+            String again = input.nextLine();
+
+            do {
+
+            } while (!again.matches("[yesno]+"));
+            if (again.equals("yes")) {
+                searchByCustomerName();
+            } else if (again.equals("no")) {
+                break;
+            }
         }
     }
 
@@ -641,7 +658,7 @@ class HotelLogic {
 
         }
         System.out.println(roomsToPrint);
-        }
+    }
 
     void makeBooking(String user) {
 
@@ -790,15 +807,19 @@ class HotelLogic {
 
         System.out.println("Chose a new room");
         int newRoom = input.nextInt();
+        input.next();
         while (newRoom > roomsList.size()) {
             System.out.println("That's not an option");
             newRoom = input.nextInt();
+            input.nextLine();
+            input.next();
             roomsList.get(newRoom);
         }
-        input.nextLine();
+
         do {
             System.out.println("Enter the price: ");
-            typed = input.nextLine();
+            typed = input.next();
+            input.nextLine();
         } while (!typed.matches("[0-9]+"));
         roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
 
@@ -808,7 +829,6 @@ class HotelLogic {
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
     }
-
 
 
     void editInfo(String user) {
