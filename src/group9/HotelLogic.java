@@ -1,10 +1,7 @@
 package group9;
-
-import java.awt.print.Book;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -71,20 +68,6 @@ class HotelLogic {
         }
 
 
-    }
-
-    void readFromFile() {
-        bookingList.clear();
-        try {
-            FileInputStream fis = new FileInputStream("\"C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            while (ois.readObject() != null) {
-                bookingList.add((Booking) ois.readObject());
-            }
-            ois.close();
-        } catch (Exception e) {
-            System.out.println("error");
-        }
     }
 
 
@@ -655,11 +638,6 @@ class HotelLogic {
         long checkOutDate;
         double price;
         boolean checkedIn = true;
-        int roomNo;
-        int noOfBeds;
-        String answer;
-        boolean balcony = false;
-        boolean availability = false;
 
         Scanner input = new Scanner(System.in);
         Customer customer = null;
@@ -818,7 +796,6 @@ class HotelLogic {
         String SSN;
         String address;
         String phone;
-        int choice;
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
@@ -866,27 +843,28 @@ class HotelLogic {
     }
 
     void removeBookings(String user) {
-        Rooms rooms;
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < bookingList.size(); i++) {
-
-            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
+            if (bookingList.get(i).getCustomer().getSSN().equals(user))
             {
-                bookingList.get(i).getCustomer().getSSN();
-            }
+                System.out.println("["+i+"]"+ bookingList.get(i).toString());
+        }}
 
+        System.out.println("What booking do you want to remove?");
+        int choice = input.nextInt(); input.nextLine();
 
-            bookingList.remove(bookingList.get(i).getCustomer().getSSN());
+                bookingList.remove(bookingList.get(choice));
+
             System.out.print(" The booking is now removed ");
 
 
             File delFile = new File("Booking.txt");
             delFile.delete();
-            //saveBookingToFile(bookingList);
+            saveBookingToFile(bookingList);
 
         }
-    }
+    
 
 
     void checkOut(String user) {
