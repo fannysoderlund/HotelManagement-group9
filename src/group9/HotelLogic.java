@@ -424,19 +424,28 @@ class HotelLogic {
 
     void removeBooking() {
         addInitialBookings();
+        int removeBooking = 0;
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
+            while (true) {
+                try {
+                    System.out.println("Which booking do you want to remove?");
+
+                    removeBooking = input.nextInt();
+
+                    bookingList.get(removeBooking).getRoom().setAvailability(true);
+
+                    bookingList.remove(removeBooking);
+                    System.out.println(" The booking is now removed ");
+                    break;
+
+                } catch (Exception e) {
+                    input.nextLine();
+                }
+            }
         }
-        System.out.println("Which booking do you want to remove?");
-        int removeBooking = input.nextInt();
-
-
-        bookingList.get(removeBooking).getRoom().setAvailability(true);
-
-        bookingList.remove(removeBooking);
-        System.out.println(" The booking is now removed ");
     }
 
     void editBooking() {
@@ -928,4 +937,4 @@ class HotelLogic {
 
     }
 
-  }
+}
