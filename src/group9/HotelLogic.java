@@ -73,20 +73,6 @@ class HotelLogic {
 
     }
 
-    void readFromFile() {
-        bookingList.clear();
-        try {
-            FileInputStream fis = new FileInputStream("\"C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            while (ois.readObject() != null) {
-                bookingList.add((Booking) ois.readObject());
-            }
-            ois.close();
-        } catch (Exception e) {
-            System.out.println("error");
-        }
-    }
-
 
     void addRoom() {
         Scanner input = new Scanner(System.in);
