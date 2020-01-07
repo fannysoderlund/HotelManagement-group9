@@ -424,21 +424,28 @@ class HotelLogic {
 
     void removeBooking() {
         addInitialBookings();
+        int removeBooking = 0;
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
+            while (true) {
+                try {
+                    System.out.println("Which booking do you want to remove?");
+
+                    removeBooking = input.nextInt();
+
+                    bookingList.get(removeBooking).getRoom().setAvailability(true);
+
+                    bookingList.remove(removeBooking);
+                    System.out.println(" The booking is now removed ");
+                    break;
+
+                } catch (Exception e) {
+                    input.nextLine();
+                }
+            }
         }
-        System.out.println("Which booking do you want to remove?");
-        int removeBooking = input.nextInt();
-
-
-
-        System.out.print(" The booking is now removed ");
-
-
-        bookingList.get(removeBooking).getRoom().setAvailability(true);
-        bookingList.remove(removeBooking);
     }
 
     void editBooking() {
@@ -910,5 +917,23 @@ class HotelLogic {
         }
 
     }
-}
 
+
+    void printOldBookings(String ssn) {
+        Scanner input = new Scanner(System.in);
+        Customer customer = null;
+
+        for (int i = 0; i < bookingList.size(); i++) {
+            // if the user ssn matches with the bookingList.i.ssn
+            if (bookingList.get(i).getCustomer().getSSN().equals(ssn)) {
+                // if the date of that booking is earlier than today
+                if (dateNow > bookingList.get(i).getCheckOutDate()) {
+                    //print it
+                    System.out.println(bookingList.get(i));
+                }
+            }
+        }
+
+    }
+
+}
