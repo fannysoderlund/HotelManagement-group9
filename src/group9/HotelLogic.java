@@ -890,7 +890,7 @@ try {
 
             File delFile = new File("Booking.txt");
             delFile.delete();
-            //saveBookingToFile(bookingList);
+            saveBookingToFile(bookingList);
 
         }
     }
