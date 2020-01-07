@@ -508,7 +508,7 @@ class HotelLogic {
         }
         do {
             System.out.println("Enter the price: ");
-            typed = input.nextLine();
+            typed = input.next();
         } while (!typed.matches("[0-9]+"));
         roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
 
