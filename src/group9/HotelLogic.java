@@ -562,7 +562,7 @@ class HotelLogic {
         Scanner input = new Scanner(System.in);
         while (true) {
 
-            System.out.println("Please Enter Customer SSN \n.............\nin YYMMDDXXXX form : \n");
+            System.out.println("Please Enter Customer SSN :\n.............\nin YYMMDDXXXX form : \n");
             String search = input.nextLine();
 
             if ((search.matches("[0-9]{10}"))) {
@@ -570,14 +570,20 @@ class HotelLogic {
                     if (customer.getSSN().equals(search)) {
                         System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
                                 customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
-                        break;
-                    } else {
-                        System.out.println("No Customer with this SSN \n");
+                        return;
                     }
+            }
+            System.out.println("No Customer with this SSN \n");
+            System.out.println("do you want to search again ? ");
+            String again = input.nextLine();
 
-            } else {
-                System.out.println("Enter correct SSN \n");
+            do {
 
+            } while (!again.matches("[yesno]+"));
+            if (again.equals("yes")) {
+                searchByCustomerSSN();
+            } else if (again.equals("no")) {
+                break;
             }
         }
     }
@@ -585,18 +591,28 @@ class HotelLogic {
     public void searchByCustomerName() {
         Scanner input = new Scanner(System.in);
         while (true) {
-
-            System.out.println("Please Enter Customer Name : \n............. \n");
+            System.out.println("Please Enter Customer Name : ");
             String search = input.nextLine();
 
-            for (Customer customer : customerList)
+            for (Customer customer : customerList) {
                 if (customer.getName().equals(search)) {
                     System.out.printf(" Name: %s%n" + "SSN:  %s%n" + "Phone number:  %s%n" + "Address: %s%n",
                             customer.getName(), customer.getSSN(), customer.getPhone(), customer.getAddress());
-                    break;
-                } else {
-                    System.out.println("No Customer with this Name \n");
+                    return;
                 }
+            }
+            System.out.println("No Customer with this Name \n");
+            System.out.println("do you want to search again ? ");
+            String again = input.nextLine();
+
+            do {
+
+            } while (!again.matches("[yesno]+"));
+            if (again.equals("yes")) {
+                searchByCustomerName();
+            } else if (again.equals("no")) {
+                break;
+            }
         }
     }
 
