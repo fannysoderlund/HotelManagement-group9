@@ -429,6 +429,7 @@ class HotelLogic {
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
+        }
             while (true) {
                 try {
                     System.out.println("Which booking do you want to remove?");
@@ -439,14 +440,13 @@ class HotelLogic {
 
                     bookingList.remove(removeBooking);
                     System.out.println(" The booking is now removed ");
-                    break;
 
+                    break;
                 } catch (Exception e) {
                     input.nextLine();
                 }
             }
         }
-    }
 
     void editBooking() {
         Scanner input = new Scanner(System.in);
