@@ -864,36 +864,25 @@ class HotelLogic {
             saveBookingToFile(bookingList);
 
         }
-    
+
 
 
     void checkOut(String user) {
-        Scanner input = new Scanner(System.in);
-        Customer customer;
-        String customerToCheckOut;
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
-                customer = customerList.get(i);
+               customerList.get(i).setCheckedIn(false);
             }
-            while (true) {
-                try {
-                    customerToCheckOut = customerList.get(i).getSSN();
-                    customerList.get(Integer.parseInt(customerToCheckOut)).setCheckedIn(false);
-                    break;
+        }
 
-                } catch (Exception e) {
-                    System.out.println("That customer doesn't exist, try again");
-                }
-            }
-            for (i = 0; i < bookingList.size(); i++) {
+            for (int i = 0; i < bookingList.size(); i++) {
 
-                if (customerList.get(Integer.parseInt(customerToCheckOut)) == bookingList.get(i).getCustomer()) {
-                    roomsList.get(i).setAvailability(false);
+                if (bookingList.get(i).getCustomer().getSSN().equals(user)) {
+                    bookingList.get(i).getRoom().setAvailability(false);
                 }
             }
         }
 
-    }
+
 
 
     void printOldBookings(String ssn) {
