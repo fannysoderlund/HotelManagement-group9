@@ -1,10 +1,8 @@
 package group9;
 
-import java.awt.print.Book;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -101,9 +99,11 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
+
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
+            input.nextLine();
         } while (!answer.matches("[yesno]+"));
         if (answer.equals("yes")) {
             balcony = true;
@@ -246,6 +246,7 @@ class HotelLogic {
 
         Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
         bookingList.add(booking);
+        saveBookingToFile(bookingList);
 
 
     }
@@ -432,11 +433,10 @@ class HotelLogic {
         int removeBooking = input.nextInt();
 
 
-        bookingList.remove(removeBooking);
-        System.out.print(" The booking is now removed ");
-
-
         bookingList.get(removeBooking).getRoom().setAvailability(true);
+
+        bookingList.remove(removeBooking);
+        System.out.println(" The booking is now removed ");
     }
 
     void editBooking() {
@@ -509,6 +509,8 @@ class HotelLogic {
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
+
+        saveBookingToFile(bookingList);
     }
 
 
@@ -647,9 +649,6 @@ class HotelLogic {
         long checkOutDate;
         double price;
         boolean checkedIn = true;
-        int roomNo;
-        int noOfBeds;
-        String answer;
         boolean balcony = false;
         boolean availability = false;
 
@@ -737,6 +736,8 @@ class HotelLogic {
             Booking booking = new Booking(room, checkInDate, checkOutDate, price, customer);
             bookingList.add(booking);
 
+            saveBookingToFile(bookingList);
+
         }
     }
 
@@ -799,6 +800,8 @@ class HotelLogic {
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
+
+        saveBookingToFile(bookingList);
     }
 
 
@@ -810,8 +813,8 @@ class HotelLogic {
         String SSN;
         String address;
         String phone;
-        int choice;
         Scanner input = new Scanner(System.in);
+
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
                 customer = customerList.get(i);
@@ -875,7 +878,7 @@ class HotelLogic {
 
             File delFile = new File("Booking.txt");
             delFile.delete();
-            //saveBookingToFile(bookingList);
+            saveBookingToFile(bookingList);
 
         }
     }
