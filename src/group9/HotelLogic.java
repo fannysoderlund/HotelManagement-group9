@@ -1,4 +1,5 @@
 package group9;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,7 +48,6 @@ class HotelLogic {
     }
 
 
-
     void addInitialBookings() {
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
@@ -58,18 +58,14 @@ class HotelLogic {
     }
 
     void saveBookingToFile(ArrayList<Booking> bookingsList) {
-        try {
-            FileOutputStream fos = new FileOutputStream("C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(bookingsList);
-            oos.close();
+        try (PrintWriter printWriter = new PrintWriter("src/Booking.txt")) {
+            for (Booking booking : bookingsList) {
+                printWriter.println("--- BOOKING ---" + booking.toString());
+            }
         } catch (Exception e) {
             System.out.println("Error!");
         }
-
-
     }
-
 
     void addRoom() {
         Scanner input = new Scanner(System.in);
@@ -412,23 +408,23 @@ class HotelLogic {
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
         }
-            while (true) {
-                try {
-                    System.out.println("Which booking do you want to remove?");
+        while (true) {
+            try {
+                System.out.println("Which booking do you want to remove?");
 
-                    removeBooking = input.nextInt();
+                removeBooking = input.nextInt();
 
-                    bookingList.get(removeBooking).getRoom().setAvailability(true);
+                bookingList.get(removeBooking).getRoom().setAvailability(true);
 
-                    bookingList.remove(removeBooking);
-                    System.out.println(" The booking is now removed ");
+                bookingList.remove(removeBooking);
+                System.out.println(" The booking is now removed ");
 
-                    break;
-                } catch (Exception e) {
-                    input.nextLine();
-                }
+                break;
+            } catch (Exception e) {
+                input.nextLine();
             }
         }
+    }
 
     void editBooking() {
         Scanner input = new Scanner(System.in);
@@ -500,6 +496,7 @@ class HotelLogic {
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
+        saveBookingToFile(bookingList);
     }
 
 
@@ -624,7 +621,7 @@ class HotelLogic {
 
         }
         System.out.println(roomsToPrint);
-        }
+    }
 
     void makeBooking(String user) {
 
@@ -788,7 +785,6 @@ class HotelLogic {
     }
 
 
-
     void editInfo(String user) {
         Customer customer;
         String typed;
@@ -846,33 +842,31 @@ class HotelLogic {
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getCustomer().getSSN().equals(user))
-            {
-                System.out.println("["+i+"]"+ bookingList.get(i).toString());
-        }}
-
-        System.out.println("What booking do you want to remove?");
-        int choice = input.nextInt(); input.nextLine();
-
-                bookingList.remove(bookingList.get(choice));
-
-            System.out.print(" The booking is now removed ");
-
-
-            File delFile = new File("Booking.txt");
-            delFile.delete();
-            saveBookingToFile(bookingList);
-
-        }
-
-
-
-    void checkOut(String user) {
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getSSN().equals(user)) {
-               customerList.get(i).setCheckedIn(false);
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) {
+                System.out.println("[" + i + "]" + bookingList.get(i).toString());
             }
         }
+
+        System.out.println("What booking do you want to remove?");
+        int choice = input.nextInt();
+        input.nextLine();
+
+        bookingList.remove(bookingList.get(choice));
+
+        System.out.print(" The booking is now removed ");
+
+
+        File delFile = new File("Booking.txt");
+        delFile.delete();
+        saveBookingToFile(bookingList);
+
+    }
+        void checkOut (String user){
+            for (int i = 0; i < customerList.size(); i++) {
+                if (customerList.get(i).getSSN().equals(user)) {
+                    customerList.get(i).setCheckedIn(false);
+                }
+            }
 
             for (int i = 0; i < bookingList.size(); i++) {
 
@@ -898,8 +892,4 @@ class HotelLogic {
                     System.out.println(bookingList.get(i));
                 }
             }
-        }
-
-    }
-
-}
+        }}}
