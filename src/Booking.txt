@@ -1,0 +1,38 @@
+--- BOOKING ---
+Room booked: 
+Room number: 100
+Number of beds: 2
+It does have a balcony
+Price: 700.0SEK
+It is not available
+
+Check in on: 190214
+Check out on: 190216
+Price: 30.5SEK
+Customer who booked: 
+Name: Kim
+SSN: 9009284334
+Address: Stockholm street 39
+Phone number: 74543401
+Customer is checked in
+
+
+--- BOOKING ---
+Room booked: 
+Room number: 300
+Number of beds: 2
+It does have a balcony
+Price: 900.0SEK
+It is available
+
+Check in on: 190403
+Check out on: 190406
+Price: 35.5SEK
+Customer who booked: 
+Name: Susanna 
+SSN: 7009280934
+Address: Berlin street 34
+Phone number: 740456543
+Customer is checked in
+
+

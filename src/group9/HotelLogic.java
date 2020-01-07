@@ -59,32 +59,14 @@ class HotelLogic {
     }
 
     void saveBookingToFile(ArrayList<Booking> bookingsList) {
-        try {
-            FileOutputStream fos = new FileOutputStream("C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(bookingsList);
-            oos.close();
+        try (PrintWriter printWriter = new PrintWriter("src/Booking.txt")) {
+            for (Booking booking : bookingsList) {
+                printWriter.println("--- BOOKING ---" + booking.toString());
+            }
         } catch (Exception e) {
             System.out.println("Error!");
         }
-
-
     }
-
-    void readFromFile() {
-        bookingList.clear();
-        try {
-            FileInputStream fis = new FileInputStream("\"C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            while (ois.readObject() != null) {
-                bookingList.add((Booking) ois.readObject());
-            }
-            ois.close();
-        } catch (Exception e) {
-            System.out.println("error");
-        }
-    }
-
 
     void addRoom() {
         Scanner input = new Scanner(System.in);
@@ -507,6 +489,7 @@ class HotelLogic {
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
+        saveBookingToFile(bookingList);
     }
 
 
@@ -923,4 +906,4 @@ class HotelLogic {
 
     }
 
-  }
+}

@@ -19,7 +19,7 @@ public class Booking implements Serializable {
         this.price = price;
         this.customer = customer;
 
-        }
+    }
 
     long getCheckInDate() {
         return checkInDate;
@@ -36,7 +36,6 @@ public class Booking implements Serializable {
     void setCheckOutDate(long checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
-
 
     void setPrice(double price) {
         this.price = price;
