@@ -199,7 +199,6 @@ public class Main {
                         call.searchAvailableRooms();
                         break;
                     case 8:
-                        call.printOldBookings(user);
 
                         break;
                     case 9:

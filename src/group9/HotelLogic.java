@@ -101,6 +101,7 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
+        input.nextLine();
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
