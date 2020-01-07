@@ -170,7 +170,6 @@ public class Main {
             call.listOfRooms();
             call.listOfCustomer();
             call.addInitialBookings();
-            int booking;
             int choice;
             boolean cont = true;
             while (cont) {
@@ -200,8 +199,7 @@ public class Main {
                         call.searchAvailableRooms();
                         break;
                     case 8:
-                        call.printOldBookings(user);
-
+call.printOldBookings(user);
                         break;
                     case 9:
                         signIn();

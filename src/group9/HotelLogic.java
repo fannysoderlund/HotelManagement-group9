@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Scanner;
 
 class HotelLogic {
@@ -81,10 +80,11 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
+        input.nextLine();
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
-        } while (!answer.matches("[yesno]+"));
+        } while (!answer.matches("[Yy][Ee][Ss]|[Nn][Oo]+"));
         if (answer.equals("yes")) {
             balcony = true;
         } else if (answer.equals("no")) {
@@ -402,21 +402,28 @@ class HotelLogic {
 
 
     void removeBooking() {
-        addInitialBookings();
+        int removeBooking = 0;
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
         }
-        System.out.println("Which booking do you want to remove?");
-        int removeBooking = input.nextInt();
+        while (true) {
+            try {
+                System.out.println("Which booking do you want to remove?");
 
+                removeBooking = input.nextInt();
 
-        bookingList.remove(removeBooking);
-        System.out.print(" The booking is now removed ");
+                bookingList.get(removeBooking).getRoom().setAvailability(true);
 
+                bookingList.remove(removeBooking);
+                System.out.println(" The booking is now removed ");
 
-        bookingList.get(removeBooking).getRoom().setAvailability(true);
+                break;
+            } catch (Exception e) {
+                input.nextLine();
+            }
+        }
     }
 
     void editBooking() {
@@ -480,7 +487,7 @@ class HotelLogic {
         }
         do {
             System.out.println("Enter the price: ");
-            typed = input.nextLine();
+            typed = input.next();
         } while (!typed.matches("[0-9]+"));
         roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
 
@@ -628,11 +635,6 @@ class HotelLogic {
         long checkOutDate;
         double price;
         boolean checkedIn = true;
-        int roomNo;
-        int noOfBeds;
-        String answer;
-        boolean balcony = false;
-        boolean availability = false;
 
         Scanner input = new Scanner(System.in);
         Customer customer = null;
@@ -790,7 +792,6 @@ class HotelLogic {
         String SSN;
         String address;
         String phone;
-        int choice;
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
@@ -838,26 +839,27 @@ class HotelLogic {
     }
 
     void removeBookings(String user) {
-        Rooms rooms;
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < bookingList.size(); i++) {
-
-            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
-            {
-                bookingList.get(i).getCustomer().getSSN();
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) {
+                System.out.println("[" + i + "]" + bookingList.get(i).toString());
             }
-
-
-            bookingList.remove(bookingList.get(i).getCustomer().getSSN());
-            System.out.print(" The booking is now removed ");
-
-
-            File delFile = new File("Booking.txt");
-            delFile.delete();
-            saveBookingToFile(bookingList);
-
         }
+
+        System.out.println("What booking do you want to remove?");
+        int choice = input.nextInt();
+        input.nextLine();
+
+        bookingList.remove(bookingList.get(choice));
+
+        System.out.print(" The booking is now removed ");
+
+
+        File delFile = new File("Booking.txt");
+        delFile.delete();
+        saveBookingToFile(bookingList);
+
     }
 
 
@@ -889,6 +891,7 @@ class HotelLogic {
 
     }
 
+
     void printOldBookings(String ssn) {
         Scanner input = new Scanner(System.in);
         Customer customer = null;
@@ -905,5 +908,4 @@ class HotelLogic {
         }
 
     }
-
 }
