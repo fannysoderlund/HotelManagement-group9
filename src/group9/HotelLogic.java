@@ -433,11 +433,12 @@ class HotelLogic {
         int removeBooking = input.nextInt();
 
 
-        bookingList.remove(removeBooking);
+
         System.out.print(" The booking is now removed ");
 
 
         bookingList.get(removeBooking).getRoom().setAvailability(true);
+        bookingList.remove(removeBooking);
     }
 
     void editBooking() {
