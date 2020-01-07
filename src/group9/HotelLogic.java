@@ -723,7 +723,7 @@ class HotelLogic {
         }
     }
 
-    void editBooking(String user) {
+    void editBookings(String user) {
         Scanner input = new Scanner(System.in);
         Booking booking = null;
         long checkInDate;
@@ -731,12 +731,16 @@ class HotelLogic {
         String typed;
         double price = 0;
 
-        for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
+        for (int i = 0; i < bookingList.size() ; i++) {
+            if (bookingList.get(i).getCustomer().getSSN().equals(user))
             {
-                bookingList.get(i).getCustomer().getSSN();
+                System.out.println("["+i+"]"+ bookingList.get(i).toString());
             }
         }
+try {
+    System.out.println("What booking do you want to edit?");
+    booking = bookingList.get(input.nextInt());
+}catch (Exception e) {input.nextLine();}
         while (true) {
             try {
                 System.out.println("Enter the new check in date");
@@ -776,6 +780,7 @@ class HotelLogic {
             typed = input.nextLine();
         } while (!typed.matches("[0-9]+"));
         roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
+
 
 
         booking.setCheckInDate(checkInDate);

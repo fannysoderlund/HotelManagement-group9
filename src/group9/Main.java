@@ -184,7 +184,7 @@ public class Main {
                           call.viewInfo(user);
                         break;
                     case 3:
-                           call.editBooking(user);
+                           call.editBookings(user);
                         break;
                     case 4:
                          call.editInfo(user);
@@ -199,7 +199,7 @@ public class Main {
                         call.searchAvailableRooms();
                         break;
                     case 8:
-call.printOldBookings(user);
+                        call.printOldBookings(user);
                         break;
                     case 9:
                         signIn();
