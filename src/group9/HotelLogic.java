@@ -105,7 +105,7 @@ class HotelLogic {
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
-        } while (!answer.matches("[yesno]+"));
+        } while (!answer.matches("[Yy][Ee][Ss]|[Nn][Oo]+"));
         if (answer.equals("yes")) {
             balcony = true;
         } else if (answer.equals("no")) {
