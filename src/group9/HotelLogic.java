@@ -101,11 +101,10 @@ class HotelLogic {
         roomNo = input.nextInt();
         System.out.print("Enter number of beds :  ");
         noOfBeds = input.nextInt();
-        input.nextLine();
         do {
             System.out.println("Does the room have a balcony? ");
             answer = input.nextLine();
-        } while (!answer.matches("([Yy][Ee][Ss]|[Nn][Oo])"));
+        } while (!answer.matches("[yesno]+"));
         if (answer.equals("yes")) {
             balcony = true;
         } else if (answer.equals("no")) {
@@ -147,7 +146,7 @@ class HotelLogic {
         name = typed;
 
         do {
-            System.out.println("Enter SSN: \nin yymmddxxx form " );
+            System.out.println("Enter SSN: ");
             typed = input.nextLine();
         } while (!typed.matches("[0-9]{10}"));
         SSN = typed;
@@ -157,7 +156,7 @@ class HotelLogic {
         address = input.nextLine();
 
         do {
-            System.out.println("Enter phone number:\nin 10 digit  ");
+            System.out.println("Enter phone number: ");
             typed = input.nextLine();
         } while (!typed.matches("[0-9]{10}"));
         phone = typed;
@@ -438,7 +437,6 @@ class HotelLogic {
 
 
         bookingList.get(removeBooking).getRoom().setAvailability(true);
-        System.out.println();
     }
 
     void editBooking() {
