@@ -423,7 +423,6 @@ class HotelLogic {
 
 
     void removeBooking() {
-        addInitialBookings();
         int removeBooking = 0;
         Scanner input = new Scanner(System.in);
 
