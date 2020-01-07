@@ -229,8 +229,8 @@ public class Main {
         System.out.println("13. Check out a customer");
         System.out.println("14. Search by customer name");
         System.out.println("15. Search by customer SSN");
-        System.out.println("14. Exit Employee Menu");
-        System.out.println("15. Exit");
+        System.out.println("16. Exit Employee Menu");
+        System.out.println("17. Exit");
 
     }
 
