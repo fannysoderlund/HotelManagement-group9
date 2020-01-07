@@ -46,7 +46,7 @@ public class Main {
 
        call.listOfRooms();
         call.listOfCustomer();
-        call.listOfBookings();
+        call.addInitialBookings();
 
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
@@ -169,7 +169,7 @@ public class Main {
             System.out.println("Welcome to the HKR Hotel");
             call.listOfRooms();
             call.listOfCustomer();
-            call.listOfBookings();
+            call.addInitialBookings();
             int booking;
             int choice;
             boolean cont = true;
@@ -200,13 +200,15 @@ public class Main {
                         call.searchAvailableRooms();
                         break;
                     case 8:
-                        signIn();
+                        call.printOldBookings(user);
 
                         break;
                     case 9:
-                        cont = false;
+                        signIn();
 
                         break;
+                    case 10:
+                        cont = false;
                 }
             }
         }
@@ -240,8 +242,9 @@ public class Main {
         System.out.println("5. Remove one of your bookings");
         System.out.println("6. Check out");
         System.out.println("7. Search for available rooms");
-        System.out.println("8. Exit Customer Menu");
-        System.out.println("9. Exit");
+        System.out.println("8. print old bookings");
+        System.out.println("9. Exit Customer Menu");
+        System.out.println("10. Exit");
 
     }
 

@@ -1,12 +1,11 @@
 package group9;
 
-import java.awt.print.Book;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 class HotelLogic {
@@ -48,7 +47,6 @@ class HotelLogic {
         customerList.add(fourthCustomer);
 
     }
-
 
 
     void addInitialBookings() {
@@ -633,7 +631,7 @@ class HotelLogic {
 
         }
         System.out.println(roomsToPrint);
-        }
+    }
 
     void makeBooking(String user) {
 
@@ -802,7 +800,6 @@ class HotelLogic {
     }
 
 
-
     void editInfo(String user) {
         Customer customer;
         String typed;
@@ -875,7 +872,7 @@ class HotelLogic {
 
             File delFile = new File("Booking.txt");
             delFile.delete();
-            //saveBookingToFile(bookingList);
+            saveBookingToFile(bookingList);
 
         }
     }
@@ -908,5 +905,22 @@ class HotelLogic {
         }
 
     }
-}
 
+    void printOldBookings(String ssn) {
+        Scanner input = new Scanner(System.in);
+        Customer customer = null;
+
+        for (int i = 0; i < bookingList.size(); i++) {
+            // if the user ssn matches with the bookingList.i.ssn
+            if (bookingList.get(i).getCustomer().getSSN().equals(ssn)) {
+                // if the date of that booking is earlier than today
+                if (dateNow > bookingList.get(i).getCheckOutDate()) {
+                    //print it
+                    System.out.println(bookingList.get(i));
+                }
+            }
+        }
+
+    }
+
+  }
