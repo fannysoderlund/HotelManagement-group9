@@ -50,7 +50,6 @@ class HotelLogic {
     }
 
 
-
     void addInitialBookings() {
         Booking firstBooking = new Booking(roomsList.get(0), 190214, 190216, 30.50, customerList.get(0));
         Booking secondBooking = new Booking(roomsList.get(2), 190403, 190406, 35.50, customerList.get(2));
@@ -415,23 +414,23 @@ class HotelLogic {
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
         }
-            while (true) {
-                try {
-                    System.out.println("Which booking do you want to remove?");
+        while (true) {
+            try {
+                System.out.println("Which booking do you want to remove?");
 
-                    removeBooking = input.nextInt();
+                removeBooking = input.nextInt();
 
-                    bookingList.get(removeBooking).getRoom().setAvailability(true);
+                bookingList.get(removeBooking).getRoom().setAvailability(true);
 
-                    bookingList.remove(removeBooking);
-                    System.out.println(" The booking is now removed ");
+                bookingList.remove(removeBooking);
+                System.out.println(" The booking is now removed ");
 
-                    break;
-                } catch (Exception e) {
-                    input.nextLine();
-                }
+                break;
+            } catch (Exception e) {
+                input.nextLine();
             }
         }
+    }
 
     void editBooking() {
         Scanner input = new Scanner(System.in);
@@ -643,7 +642,7 @@ class HotelLogic {
 
         }
         System.out.println(roomsToPrint);
-        }
+    }
 
     void makeBooking(String user) {
 
@@ -758,16 +757,17 @@ class HotelLogic {
         String typed;
         double price = 0;
 
-        for (int i = 0; i < bookingList.size() ; i++) {
-            if (bookingList.get(i).getCustomer().getSSN().equals(user))
-            {
-                System.out.println("["+i+"]"+ bookingList.get(i).toString());
+        for (int i = 0; i < bookingList.size(); i++) {
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) {
+                System.out.println("[" + i + "]" + bookingList.get(i).toString());
             }
         }
-try {
-    System.out.println("What booking do you want to edit?");
-    booking = bookingList.get(input.nextInt());
-}catch (Exception e) {input.nextLine();}
+        try {
+            System.out.println("What booking do you want to edit?");
+            booking = bookingList.get(input.nextInt());
+        } catch (Exception e) {
+            input.nextLine();
+        }
         while (true) {
             try {
                 System.out.println("Enter the new check in date");
@@ -809,13 +809,11 @@ try {
         roomsList.get(newRoom).setPrice(Double.parseDouble(typed));
 
 
-
         booking.setCheckInDate(checkInDate);
         booking.setCheckOutDate(checkOutDate);
         booking.setPrice(price);
         booking.setRoom(roomsList.get(newRoom));
     }
-
 
 
     void editInfo(String user) {
@@ -874,24 +872,28 @@ try {
 
     void removeBookings(String user) {
         Rooms rooms;
+        int choice;
 
         Scanner input = new Scanner(System.in);
+        boolean foundBooking = false;
         for (int i = 0; i < bookingList.size(); i++) {
-
-            if (bookingList.get(i).getCustomer().getSSN().equals(user)) ;
-            {
-                bookingList.get(i).getCustomer().getSSN();
+            if (bookingList.get(i).getCustomer().getSSN().equals(user)) {
+                foundBooking = true;
+                System.out.println("[" + i + "]" + bookingList.get(i));
             }
-
-
-            bookingList.remove(bookingList.get(i).getCustomer().getSSN());
+        }
+        if (foundBooking) {
+            System.out.println("What booking do you want to remove?");
+            choice = input.nextInt();
+            input.nextLine();
+            bookingList.remove(choice);
             System.out.print(" The booking is now removed ");
-
 
             File delFile = new File("Booking.txt");
             delFile.delete();
             saveBookingToFile(bookingList);
-
+        } else {
+            System.out.println("No bookings found for this user");
         }
     }
 
