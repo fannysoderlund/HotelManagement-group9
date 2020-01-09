@@ -79,10 +79,12 @@ public class Main {
                 try {
                     System.out.print("Make your choice: ");
                     typed = input.nextInt();
+                    input.nextLine();
                     while (typed > 17) {
                         System.out.println("This option doesn't exist");
                         try {
                             typed = input.nextInt();
+                            input.nextLine();
                         } catch (Exception e) {
                             input.next();
                         }
@@ -157,7 +159,7 @@ public class Main {
                 case 15:
                     call.searchByCustomerSSN();
                 case 16:
-                    return;
+                    signIn();
                 case 17:
                     System.exit(0);
                     break;

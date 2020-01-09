@@ -252,8 +252,6 @@ class HotelLogic {
             }
         }
         customerList.remove(choice);
-
-
     }
 
 
@@ -791,7 +789,6 @@ class HotelLogic {
         while (newRoom > roomsList.size()) {
             System.out.println("That's not an option");
             newRoom = input.nextInt();
-            roomsList.get(newRoom);
         }
         input.nextLine();
         do {
