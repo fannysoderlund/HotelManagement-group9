@@ -30,9 +30,11 @@ public class Main {
                 user = input.nextLine();
                 if (user.contains(".hotel")) {
                     user = "Employee";
+                    EmployeeMenu();
                     break;
                 } else if ((user.matches("[0-9]{10}"))) {
                     user = user;
+                    MenuCustomer(user);
                     break;
                 } else {
                     System.out.println("Please enter a correct log in\n");
@@ -147,8 +149,6 @@ public class Main {
                     call.editBooking();
                     break;
                 case 13:
-                    System.out.println("Chose a customer to checkout");
-
                     call.checkOut();
                     break;
                 case 14:
@@ -241,7 +241,7 @@ public class Main {
         System.out.println("5. Remove one of your bookings");
         System.out.println("6. Check out");
         System.out.println("7. Search for available rooms");
-        System.out.println("8. print old bookings");
+        System.out.println("8. View a history of your bookings");
         System.out.println("9. Exit Customer Menu");
         System.out.println("10. Exit");
 

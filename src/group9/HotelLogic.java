@@ -60,16 +60,14 @@ class HotelLogic {
     }
 
     void saveBookingToFile(ArrayList<Booking> bookingsList) {
-        try {
-            FileOutputStream fos = new FileOutputStream("C://Users//bishe//IdeaProjects//project course//HotelManagement-group9/Booking.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(bookingsList);
-            oos.close();
-        } catch (Exception e) {
-            System.out.println("Error!");
+        try (PrintWriter printWriter = new PrintWriter("src/Booking.txt")) {
+            for (Booking booking : bookingsList) {
+                printWriter.println("--- BOOKING ---" + booking.toString());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error, file exception!");
+            System.out.println(e.getMessage());
         }
-
-
     }
 
 
@@ -512,6 +510,7 @@ class HotelLogic {
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println("[" + i + "] " + customerList.get(i).toString());
         }
+        System.out.println("Chose a customer to checkout");
         while (true) {
             try {
                 customerToCheckOut = input.nextInt();
@@ -656,11 +655,6 @@ class HotelLogic {
         long checkOutDate;
         double price;
         boolean checkedIn = true;
-        int roomNo;
-        int noOfBeds;
-        String answer;
-        boolean balcony = false;
-        boolean availability = false;
 
         Scanner input = new Scanner(System.in);
         Customer customer = null;
@@ -899,31 +893,20 @@ class HotelLogic {
 
 
     void checkOut(String user) {
-        Scanner input = new Scanner(System.in);
-        Customer customer;
-        String customerToCheckOut;
+        Customer customer = null;
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
                 customer = customerList.get(i);
             }
-            while (true) {
-                try {
-                    customerToCheckOut = customerList.get(i).getSSN();
-                    customerList.get(Integer.parseInt(customerToCheckOut)).setCheckedIn(false);
-                    break;
+        }
+        customer.setCheckedIn(false);
 
-                } catch (Exception e) {
-                    System.out.println("That customer doesn't exist, try again");
-                }
-            }
-            for (i = 0; i < bookingList.size(); i++) {
+        for (int i = 0; i < bookingList.size(); i++) {
 
-                if (customerList.get(Integer.parseInt(customerToCheckOut)) == bookingList.get(i).getCustomer()) {
-                    roomsList.get(i).setAvailability(false);
-                }
+            if (customer == bookingList.get(i).getCustomer()) {
+                roomsList.get(i).setAvailability(false);
             }
         }
-
     }
 
 
