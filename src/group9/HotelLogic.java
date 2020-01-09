@@ -1,18 +1,16 @@
 package group9;
 
-import java.awt.print.Book;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 class HotelLogic {
 
-    DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
-    Date date = new Date();
+    private DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
+    private Date date = new Date();
     long dateNow = Long.parseLong(dateFormat.format(date));
 
 
@@ -91,8 +89,6 @@ class HotelLogic {
         } while (!answer.matches("[Yy][Ee][Ss]|[Nn][Oo]+"));
         if (answer.equals("yes")) {
             balcony = true;
-        } else if (answer.equals("no")) {
-            balcony = false;
         }
         do {
             System.out.println("Enter the price: ");
@@ -105,8 +101,6 @@ class HotelLogic {
         } while (!answer.matches("[yesno]+"));
         if (answer.equals("yes")) {
             availability = true;
-        } else if (answer.equals("no")) {
-            availability = false;
         }
         Rooms rooms = new Rooms(roomNo, noOfBeds, balcony, price, availability);
         roomsList.add(rooms);
@@ -151,8 +145,6 @@ class HotelLogic {
         } while (!typed.matches("[yesno]+"));
         if (typed.equals("yes")) {
             checkedIn = true;
-        } else if (typed.equals("no")) {
-            checkedIn = false;
         }
 
 
@@ -236,7 +228,7 @@ class HotelLogic {
 
     void removeCustomer() {
         int choice;
-
+        Customer customer;
         Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < customerList.size(); i++) {
@@ -247,7 +239,7 @@ class HotelLogic {
         while (true) {
             try {
                 choice = input.nextInt();
-                customerList.get(choice);
+                customer = customerList.get(choice);
                 break;
             } catch (Exception e) {
                 System.out.println("Not a real customer");
@@ -255,8 +247,8 @@ class HotelLogic {
         }
 
         for (int i = 0; i < bookingList.size(); i++) {
-            if (bookingList.get(i).getCustomer().equals(customerList.get(choice))) {
-                bookingList.remove(i);
+            if (bookingList.get(i).getCustomer().equals(customer)) {
+                customerList.remove(customer);
             }
         }
         customerList.remove(choice);
@@ -640,7 +632,20 @@ class HotelLogic {
             }
 
         }
-        System.out.println(roomsToPrint);
+
+        for (int i = 0; i < roomsToPrint.size(); i++) {
+            String balcony;
+            if (roomsToPrint.get(i).isBalcony()) {
+                balcony = "It does have a balcony";
+            } else {
+                balcony = "It does not have a balcony";
+            }
+            System.out.println("Room number: " + roomsToPrint.get(i).getRoomNo() +
+                    "\nNumber of beds: " + roomsToPrint.get(i).getNoOfBeds() +
+                    "\n" + balcony +
+                    "\nPrice: " + roomsToPrint.get(i).getPrice() + "\n");
+        }
+
     }
 
     void makeBooking(String user) {
@@ -649,7 +654,6 @@ class HotelLogic {
         String name;
         String phone;
         String address;
-        String SSN = user;
         String typed;
         long checkInDate;
         long checkOutDate;
@@ -667,12 +671,6 @@ class HotelLogic {
                     typed = input.nextLine();
                 } while (!typed.matches("[A-Za-z]+"));
                 name = typed;
-
-                do {
-                    System.out.println("Enter SSN: ");
-                    typed = input.nextLine();
-                } while (!typed.matches("[0-9]{10}"));
-                SSN = typed;
 
 
                 System.out.println("Enter address: ");
@@ -695,7 +693,7 @@ class HotelLogic {
                 }
 
 
-                customer = new Customer(name, SSN, address, phone, checkedIn);
+                customer = new Customer(name, user, address, phone, checkedIn);
                 customerList.add(customer);
             }
         }
@@ -817,7 +815,6 @@ class HotelLogic {
         String SSN;
         String address;
         String phone;
-        int choice;
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getSSN().equals(user)) {
@@ -865,7 +862,6 @@ class HotelLogic {
     }
 
     void removeBookings(String user) {
-        Rooms rooms;
         int choice;
 
         Scanner input = new Scanner(System.in);
@@ -911,15 +907,10 @@ class HotelLogic {
 
 
     void printOldBookings(String ssn) {
-        Scanner input = new Scanner(System.in);
-        Customer customer = null;
 
         for (int i = 0; i < bookingList.size(); i++) {
-            // if the user ssn matches with the bookingList.i.ssn
             if (bookingList.get(i).getCustomer().getSSN().equals(ssn)) {
-                // if the date of that booking is earlier than today
                 if (dateNow > bookingList.get(i).getCheckOutDate()) {
-                    //print it
                     System.out.println(bookingList.get(i));
                 }
             }

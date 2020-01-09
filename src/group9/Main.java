@@ -52,6 +52,23 @@ public class Main {
         call.listOfCustomer();
         call.addInitialBookings();
 
+        for (int i = 0; i < call.bookingList.size(); i++) {
+            if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
+                call.bookingList.get(i).getCustomer().setCheckedIn(false);
+            }
+        }
+        for (int i = 0; i < call.bookingList.size(); i++) {
+            if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
+                call.bookingList.get(i).getRoom().setAvailability(true);
+            }
+        }
+        for (int i = 0; i < call.bookingList.size(); i++) {
+            if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
+                call.bookingList.get(i).getRoom().setAvailability(true);
+                call.bookingList.get(i).getCustomer().setCheckedIn(false);
+            }
+        }
+
         System.out.println("Welcome to Employees Menu of HKR Hotel");
         int choice = 0;
         int typed = 0;
@@ -80,36 +97,19 @@ public class Main {
             switch (choice) {
                 case 1:
 
-                    for (int i = 0; i < call.bookingList.size(); i++) {
-                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
-                        }
-                    }
                     for (Customer c : call.customerList) {
                         System.out.println(c.toString());
                     }
                     break;
                 case 2:
 
-                    for (int i = 0; i < call.bookingList.size(); i++) {
-                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
-                            call.bookingList.get(i).getRoom().setAvailability(true);
-                        }
-                    }
                     for (Rooms r : call.roomsList) {
                         System.out.println(r.toString());
                     }
 
                     break;
                 case 3:
-                    System.out.println(call.dateNow);
 
-                    for (int i = 0; i < call.bookingList.size(); i++) {
-                        if (call.bookingList.get(i).getCheckOutDate() < call.dateNow) {
-                            call.bookingList.get(i).getRoom().setAvailability(true);
-                            call.bookingList.get(i).getCustomer().setCheckedIn(false);
-                        }
-                    }
                     for (Booking b : call.bookingList)
                         System.out.println(b.toString());
                     break;
