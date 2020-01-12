@@ -823,13 +823,6 @@ class HotelLogic {
                 name = typed;
                 customer.setName(name);
 
-                do {
-                    System.out.println("Enter new SSN: ");
-                    typed = input.nextLine();
-                } while (!typed.matches("[0-9]{10}"));
-                SSN = typed;
-                customer.setSSN(SSN);
-
 
                 System.out.println("Enter new address: ");
                 address = input.nextLine();
@@ -844,7 +837,7 @@ class HotelLogic {
 
 
                 do {
-                    System.out.println("Is customer checked in? ");
+                    System.out.println("Are you checked in? ");
                     typed = input.nextLine();
                 } while (!typed.matches("[yesno]+"));
                 if (typed.equals("yes")) {
