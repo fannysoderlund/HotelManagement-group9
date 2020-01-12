@@ -208,7 +208,8 @@ public class Main {
 
                         break;
                     case 10:
-                        cont = false;
+                        System.exit(0);
+                        break;
                 }
 
         }
